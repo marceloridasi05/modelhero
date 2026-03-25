@@ -1440,27 +1440,15 @@ export function registerRoutes(_server: Server, app: Express): void {
       let boxImagePath: string | null = null;
 
       try {
-        const privateDir = process.env.PRIVATE_OBJECT_DIR;
-        if (privateDir) {
           const imageBuffer = Buffer.from(base64Data, "base64");
           const fileName = `box-scans/${randomUUID()}.jpg`;
-          const fullPath = privateDir.startsWith("/")
-            ? privateDir
-            : `/${privateDir}`;
-          const pathParts = fullPath.split("/").filter((p) => p);
-          const bucketName = pathParts[0];
-          const objectPath = [...pathParts.slice(1), fileName].join("/");
-
-          const bucket = objectStorageClient.bucket(bucketName);
-          const file = bucket.file(objectPath);
-
+          const bucket = objectStorageClient.bucket('uploads');
+          const file = bucket.file(fileName);
           await file.save(imageBuffer, {
             contentType: "image/jpeg",
             metadata: { uploadedBy: req.session.userId },
           });
-
           boxImagePath = `/objects/${fileName}`;
-        }
       } catch (uploadErr) {
         console.error("[scan-box] Error uploading box image:", uploadErr);
       }
@@ -1590,27 +1578,15 @@ export function registerRoutes(_server: Server, app: Express): void {
       let boxImagePath: string | null = null;
 
       try {
-        const privateDir = process.env.PRIVATE_OBJECT_DIR;
-        if (privateDir) {
           const imageBuffer = Buffer.from(base64Data, "base64");
           const fileName = `box-scans/${randomUUID()}.jpg`;
-          const fullPath = privateDir.startsWith("/")
-            ? privateDir
-            : `/${privateDir}`;
-          const pathParts = fullPath.split("/").filter((p) => p);
-          const bucketName = pathParts[0];
-          const objectPath = [...pathParts.slice(1), fileName].join("/");
-
-          const bucket = objectStorageClient.bucket(bucketName);
-          const file = bucket.file(objectPath);
-
+          const bucket = objectStorageClient.bucket('uploads');
+          const file = bucket.file(fileName);
           await file.save(imageBuffer, {
             contentType: "image/jpeg",
             metadata: { uploadedBy: req.session.userId },
           });
-
           boxImagePath = `/objects/${fileName}`;
-        }
       } catch (uploadErr) {
         console.error("Error uploading box image:", uploadErr);
       }
@@ -3063,11 +3039,6 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
         return res.status(400).json({ error: "No image provided" });
       }
 
-      const privateDir = process.env.PRIVATE_OBJECT_DIR;
-      if (!privateDir) {
-        return res.status(500).json({ error: "Object storage not configured" });
-      }
-
       const matches = imageBase64.match(/^data:image\/(\w+);base64,(.+)$/);
       if (!matches) {
         return res.status(400).json({ error: "Invalid image format" });
@@ -3078,16 +3049,8 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
       const imageBuffer = Buffer.from(base64Data, "base64");
 
       const fileName = `wishlist/${randomUUID()}.${extension}`;
-      const fullPath = privateDir.startsWith("/")
-        ? privateDir
-        : `/${privateDir}`;
-      const pathParts = fullPath.split("/").filter((p) => p);
-      const bucketName = pathParts[0];
-      const objectPath = [...pathParts.slice(1), fileName].join("/");
-
-      const bucket = objectStorageClient.bucket(bucketName);
-      const file = bucket.file(objectPath);
-
+      const bucket = objectStorageClient.bucket('uploads');
+      const file = bucket.file(fileName);
       await file.save(imageBuffer, {
         contentType: `image/${matches[1]}`,
         metadata: { uploadedBy: req.session.userId },
@@ -3221,21 +3184,10 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
       const raw = base64Data.includes(",") ? base64Data.split(",")[1] : base64Data;
       const imageBuffer = Buffer.from(raw, "base64");
 
-      const privateDir = process.env.PRIVATE_OBJECT_DIR;
-      if (!privateDir) {
-        return res.status(500).json({ error: "Object storage not configured" });
-      }
-
       const ext = contentType === "image/png" ? "png" : contentType === "image/webp" ? "webp" : "jpg";
       const fileName = `${folder}/${randomUUID()}.${ext}`;
-      const fullPath = privateDir.startsWith("/") ? privateDir : `/${privateDir}`;
-      const pathParts = fullPath.split("/").filter((p) => p);
-      const bucketName = pathParts[0];
-      const objectPath = [...pathParts.slice(1), fileName].join("/");
-
-      const bucket = objectStorageClient.bucket(bucketName);
-      const file = bucket.file(objectPath);
-
+      const bucket = objectStorageClient.bucket('uploads');
+      const file = bucket.file(fileName);
       await file.save(imageBuffer, {
         contentType,
         metadata: { uploadedBy: req.session.userId },
@@ -3266,15 +3218,6 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
         return res.status(403).json({ error: "Admin only" });
       }
 
-      const privateDir = process.env.PRIVATE_OBJECT_DIR;
-      if (!privateDir) {
-        return res.status(500).json({ error: "Object storage not configured" });
-      }
-
-      const fullPath = privateDir.startsWith("/") ? privateDir : `/${privateDir}`;
-      const pathParts = fullPath.split("/").filter((p) => p);
-      const bucketName = pathParts[0];
-
       const allKits = await storage.getKitsByUser(req.session.userId!);
       let migratedCount = 0;
       let errorCount = 0;
@@ -3293,11 +3236,8 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
 
           const contentType = ext === "pdf" ? "application/pdf" : `image/${ext}`;
           const fileName = `${folder}/${randomUUID()}.${ext}`;
-          const objectPath = [...pathParts.slice(1), fileName].join("/");
-
-          const bucket = objectStorageClient.bucket(bucketName);
-          const file = bucket.file(objectPath);
-
+          const bucket = objectStorageClient.bucket('uploads');
+          const file = bucket.file(fileName);
           await file.save(imageBuffer, {
             contentType,
             metadata: { migratedFrom: "database" },
@@ -3419,15 +3359,6 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
         return res.status(403).json({ error: "Admin only" });
       }
 
-      const privateDir = process.env.PRIVATE_OBJECT_DIR;
-      if (!privateDir) {
-        return res.status(500).json({ error: "Object storage not configured" });
-      }
-
-      const fullPath = privateDir.startsWith("/") ? privateDir : `/${privateDir}`;
-      const pathParts = fullPath.split("/").filter((p) => p);
-      const bucketName = pathParts[0];
-
       const allUsers = await storage.getAllUsers();
       let totalMigrated = 0;
       let totalErrors = 0;
@@ -3445,11 +3376,8 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
 
           const contentType = ext === "pdf" ? "application/pdf" : `image/${ext}`;
           const fileName = `${folder}/${randomUUID()}.${ext}`;
-          const objectPath = [...pathParts.slice(1), fileName].join("/");
-
-          const bucket = objectStorageClient.bucket(bucketName);
-          const file = bucket.file(objectPath);
-
+          const bucket = objectStorageClient.bucket('uploads');
+          const file = bucket.file(fileName);
           await file.save(imageBuffer, {
             contentType,
             metadata: { migratedFrom: "database" },
