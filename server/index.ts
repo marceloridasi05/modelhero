@@ -339,7 +339,25 @@ app.get("/api/test-email", async (_req: Request, res: Response) => {
 /* =========================
    START
 ========================= */
+async function runMigrations() {
+  try {
+    const { drizzle } = await import("drizzle-orm/node-postgres");
+    const { migrate } = await import("drizzle-orm/node-postgres/migrator");
+    const migrationsFolder = path.resolve(process.cwd(), "migrations");
+    if (!fs.existsSync(migrationsFolder)) {
+      console.log("[MIGRATE] Pasta migrations não encontrada, pulando.");
+      return;
+    }
+    const db = drizzle(pool);
+    await migrate(db, { migrationsFolder });
+    console.log("[MIGRATE] ✅ Migrations aplicadas com sucesso.");
+  } catch (err: any) {
+    console.error("[MIGRATE] ⚠️ Erro nas migrations (continuando):", err?.message || err);
+  }
+}
+
 async function start() {
+  await runMigrations();
   console.log(`[STARTUP] Building session store...`);
   const store = await buildSessionStore();
   console.log(`[STARTUP] Session store type: ${store.constructor?.name || "unknown"}`);
