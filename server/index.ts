@@ -341,18 +341,61 @@ app.get("/api/test-email", async (_req: Request, res: Response) => {
 ========================= */
 async function runMigrations() {
   try {
-    const { drizzle } = await import("drizzle-orm/node-postgres");
-    const { migrate } = await import("drizzle-orm/node-postgres/migrator");
+    // Find and execute migration SQL files directly via pool
     const migrationsFolder = path.resolve(process.cwd(), "migrations");
+    console.log("[MIGRATE] Procurando migrations em:", migrationsFolder);
+
     if (!fs.existsSync(migrationsFolder)) {
       console.log("[MIGRATE] Pasta migrations não encontrada, pulando.");
       return;
     }
-    const db = drizzle(pool);
-    await migrate(db, { migrationsFolder });
-    console.log("[MIGRATE] ✅ Migrations aplicadas com sucesso.");
+
+    const sqlFiles = fs.readdirSync(migrationsFolder)
+      .filter(f => f.endsWith(".sql"))
+      .sort();
+
+    console.log("[MIGRATE] Arquivos encontrados:", sqlFiles.length);
+
+    // Ensure migrations tracking table exists
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS __drizzle_migrations (
+        id SERIAL PRIMARY KEY,
+        hash text NOT NULL,
+        created_at bigint
+      )
+    `);
+
+    for (const file of sqlFiles) {
+      const hash = file.replace(".sql", "");
+      const exists = await pool.query(
+        "SELECT id FROM __drizzle_migrations WHERE hash = $1", [hash]
+      );
+      if ((exists.rowCount ?? 0) > 0) {
+        console.log(`[MIGRATE] Já aplicado: ${file}`);
+        continue;
+      }
+
+      const sqlPath = path.join(migrationsFolder, file);
+      const sql = fs.readFileSync(sqlPath, "utf-8");
+
+      // Split on statement breakpoints and execute each statement
+      const statements = sql.split("--> statement-breakpoint").map(s => s.trim()).filter(Boolean);
+      console.log(`[MIGRATE] Aplicando ${file} (${statements.length} statements)...`);
+
+      for (const stmt of statements) {
+        await pool.query(stmt);
+      }
+
+      await pool.query(
+        "INSERT INTO __drizzle_migrations (hash, created_at) VALUES ($1, $2)",
+        [hash, Date.now()]
+      );
+      console.log(`[MIGRATE] ✅ ${file} aplicado.`);
+    }
+
+    console.log("[MIGRATE] ✅ Migrations concluídas.");
   } catch (err: any) {
-    console.error("[MIGRATE] ⚠️ Erro nas migrations (continuando):", err?.message || err);
+    console.error("[MIGRATE] ⚠️ Erro (continuando startup):", err?.message || err);
   }
 }
 
