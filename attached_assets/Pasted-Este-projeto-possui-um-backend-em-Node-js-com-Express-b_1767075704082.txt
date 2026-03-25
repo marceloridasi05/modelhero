@@ -1,0 +1,37 @@
+Este projeto possui um backend em Node.js com Express, banco de dados PostgreSQL e um painel administrativo acessível via endpoint /admin. Já existem métricas operacionais do produto nesse endpoint. Quero estender o painel administrativo para incluir um painel híbrido de custos e uso, separando claramente métricas automáticas (derivadas do uso do produto) de custos informativos inseridos manualmente. Todos os dados devem excluir usuários admin de qualquer cálculo.
+
+Quero que o painel administrativo passe a ter uma nova aba chamada exatamente “KPIs”, dedicada exclusivamente a métricas numéricas agregadas. Essa aba não deve conter listas de usuários nem dados pessoais, apenas cards e números agregados.
+
+Dentro da aba KPIs, criar dois blocos distintos: “Uso do Produto e IA” e “Custos e Margem (Painel Híbrido)”.
+
+No bloco “Custos e Margem (Painel Híbrido)”, criar um painel que combine dados automáticos com valores manuais configuráveis no admin.
+
+Criar campos de configuração manual (armazenados no banco ou em configuração persistente) para os seguintes valores:
+
+Custo mensal total do Replit (em USD)
+
+Percentual estimado desse custo atribuído à IA
+
+Custo hipotético por ação de IA (em moeda configurável, ex: R$)
+
+Esses campos devem ser editáveis apenas por admins e persistidos para reutilização.
+
+Com base nesses valores manuais e nos dados automáticos de uso, calcular e exibir os seguintes cards no bloco de custos:
+
+Total de ações de IA no mês
+
+Custo estimado mensal de IA (total de ações × custo hipotético por ação)
+
+Custo estimado de IA por usuário pago
+
+Receita estimada por usuário pago (se disponível; caso contrário, permitir campo manual)
+
+Margem estimada por usuário pago considerando custo de IA
+
+Percentual do custo total do Replit atribuído à IA (com base no valor manual informado)
+
+Esses cálculos não precisam representar custo real contábil, apenas projeções consistentes para tomada de decisão. O objetivo desse painel é permitir análise de tendência, risco de margem e sustentabilidade do uso de IA à medida que o produto escala.
+
+A aba KPIs deve ser visualmente limpa, com cards numéricos claros, sem gráficos complexos nesta etapa. Não remover nem alterar outras abas ou funcionalidades existentes no admin, apenas adicionar essa nova aba e os cálculos associados.
+
+Priorizar clareza, legibilidade do código e confiabilidade dos números. Não incluir métricas de tracking de marketing, pageviews ou sessões. O foco é uso real do produto, IA e impacto econômico estimado.

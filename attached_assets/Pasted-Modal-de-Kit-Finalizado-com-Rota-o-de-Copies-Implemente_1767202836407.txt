@@ -1,0 +1,134 @@
+Modal de Kit Finalizado (com Rotação de Copies)
+
+Implemente um modal de celebração sempre que um kit for marcado como finalizado/concluído no ModelHero, seguindo rigorosamente as regras abaixo.
+
+1. Objetivo do Modal
+
+Parabenizar o usuário pela conclusão do kit
+
+Reforçar sensação de progresso e organização
+
+Incentivar a continuidade do uso do app:
+
+Nova montagem
+
+Acompanhamento de projetos
+
+Engajamento recorrente
+
+2. Regra Especial – Primeiro Kit Finalizado
+
+⚠️ Exceção obrigatória
+
+Quando o usuário finalizar seu primeiro kit no app, o modal deve usar exclusivamente a copy abaixo, sem rotação:
+
+Título
+🏆 Missão cumprida!
+
+Texto
+Esse kit agora faz parte da sua coleção finalizada. Organização, progresso e dedicação — tudo registrado no ModelHero.
+Pronto para o próximo desafio?
+
+CTA
+👉 Escolher próximo kit
+
+📌 Esta copy só pode ser exibida uma única vez, no primeiro kit finalizado.
+
+3. Regra Geral – Kits Finalizados a partir do Segundo
+
+A partir do segundo kit finalizado, o sistema deve:
+
+Selecionar uma copy aleatória a cada conclusão
+
+Garantir variação, evitando repetição imediata
+
+Tratar todas as opções como equivalentes em peso (rotação simples)
+
+4. Conjunto de Copies para Rotação
+Opção 1 – Celebração equilibrada
+
+Título
+🎉 Projeto concluído!
+
+Texto
+Parabéns! Você finalizou mais um kit e deu mais um passo na sua jornada como modelista organizado.
+Que tal escolher o próximo projeto e acompanhar cada etapa pelo ModelHero?
+
+CTA
+👉 Começar novo projeto
+
+Opção 2 – Orgulho e conquista
+
+Título
+🏆 Mais um concluído!
+
+Texto
+Esse projeto agora faz parte da sua coleção finalizada. Cada kit completo mostra sua evolução como modelista.
+Pronto para dar início ao próximo?
+
+CTA
+👉 Escolher próximo kit
+
+Opção 3 – Continuidade e ritmo
+
+Título
+✅ Kit finalizado com sucesso!
+
+Texto
+Mais um projeto concluído e documentado. Organização hoje, orgulho amanhã.
+Continue montando e acompanhando tudo pelo ModelHero.
+
+CTA
+👉 Iniciar nova montagem
+
+Opção 4 – Hábito e progresso
+
+Título
+👏 Excelente trabalho!
+
+Texto
+Finalizar um kit é sempre uma vitória. Ver sua coleção crescer de forma organizada é ainda melhor.
+Hora de escolher o próximo projeto.
+
+CTA
+👉 Planejar próximo projeto
+
+Opção 5 – Processo e disciplina
+
+Título
+🛠️ Projeto encerrado!
+
+Texto
+Cada etapa registrada conta a história da sua montagem. Agora esse kit está concluído e catalogado.
+Vamos ao próximo?
+
+CTA
+👉 Selecionar próximo kit
+
+5. Regras de Implementação
+
+O modal deve ser exibido imediatamente após o kit ser marcado como finalizado
+
+Apenas uma copy por evento
+
+Não repetir a mesma copy duas vezes seguidas (quando possível)
+
+Todas as copies devem manter:
+
+Tom positivo
+
+Linguagem humana (não técnica)
+
+Foco em progresso e continuidade
+
+6. CTA – Comportamento Esperado
+
+O CTA deve sempre levar o usuário a:
+
+Lista de kits disponíveis
+
+Criação de novo projeto
+
+Ou planejamento da próxima montagem
+
+Nunca fechar o loop sem sugerir o próximo passo.

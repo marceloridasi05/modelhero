@@ -1,0 +1,1229 @@
+{
+  "common": {
+    "tagline": "Modelismo organizado",
+    "loading": "Cargando...",
+    "loadingKits": "Cargando kits...",
+    "tryAgain": "Intentar de nuevo",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Añadir",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "all": "Todos",
+    "none": "Ninguno",
+    "yes": "Sí",
+    "no": "No",
+    "confirm": "Confirmar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "page": "Página {{current}} de {{total}}",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "view": "Ver",
+    "details": "Detalles",
+    "actions": "Acciones",
+    "status": "Estado",
+    "type": "Tipo",
+    "name": "Nombre",
+    "brand": "Marca",
+    "scale": "Escala",
+    "price": "Precio",
+    "value": "Valor",
+    "date": "Fecha",
+    "notes": "Notas",
+    "description": "Descripción",
+    "image": "Imagen",
+    "images": "Imágenes",
+    "photo": "Foto",
+    "photos": "Fotos",
+    "upload": "Subir",
+    "download": "Descargar",
+    "downloadPdf": "Descargar PDF",
+    "downloadExcel": "Descargar Excel",
+    "export": "Exportar",
+    "exportList": "Exportar Lista",
+    "downloadPremium": {
+      "title": "Función Premium",
+      "message": "La función de descarga de listas solo está disponible en el Plan Full.",
+      "unlock": "Desbloquear descargas ilimitadas"
+    },
+    "copilotUpgrade": {
+      "limitReached": "Límite Alcanzado",
+      "limitDescription": "Has alcanzado el límite de 3 consultas al Copiloto del plan gratuito.",
+      "cta": "Suscribirse al Plan Full"
+    },
+    "photoAIUpgrade": {
+      "limitReached": "Límite de IA Alcanzado",
+      "limitDescription": "Has alcanzado el límite de 10 análisis de fotos con IA del plan gratuito.",
+      "cta": "Suscribirse al Plan Full"
+    },
+    "duplicateCheckUpgrade": {
+      "limitReached": "Límite Alcanzado",
+      "limitDescription": "Has alcanzado el límite de 1 verificación de duplicados del plan gratuito.",
+      "cta": "Suscribirse al Plan Full"
+    },
+    "remove": "Quitar",
+    "clear": "Limpiar",
+    "reset": "Restablecer",
+    "apply": "Aplicar",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Aviso",
+    "info": "Información",
+    "uploadLoading": "Cargando archivo...",
+    "notifications": {
+      "title": "Notificaciones",
+      "empty": "Sin notificaciones",
+      "receivedAt": "Recibida en"
+    },
+    "changePassword": {
+      "title": "Cambiar Contraseña",
+      "descriptionNewUser": "Su contraseña inicial es 123456. Le recomendamos cambiarla para mayor seguridad.",
+      "descriptionExisting": "Ingrese su contraseña actual y la nueva contraseña deseada.",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar nueva contraseña",
+      "currentPasswordPlaceholder": "Su contraseña actual",
+      "newPasswordPlaceholder": "Ingrese la nueva contraseña",
+      "confirmPasswordPlaceholder": "Confirme la nueva contraseña",
+      "changeLater": "Cambiar después",
+      "changing": "Cambiando...",
+      "changeButton": "Cambiar contraseña",
+      "successTitle": "¡Contraseña cambiada!",
+      "successDescription": "Su contraseña fue cambiada con éxito.",
+      "errorTitle": "Error al cambiar contraseña",
+      "errorDescription": "No fue posible cambiar la contraseña.",
+      "validation": {
+        "currentRequired": "La contraseña actual es obligatoria",
+        "minLength": "La nueva contraseña debe tener al menos 6 caracteres",
+        "confirmRequired": "Confirme la nueva contraseña",
+        "mismatch": "Las contraseñas no coinciden"
+      }
+    },
+    "userMenu": {
+      "changePhoto": "Cambiar Foto",
+      "changePassword": "Cambiar Contraseña",
+      "logout": "Cerrar Sesión",
+      "changeProfilePhoto": "Cambiar Foto de Perfil",
+      "selectPhoto": "Elegir Foto",
+      "saving": "Guardando...",
+      "photoUpdated": "Foto actualizada con éxito!",
+      "photoError": "Error al actualizar la foto"
+    }
+  },
+  "nav": {
+    "navigation": "Navegación",
+    "administration": "Administración",
+    "home": "Inicio",
+    "inProgress": "En el Banco",
+    "kits": "Kits",
+    "myKits": "Mis Kits",
+    "materials": "Materiales",
+    "statistics": "Estadísticas",
+    "stats": "Stats",
+    "wishlist": "Wishlist",
+    "admin": "Admin",
+    "logout": "Salir",
+    "login": "Entrar",
+    "register": "Registrarse"
+  },
+  "home": {
+    "title": "Panel",
+    "welcome": "Bienvenido, {{name}}!",
+    "subtitle": "Este es el panel del modelista",
+    "recentKits": "Kits Recientes",
+    "quickStats": "Estadísticas Rápidas",
+    "emptyState": {
+      "title": "Tu ModelHero está vacío.",
+      "subtitle": "Registra tu primer kit para comenzar a organizar tu colección.",
+      "benefit": "Los modelistas que registran al menos 1 kit aprovechan mucho más ModelHero",
+      "tip": "Comienza con el kit que tengas más a mano",
+      "tipEdit": "Puedes editar todo después",
+      "button": "Registrar mi primer kit",
+      "note": "Toma menos de 1 minuto • Puedes editarlo después"
+    },
+    "totalKits": "Total de Kits",
+    "kitsCompleted": "Kits Montados",
+    "inProgressKits": "En Progreso",
+    "completedKits": "Completados",
+    "totalHours": "Horas Trabajadas",
+    "hoursInProgress": "Horas en Progreso",
+    "investment": "Inversión",
+    "viewAll": "Ver todos",
+    "kitsInProgress": "Kits en Progreso",
+    "kitsPaused": "Kits Iniciados y Pausados",
+    "noKitsInProgress": "Ningún kit en progreso",
+    "noKitsPaused": "Ningún kit iniciado y pausado",
+    "photoWithAI": "Registro por foto con IA (mucho más rápido)",
+    "newKit": "Nuevo Kit",
+    "welcomeModal": {
+      "title": "Vamos a organizar tu primer ítem ahora",
+      "description": "Sin esto, ModelHero aún no puede ayudarte.",
+      "tryAI": "Aprovecha para probar nuestra IA: Registra enviando una foto o enlace con el kit",
+      "closing": "Este es el primer paso para organizar tu colección.",
+      "registerFirstKit": "Registrar mi primer ítem",
+      "microcopy": "Toma menos de 1 minuto • Puedes editar después"
+    },
+    "firstKitModal": {
+      "title": "Buen comienzo. Ahora vamos a organizarnos de verdad.",
+      "description": "Con el primer ítem registrado, diste el primer paso. Registra 2 ítems más para comenzar a ver qué está en progreso, qué viene después y dónde se está invirtiendo tu tiempo.",
+      "registerAnother": "Registrar próximo ítem",
+      "viewKitDetails": "Completar detalles de este ítem"
+    },
+    "thirdKitModal": {
+      "title": "Gran avance",
+      "description": "Ahora ModelHero empieza a ver patrones en tu colección.",
+      "encouragement": "Registra 2 ítems más para tener una visión completa de qué está en progreso, qué viene después y dónde se está invirtiendo tu tiempo.",
+      "registerNext": "Registrar próximo ítem"
+    },
+    "fifthItemModal": {
+      "title": "Ahora sí, tu ModelHero está funcionando de verdad.",
+      "description": "Con 5 ítems registrados, ya saliste de la fase de prueba y entraste en la fase de organización real.",
+      "helpIntro": "Ahora ModelHero empieza a ayudarte a:",
+      "benefit1": "ver qué está en progreso y qué está detenido",
+      "benefit2": "entender dónde se está invirtiendo tu tiempo y tu dinero",
+      "benefit3": "planificar los próximos kits con más claridad",
+      "conclusion": "Este es el punto en que la organización empieza a compensar.",
+      "addMore": "Registrar otro ítem",
+      "viewOrganization": "Ver mi organización",
+      "microcopy": "Cuantos más ítems registras, más útil se vuelve ModelHero."
+    },
+    "seventhItemModal": {
+      "title": "¡Tu colección está creciendo!",
+      "description": "Ya registraste 7 ítems.",
+      "freePlanInfo": "El plan gratuito es ideal para empezar y entender tu organización.",
+      "limitInfo": "Si sigues creciendo, pronto alcanzarás el límite natural de este plan.",
+      "noChange": "Nada cambia ahora — es solo para que lo sepas y puedas planificarte con tranquilidad.",
+      "understood": "Entendido"
+    },
+    "tenthItemModal": {
+      "title": "Has llegado al límite del plan gratuito.",
+      "description": "Registraste 10 ítems y ya estás usando ModelHero de forma consistente.",
+      "continueInfo": "A partir de aquí, para continuar organizando tu colección sin interrupciones, necesitas estar en el plan completo.",
+      "fullPlanAllows": "El plan completo permite:",
+      "features": {
+        "unlimited": "Registrar ítems ilimitados",
+        "noBlocks": "Seguir tu colección sin bloqueos",
+        "continuous": "Usar ModelHero como sistema continuo, no solo como prueba"
+      },
+      "naturalStep": "Este es el paso natural para quienes decidieron tomarse la organización en serio.",
+      "unlockAccess": "Desbloquear acceso completo",
+      "viewItems": "Ver mis ítems registrados",
+      "microcopy": "Puedes continuar exactamente donde lo dejaste después del upgrade."
+    },
+    "kitCompleted": {
+      "firstKit": {
+        "title": "¡Misión cumplida!",
+        "text": "Este kit ahora forma parte de tu colección finalizada. Organización, progreso y dedicación — todo registrado en ModelHero.\n¿Listo para el próximo desafío?",
+        "cta": "Elegir próximo kit"
+      },
+      "rotation1": {
+        "title": "¡Proyecto completado!",
+        "text": "¡Felicidades! Has terminado otro kit y dado un paso más en tu camino como modelista organizado.\n¿Qué tal elegir el próximo proyecto y seguir cada etapa con ModelHero?",
+        "cta": "Comenzar nuevo proyecto"
+      },
+      "rotation2": {
+        "title": "¡Otro más completado!",
+        "text": "Este proyecto ahora forma parte de tu colección finalizada. Cada kit terminado muestra tu evolución como modelista.\n¿Listo para empezar el siguiente?",
+        "cta": "Elegir próximo kit"
+      },
+      "rotation3": {
+        "title": "¡Kit finalizado con éxito!",
+        "text": "Otro proyecto completado y documentado. Organización hoy, orgullo mañana.\nSigue montando y siguiendo todo con ModelHero.",
+        "cta": "Iniciar nuevo montaje"
+      },
+      "rotation4": {
+        "title": "¡Excelente trabajo!",
+        "text": "Terminar un kit siempre es una victoria. Ver tu colección crecer de forma organizada es aún mejor.\nHora de elegir el próximo proyecto.",
+        "cta": "Planear próximo proyecto"
+      },
+      "rotation5": {
+        "title": "¡Proyecto cerrado!",
+        "text": "Cada etapa registrada cuenta la historia de tu montaje. Ahora este kit está completado y catalogado.\n¿Vamos al siguiente?",
+        "cta": "Seleccionar próximo kit"
+      }
+    },
+    "scaleConverter": {
+      "title": "Conversor de Escalas",
+      "measureLabel": "Medida (mm, cm, etc.)",
+      "placeholder": "Ej: 10",
+      "currentScale": "Escala Actual",
+      "convertTo": "Convertir A",
+      "convert": "Convertir",
+      "result": "Resultado",
+      "inScale": "en escala"
+    },
+    "paintConverter": {
+      "title": "Correspondencia de Pinturas",
+      "description": "Encuentra pinturas equivalentes de diferentes marcas",
+      "freeSearch": "Búsqueda Libre",
+      "fsCode": "Código FS",
+      "ralCode": "Código RAL",
+      "rlmCode": "Código RLM",
+      "searchDescription": "Busca por nombre, código FS/RAL/RLM o código de pintura (ej: XF-62, H309, AK755)",
+      "searchPlaceholder": "Ej: Olive Drab, 34087, XF-62, RAL 7028...",
+      "selectFsCode": "Selecciona un código Federal Standard (FS 595)",
+      "chooseFsCode": "Elige un código FS...",
+      "selectRalCode": "Selecciona un código RAL",
+      "chooseRalCode": "Elige un código RAL...",
+      "selectRlmCode": "Selecciona un código RLM (Reichs-Luftfahrt-Ministerium)",
+      "chooseRlmCode": "Elige un código RLM...",
+      "filterCodes": "Filtrar códigos...",
+      "resultsFound": "{{count}} resultado(s) encontrado(s)",
+      "clickToSearch": "Haz clic en \"Buscar\" para encontrar correspondencias",
+      "noResults": "No se encontraron correspondencias",
+      "brandLabel": "Marca",
+      "colorLabel": "Color",
+      "equivalents": "Equivalentes",
+      "usafCamo": "USAF/USMC/US ARMY/NATO",
+      "camoSearchDescription": "Busca esquemas de camuflaje USAF/USMC/US Army/NATO (nombre de aeronave, vehículo, período, etc.)",
+      "camoSearchPlaceholder": "Ej: F-15, Vietnam, Ghost Grey...",
+      "schemesFound": "{{count}} esquema(s) encontrado(s)",
+      "clickToViewPaints": "Haz clic para ver pinturas"
+    },
+    "boxScan": {
+      "title": "Registro vía Foto de la Caja",
+      "description": "La IA está analizando la foto para identificar los kits y extraer información.",
+      "analyzing": "Analizando foto e identificando kits...",
+      "kitsRegistered": "{{count}} kit(s) pre-registrado(s)!",
+      "kitsAddedSuccess": "Los kits han sido añadidos a tu colección. Puedes editarlos para completar la información.",
+      "kitsIdentified": "Kits identificados:",
+      "noKitsFound": "No se pudieron identificar kits en la foto.",
+      "tryBetterPhoto": "Intenta tomar una foto más clara de la caja o lateral del kit.",
+      "tryAnotherPhoto": "Intentar Otra Foto",
+      "close": "Cerrar",
+      "successToast": "Kits registrados!",
+      "successDescription": "{{count}} kit(s) fueron pre-registrados con éxito.",
+      "errorAnalyzing": "No se pudo analizar la foto. Inténtalo de nuevo.",
+      "errorProcessing": "Error al procesar la foto. Inténtalo de nuevo."
+    },
+    "duplicateChecker": {
+      "title": "Detector de Duplicados",
+      "description": "Verifica si un producto (kit, pintura o material) ya está en tu colección antes de comprarlo.",
+      "photo": "Foto",
+      "text": "Texto",
+      "takePhoto": "Tomar o elegir foto",
+      "textSearchDesc": "Ingresa el nombre del producto, marca o código",
+      "textPlaceholder": "Ej: Tamiya F-15C 1/48, Vallejo 71.062, Mr.Color C1...",
+      "urlSearchDesc": "Pega la URL del producto de una tienda online",
+      "checking": "Verificando duplicados...",
+      "identifiedProduct": "Producto identificado:",
+      "code": "Código",
+      "duplicatesFound": "¡Posibles duplicados encontrados!",
+      "duplicatesFoundDesc": "Este producto puede estar ya en tu colección.",
+      "noDuplicates": "No se encontraron duplicados",
+      "noDuplicatesDesc": "Este producto parece ser una compra nueva.",
+      "duplicatesAlert": "Posibles duplicados en tu colección:",
+      "noMatch": "No se encontraron duplicados en tu colección",
+      "checkError": "Error al verificar duplicados. Inténtalo de nuevo.",
+      "itemTypes": {
+        "kit": "Kit",
+        "paint": "Pintura",
+        "supply": "Insumo",
+        "tool": "Herramienta",
+        "decal": "Calcomanía"
+      }
+    },
+    "favoriteLinks": {
+      "title": "Enlaces Favoritos",
+      "addLink": "Añadir Enlace",
+      "siteUrl": "URL del Sitio",
+      "urlHint": "Pega la URL de una tienda, sitio o blog de modelismo favorito",
+      "noLinks": "Sin enlaces favoritos",
+      "noLinksHint": "Añade sitios y tiendas de modelismo favoritos para acceso rápido",
+      "linkAdded": "¡Enlace añadido!",
+      "linkAddedDesc": "El enlace ha sido guardado en tus favoritos.",
+      "linkRemoved": "Enlace eliminado",
+      "linkRemovedDesc": "El enlace ha sido eliminado de tus favoritos.",
+      "deleteLink": "Eliminar enlace",
+      "deleteConfirmation": "¿Estás seguro de que quieres eliminar \"{{title}}\" de tus favoritos?"
+    },
+    "rssFeeds": {
+      "title": "Feeds RSS",
+      "description": "Sigue las últimas noticias de blogs y sitios de modelismo",
+      "addFeed": "Añadir Feed",
+      "addFeedTitle": "Añadir Feed RSS",
+      "feedUrl": "URL del Feed",
+      "urlHint": "Pega la URL del feed RSS de un blog o sitio de modelismo",
+      "noFeeds": "No hay feeds RSS configurados",
+      "noFeedsHint": "Añade feeds de blogs y sitios de modelismo para ver las últimas noticias",
+      "noArticles": "No hay artículos disponibles",
+      "updated": "Actualizado",
+      "refreshFeed": "Actualizar feed",
+      "removeFeed": "Eliminar feed",
+      "saving": "Guardando...",
+      "feedAdded": "¡Feed añadido!",
+      "feedAddedDesc": "El feed RSS se ha añadido correctamente.",
+      "feedRemoved": "Feed eliminado",
+      "feedRemovedDesc": "El feed RSS ha sido eliminado.",
+      "feedRefreshed": "¡Feed actualizado!",
+      "feedRefreshedDesc": "Los artículos han sido actualizados.",
+      "deleteFeed": "Eliminar Feed",
+      "deleteConfirmation": "¿Estás seguro de que quieres eliminar el feed \"{{title}}\"?",
+      "invalidUrl": "URL del feed inválida o inaccesible"
+    },
+    "badges": {
+      "title": "Logros",
+      "earned": "Conseguido",
+      "tiers": {
+        "bronze": "Bronce",
+        "silver": "Plata",
+        "gold": "Oro"
+      },
+      "categories": {
+        "building": "Construcción",
+        "collection": "Colección",
+        "dedication": "Dedicación"
+      },
+      "progress": {
+        "kitFinished": "{{current}}/{{target}} kit terminado",
+        "kitsFinished": "{{current}}/{{target}} kits terminados",
+        "kitsPainted": "{{current}}/{{target}} kits pintados",
+        "kitsWeathered": "{{current}}/{{target}} kits con weathering",
+        "stashControlled": "{{current}} terminados > {{target}} en caja",
+        "stashNotControlled": "{{current}} en caja vs {{target}} terminados",
+        "kits": "{{current}}/{{target}} kits",
+        "hours": "{{current}}/{{target}} horas",
+        "fiveStarKits": "{{current}}/{{target}} kits 5 estrellas",
+        "photos": "{{current}}/{{target}} fotos",
+        "scales": "{{current}}/{{target}} escalas",
+        "inProgress": "{{current}}/{{target}} en progreso"
+      },
+      "list": {
+        "construtor_iniciante": {
+          "name": "Constructor Principiante",
+          "description": "Terminó su primer kit"
+        },
+        "construtor_consistente": {
+          "name": "Constructor Consistente",
+          "description": "Terminó 3 kits"
+        },
+        "construtor_veterano": {
+          "name": "Constructor Veterano",
+          "description": "Terminó 10 kits"
+        },
+        "pintor_dedicado": {
+          "name": "Pintor Dedicado",
+          "description": "Pasó por la etapa de pintura en 5 kits"
+        },
+        "weathering_master": {
+          "name": "Maestro del Weathering",
+          "description": "Aplicó weathering en 5 kits"
+        },
+        "stash_controlado": {
+          "name": "Stash Controlado",
+          "description": "Tiene menos kits en caja que terminados"
+        },
+        "colecionador": {
+          "name": "Coleccionista",
+          "description": "Posee 10 o más kits en la colección"
+        },
+        "grande_colecionador": {
+          "name": "Gran Coleccionista",
+          "description": "Posee 25 o más kits en la colección"
+        },
+        "dedicado": {
+          "name": "Modelista Dedicado",
+          "description": "Acumuló 50 horas de trabajo en kits"
+        },
+        "mestre_artesao": {
+          "name": "Maestro Artesano",
+          "description": "Acumuló 100 horas de trabajo en kits"
+        },
+        "perfeccionista": {
+          "name": "Perfeccionista",
+          "description": "Dio 5 estrellas a 3 kits terminados"
+        },
+        "fotografo": {
+          "name": "Fotógrafo de Banco",
+          "description": "Registró 20 fotos de progreso"
+        },
+        "multi_escala": {
+          "name": "Multi Escala",
+          "description": "Posee kits en 3 escalas diferentes"
+        },
+        "velocista": {
+          "name": "Velocista",
+          "description": "Tiene 3 kits en progreso simultáneamente"
+        },
+        "finalizador": {
+          "name": "Finalizador",
+          "description": "Pasó por la etapa de finalización en 3 kits"
+        }
+      }
+    }
+  },
+  "kits": {
+    "title": "Mis Kits",
+    "addKit": "Añadir Kit",
+    "editKit": "Editar Kit",
+    "deleteKit": "Eliminar Kit",
+    "kitDetails": "Detalles del Kit",
+    "kitNumber": "Número del Kit",
+    "kitName": "Nombre del Kit",
+    "noKits": "No se encontraron kits",
+    "emptyState": {
+      "title": "Tu colección comienza aquí",
+      "subtitle": "Registrar tus primeros kits es lo que convierte ModelHero en una herramienta realmente útil.",
+      "benefit1": "Sigue lo que está en progreso",
+      "benefit2": "Evita compras duplicadas",
+      "benefit3": "Organiza tiempo e inversión",
+      "button": "Registrar mi primer kit",
+      "note": "Toma menos de 1 minuto • Puedes editarlo después"
+    },
+    "progressState": {
+      "title": "Progreso de tu colección",
+      "progress": "{{current}} de 3 kits registrados",
+      "remaining": "Solo faltan {{remaining}} para desbloquear tu primer hito de organización",
+      "button": "Registrar próximo kit"
+    },
+    "habitState": {
+      "title": "Buen progreso!",
+      "description": "Los modelistas con 5 o más kits registrados pueden seguir mejor el progreso y el tiempo de montaje.",
+      "remaining": "Estás a {{remaining}} kit(s) del próximo nivel.",
+      "button": "Registrar otro kit"
+    },
+    "searchPlaceholder": "Buscar kits...",
+    "filterByStatus": "Filtrar por Estado",
+    "filterByType": "Filtrar por Tipo",
+    "filterByScale": "Filtrar por Escala",
+    "filterByBrand": "Filtrar por Marca",
+    "filterByDestino": "Filtrar por Destino",
+    "sortBy": "Ordenar por",
+    "sortRecent": "Más Recientes",
+    "sortAlphabetical": "Orden Alfabético",
+    "tabs": {
+      "all": "Todos",
+      "forSale": "En Venta",
+      "sold": "Vendidos"
+    },
+    "status": {
+      "na_caixa": "En Caja",
+      "em_andamento": "En Progreso",
+      "iniciado_parado": "Iniciado/Parado",
+      "montado": "Completado",
+      "aguardando_reforma": "Esperando Renovación"
+    },
+    "destino": {
+      "exposto_em_casa": "En Exhibición",
+      "a_venda": "En Venta",
+      "vendido": "Vendido",
+      "doado": "Donado",
+      "emprestado": "Prestado",
+      "descartado": "Descartado",
+      "nenhum": "Sin Destino"
+    },
+    "filters": {
+      "allStatus": "Todos los Estados",
+      "allDestino": "Todos los Destinos",
+      "allTypes": "Todos los Tipos",
+      "allScales": "Todas las Escalas",
+      "allBrands": "Todas las Marcas",
+      "clearFilters": "Limpiar",
+      "destino": "Destino"
+    },
+    "form": {
+      "basicInfo": "Información Básica",
+      "financialInfo": "Información Financiera",
+      "paidValue": "Valor Pagado",
+      "estimatedValue": "Valor Estimado",
+      "saleValue": "Valor de Venta",
+      "ratings": "Calificaciones",
+      "moldQuality": "Calidad del Molde",
+      "instructionsQuality": "Calidad de las Instrucciones",
+      "decalsQuality": "Calidad de los Calcomanías",
+      "worthIt": "¿Vale la Pena?",
+      "progress": "Progreso",
+      "hoursWorked": "Horas Trabajadas",
+      "observations": "Observaciones",
+      "referenceFiles": "Archivos de Referencia",
+      "selectImage": "Seleccionar Imagen",
+      "extractFromUrl": "Extraer de URL",
+      "extractFromPhoto": "Extraer de Foto"
+    }
+  },
+  "kitDetail": {
+    "timer": {
+      "title": "Cronómetro de Montaje",
+      "currentSession": "Sesión actual",
+      "totalAccumulated": "Total acumulado",
+      "start": "Iniciar",
+      "stop": "Parar",
+      "startedOn": "Iniciado el",
+      "finishedOn": "Finalizado el"
+    },
+    "copilot": {
+      "title": "Copiloto de Proyecto con IA",
+      "description": "Usa la inteligencia artificial para obtener sugerencias personalizadas sobre el próximo paso de tu proyecto.",
+      "nextStep": "Próximo Paso",
+      "analyzing": "La IA está analizando tu proyecto...",
+      "projectChecklist": "Lista de Verificación del Proyecto",
+      "estimatedTime": "Tiempo Estimado",
+      "risksTitle": "Riesgos y Precauciones",
+      "materialsTitle": "Materiales Sugeridos",
+      "tipsTitle": "Consejo del Copiloto",
+      "lastFreeUseMessage": "Has utilizado todas tus consultas gratuitas del Copiloto.",
+      "availableOnFullPlan": "Copiloto disponible en el Plan Full"
+    },
+    "paints": {
+      "title": "Colores y Esquemas",
+      "add": "Añadir",
+      "noPaints": "No hay pinturas añadidas",
+      "dragToReorder": "Arrastra para reordenar",
+      "selectScheme": "Seleccionar Esquema",
+      "schemeApplied": "Esquema: {{name}}",
+      "noSchemeSelected": "Ningún esquema seleccionado"
+    },
+    "schemeSelector": {
+      "title": "Seleccionar Esquema de Colores",
+      "search": "Buscar esquemas...",
+      "category": "Categoría",
+      "allCategories": "Todas",
+      "colors": "Colores",
+      "selectBrandForColor": "Selecciona la marca para cada color",
+      "apply": "Aplicar Esquema",
+      "cancel": "Cancelar",
+      "noSchemes": "No se encontraron esquemas",
+      "removeScheme": "Eliminar Esquema"
+    },
+    "references": {
+      "title": "Archivos de Referencia",
+      "add": "Añadir",
+      "noFiles": "No hay archivos de referencia",
+      "upload": "Subir Archivo"
+    },
+    "info": {
+      "title": "Información",
+      "kitNumber": "Número del Kit",
+      "brand": "Marca",
+      "scale": "Escala",
+      "type": "Tipo",
+      "status": "Estado",
+      "destino": "Destino",
+      "progress": "Progreso",
+      "hoursWorked": "Horas Trabajadas",
+      "sale": "Venta",
+      "salePrice": "Precio de Venta",
+      "profit": "Ganancia",
+      "markAsSold": "Marcar como vendido"
+    },
+    "financial": {
+      "title": "Información Financiera",
+      "paidValue": "Valor Pagado",
+      "estimatedValue": "Valor Estimado",
+      "saleValue": "Valor de Venta"
+    },
+    "ratings": {
+      "title": "Calificaciones",
+      "moldQuality": "Calidad del Molde",
+      "instructionsQuality": "Calidad de las Instrucciones",
+      "decalsQuality": "Calidad de los Calcomanías",
+      "worthIt": "¿Vale la Pena?"
+    },
+    "observations": {
+      "title": "Observaciones",
+      "noObservations": "Sin observaciones"
+    }
+  },
+  "materials": {
+    "title": "Materiales",
+    "newMaterial": "Nuevo Material",
+    "addMaterial": "Añadir Material",
+    "editMaterial": "Editar Material",
+    "deleteMaterial": "Eliminar Material",
+    "noMaterials": "No se encontraron materiales",
+    "noMaterialsInCategory": "No hay materiales registrados en esta categoría",
+    "searchPlaceholder": "Buscar materiales...",
+    "lowStock": "Stock Bajo",
+    "lowStockWarning": "{{count}} artículo con stock bajo",
+    "lowStockWarning_plural": "{{count}} artículos con stock bajo",
+    "premiumFeature": "Función disponible en el plan Premium",
+    "exportCsv": "Exportar CSV",
+    "downloadStarted": "Descarga iniciada",
+    "materialsExported": "{{count}} materiales exportados.",
+    "registerByPhoto": "Registrar por foto con IA",
+    "analyzingPhoto": "Analizando foto...",
+    "paintFound": "¡Pintura encontrada!",
+    "paintIdentified": "¡Pintura identificada!",
+    "dataFilledFromExisting": "Datos completados desde una pintura existente",
+    "dataFilledFromMaterial": "Datos completados desde un material existente",
+    "couldNotIdentify": "No se pudo identificar",
+    "tryClearerPhoto": "Intenta una foto más clara del frasco",
+    "analysisError": "Error en el análisis",
+    "couldNotAnalyzePhoto": "No se pudo analizar la foto",
+    "errorReadingFile": "Error al leer el archivo",
+    "tabs": {
+      "paints": "Pinturas",
+      "supplies": "Insumos",
+      "tools": "Herramientas",
+      "decals": "Calcomanías"
+    },
+    "filters": {
+      "allBrands": "Todas las marcas",
+      "allColors": "Todos los colores",
+      "recent": "Recientes",
+      "alphabetical": "A-Z",
+      "clearFilters": "Limpiar filtros",
+      "sort": "Ordenar"
+    },
+    "stats": {
+      "total": "Total",
+      "colorsFromBrand": "{{count}} colores de esta marca",
+      "colorsFound": "{{count}} colores encontrados"
+    },
+    "form": {
+      "name": "Nombre",
+      "nameRequired": "Nombre *",
+      "colorName": "Nombre del Color",
+      "colorNameRequired": "Nombre del Color *",
+      "category": "Categoría",
+      "brand": "Marca",
+      "unit": "Unidad",
+      "currentQuantity": "Cantidad Actual",
+      "minQuantity": "Cantidad Mínima",
+      "line": "Línea",
+      "code": "Código",
+      "manufacturerCode": "Código del Fabricante",
+      "color": "Color",
+      "hexColor": "Color (Hex)",
+      "reference": "Referencia (FS/RAL/RLM)",
+      "paintType": "Tipo de Pintura",
+      "finish": "Acabado",
+      "supplyType": "Tipo de Insumo",
+      "toolType": "Tipo de Herramienta",
+      "toolState": "Estado",
+      "lastMaintenance": "Último Mantenimiento",
+      "scale": "Escala",
+      "targetKit": "Para qué kit",
+      "decoration": "Unidad/Decoración",
+      "typeRequired": "Tipo *",
+      "select": "Seleccionar",
+      "selectType": "Selecciona el tipo",
+      "urlPlaceholder": "Pega una URL de producto para autocompletar...",
+      "materialName": "Nombre del material"
+    },
+    "paintTypes": {
+      "acrilica": "Acrílica",
+      "esmalte": "Esmalte",
+      "laca": "Laca"
+    },
+    "finishes": {
+      "fosco": "Mate",
+      "satin": "Satinado",
+      "brilho": "Brillante",
+      "metalico": "Metálico"
+    },
+    "units": {
+      "ml": "ml",
+      "g": "g",
+      "unidades": "unidades",
+      "folhas": "hojas",
+      "frascos": "frascos",
+      "frasco": "frasco"
+    },
+    "toolStates": {
+      "ok": "OK",
+      "precisa_manutencao": "Necesita Mantenimiento",
+      "trocar": "Reemplazar"
+    },
+    "materialTypes": {
+      "tintas": "Pinturas",
+      "insumos": "Insumos",
+      "ferramentas": "Herramientas",
+      "decais": "Calcas"
+    },
+    "supplyTypes": {
+      "primer": "Imprimación",
+      "putty": "Masilla",
+      "lixas": "Lijas",
+      "fitas": "Cintas",
+      "mascaras": "Máscaras",
+      "laminas": "Cuchillas",
+      "cola": "Pegamento",
+      "thinner": "Thinner",
+      "diluente": "Diluyente",
+      "verniz_fosco": "Barniz Mate",
+      "verniz_satin": "Barniz Satinado",
+      "verniz_brilho": "Barniz Brillante",
+      "decal_softener": "Ablandador de Calcas"
+    },
+    "toolTypes": {
+      "estiletes": "Cúteres",
+      "aerografo": "Aerógrafo",
+      "compressores": "Compresores",
+      "pinceis": "Pinceles"
+    },
+    "noColorDefined": "Sin color definido",
+    "colorsFound": "{{count}} colores encontrados",
+    "materialFound": "¡{{type}} encontrado!",
+    "delete": {
+      "title": "Eliminar material",
+      "confirmation": "¿Estás seguro de que quieres eliminar \"{{name}}\"? Esta acción no se puede deshacer.",
+      "deleting": "Eliminando..."
+    },
+    "toasts": {
+      "materialCreated": "¡Material registrado!",
+      "materialUpdated": "¡Material actualizado!",
+      "materialDeleted": "¡Material eliminado!",
+      "errorCreating": "Error al crear",
+      "errorUpdating": "Error al actualizar",
+      "errorDeleting": "Error al eliminar",
+      "fillColorName": "Rellena el nombre del color",
+      "fillRequiredFields": "Rellena los campos obligatorios",
+      "dataExtracted": "Datos extraídos",
+      "noDataFoundInUrl": "No se encontraron datos en la URL",
+      "errorExtractingData": "Error al extraer datos",
+      "couldNotExtractFromUrl": "No se pudieron extraer datos de esta URL",
+      "serverConnectionError": "Error de conexión con el servidor",
+      "codeFoundInDatabase": "Código {{code}} encontrado en la base de correspondencia",
+      "dataFilledAutomatically": "Los datos se completaron automáticamente",
+      "verifyIdentifiedData": "Verifica los datos identificados"
+    },
+    "marketplace": {
+      "title": "Buscar en Marketplace",
+      "searchingAI": "La IA está buscando las mejores opciones...",
+      "aiSearchedPaint": "Nuestra IA buscó esta pintura para ti en Marketplace. Mira los resultados de búsqueda abajo.",
+      "searchLinks": "Enlaces de búsqueda:",
+      "couldNotGenerateLinks": "No se pudieron generar los enlaces de búsqueda",
+      "searchInMarketplace": "Buscar en Marketplace"
+    },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "page": "Página {{current}} de {{total}}"
+    },
+    "saving": "Guardando..."
+  },
+  "statistics": {
+    "title": "Estadísticas",
+    "subtitle": "Resumen de tu vida modelística",
+    "overview": "Visión General",
+    "byStatus": "Por Estado",
+    "byScale": "Por Escala",
+    "byBrand": "Por Marca",
+    "byType": "Por Tipo",
+    "hoursOverTime": "Horas a lo Largo del Tiempo",
+    "totalValue": "Valor Total",
+    "averageTime": "Tiempo Promedio",
+    "totalKits": "Total de Kits",
+    "kitsCompleted": "Kits Completados",
+    "inProgress": "En el Banco",
+    "inBox": "En Caja",
+    "awaitingReform": "Esperando Renovación",
+    "totalInvestment": "Inversión Total",
+    "totalHours": "Horas Totales",
+    "hoursInProgress": "Horas en Progreso",
+    "kitsForSale": "Kits en Venta",
+    "forSaleValue": "Valor en Venta",
+    "kitsSold": "Kits Vendidos",
+    "totalSoldValue": "Valor Total Vendido",
+    "kitsByStatus": "Kits por Estado",
+    "kitsByScale": "Kits por Escala",
+    "kitsByCategory": "Kits por Categoría",
+    "topBrands": "Principales Marcas",
+    "investmentByCategory": "Inversión por Categoría",
+    "salesByMonth": "Ventas por Mes",
+    "forSaleVsSold": "En Venta vs Vendido por Mes",
+    "noKitsRegistered": "Sin kits registrados",
+    "noInvestmentRegistered": "Sin inversión registrada",
+    "noSalesRegistered": "Sin ventas registradas",
+    "noSalesData": "Sin datos de ventas disponibles",
+    "errorLoadingData": "Error al cargar datos",
+    "investment": "Inversión",
+    "value": "Valor",
+    "forSaleAccumulated": "En Venta (Acumulado)",
+    "sold": "Vendido",
+    "unknown": "Desconocido",
+    "kits": "Kits",
+    "months": {
+      "jan": "Ene",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Abr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Ago",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dic"
+    },
+    "status": {
+      "na_caixa": "En Caja",
+      "em_andamento": "En Progreso",
+      "montado": "Completado",
+      "aguardando_reforma": "Esperando Renovación"
+    },
+    "premium": {
+      "title": "Estadísticas Completas",
+      "message": "Las estadísticas completas están disponibles en el Plan Full.",
+      "unlock": "Desbloquear seguimiento ilimitado"
+    }
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "addItem": "Añadir Item",
+    "editItem": "Editar Item",
+    "deleteItem": "Eliminar Item",
+    "noItems": "No hay items en la wishlist",
+    "priority": "Prioridad",
+    "estimatedPrice": "Precio Estimado",
+    "link": "Enlace"
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registrarse",
+    "logout": "Salir",
+    "username": "Usuario",
+    "email": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Tu contraseña",
+    "passwordMinPlaceholder": "Mínimo 6 caracteres",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "Ingresa la contraseña nuevamente",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre completo",
+    "forgotPassword": "Olvidé mi contraseña",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "createAccount": "Crear Cuenta",
+    "createFreeAccount": "Crear cuenta gratis",
+    "createMyFreeAccount": "Crear mi cuenta gratis",
+    "doLogin": "Iniciar sesión",
+    "loginSubtitle": "Accede a tu cuenta para gestionar tus kits",
+    "registerSubtitle": "Crea tu cuenta para empezar a gestionar tus kits",
+    "loginError": "Error al iniciar sesión",
+    "registerError": "Error al registrarse",
+    "invalidCredentials": "Credenciales inválidas",
+    "welcomeBack": "Bienvenido!",
+    "loginSuccess": "Inicio de sesión exitoso.",
+    "loggingIn": "Iniciando sesión...",
+    "accountCreated": "Cuenta creada!",
+    "welcomeToModelHero": "Bienvenido a ModelHero!",
+    "creatingAccount": "Creando cuenta...",
+    "couldNotCreateAccount": "No se pudo crear la cuenta.",
+    "recoverPassword": "Recuperar Contraseña",
+    "recoverPasswordDescription": "Para recuperar tu contraseña, contacta al administrador del sistema.",
+    "sendEmailTo": "Envía un email a:",
+    "informYourEmail": "Indica tu email registrado y solicita el restablecimiento de la contraseña.",
+    "understood": "Entendido",
+    "validation": {
+      "invalidEmail": "Email inválido",
+      "passwordRequired": "La contraseña es obligatoria",
+      "nameRequired": "El nombre es obligatorio",
+      "passwordMin": "La contraseña debe tener al menos 6 caracteres",
+      "confirmPasswordRequired": "Confirma tu contraseña",
+      "passwordsMismatch": "Las contraseñas no coinciden"
+    }
+  },
+  "kitCard": {
+    "hoursWorked": "{{hours}}h trabajadas",
+    "sale": "Venta",
+    "sold": "Vendido",
+    "forSale": "En Venta",
+    "purchase": "Compra",
+    "current": "Actual",
+    "salePrice": "Venta",
+    "markAsSold": "Marcar como Vendido",
+    "updateProgress": "Actualizar progreso",
+    "progressSaved": "Progreso actualizado",
+    "progressSavedDescription": "Progreso cambiado a {{progress}}%",
+    "active": "Activo"
+  },
+  "kitForm": {
+    "newKit": "Nuevo Kit",
+    "analyzing": "Analizando...",
+    "pasteProductUrl": "Pega la URL de un producto...",
+    "kitNumberOptional": "Número del Kit (opcional)",
+    "kitNumberPlaceholder": "Ej: 61114",
+    "modelName": "Nombre del Modelo",
+    "modelNamePlaceholder": "Ej: F-16 Fighting Falcon",
+    "brandPlaceholder": "Ej: Tamiya",
+    "theme": "Temática",
+    "currentValueLabel": "Valor Actual",
+    "stage": "Etapa",
+    "selectStage": "Selecciona la etapa",
+    "destination": "Destino",
+    "recipientQuestion": "¿Quién recibió el kit?",
+    "recipientPlaceholder": "Nombre de la persona u organización",
+    "isForSaleQuestion": "¿Este kit está en venta?",
+    "salePriceLabel": "Precio de Venta",
+    "listingLinks": "Enlaces de los Anuncios",
+    "rating": "Puntuación (0-10)",
+    "aftermarketsUsed": "Aftermarkets Utilizados",
+    "militaryInfo": "Información Militar",
+    "paintScheme": "Esquema de Pintura",
+    "paintSchemePlaceholder": "Ej: Camuflaje SEA",
+    "epoch": "Período",
+    "epochPlaceholder": "Ej: Guerra de Vietnam",
+    "airForce": "Fuerza Aérea",
+    "airForcePlaceholder": "Ej: USAF, FAB",
+    "armyNavy": "Ejército/Marina",
+    "armyNavyPlaceholder": "Ej: US Army",
+    "unitSquadron": "Unidad/Escuadrón",
+    "unitSquadronPlaceholder": "Ej: 8th TFW, Wolfpack",
+    "comments": "Comentarios",
+    "commentsPlaceholder": "Observaciones sobre el kit, dificultades, referencias usadas...",
+    "instructionsAndDecals": "Instrucciones y Hojas de Calcas",
+    "instruction": "Instrucción",
+    "addImage": "Añadir imagen",
+    "instructionUrlPlaceholder": "https://ejemplo.com/instruccion.jpg",
+    "clickToSelect": "Clic para seleccionar",
+    "dataExtracted": "¡Datos extraídos!",
+    "verifyFields": "Verifica los campos completados",
+    "extractionError": "Error en la extracción",
+    "couldNotExtract": "No se pudieron extraer datos de la URL",
+    "urlProcessingFailed": "Falló el procesamiento de la URL",
+    "kitIdentified": "¡Kit identificado!",
+    "photoSavedAsBoxImage": "Foto guardada como imagen de la caja",
+    "analysisError": "Error en el análisis",
+    "couldNotIdentifyKit": "No se pudo identificar el kit. Intenta con otra foto.",
+    "imageProcessingFailed": "Falló el procesamiento de la imagen",
+    "searching": "Buscando...",
+    "dataFilledAutomatically": "Datos completados automáticamente",
+    "couldNotRotateImage": "No se pudo rotar la imagen",
+    "uploadingInstruction": "Cargando imagen de instrucción...",
+    "status": {
+      "iniciado_parado": "Iniciado, pero detenido",
+      "finished": "Finalizado"
+    },
+    "destino": {
+      "exposto_em_casa": "Expuesto en casa",
+      "a_venda": "Kit en venta",
+      "emprestado": "Prestado"
+    },
+    "types": {
+      "airplane": "Avión",
+      "helicopter": "Helicóptero",
+      "military": "Militaria",
+      "vehicle": "Vehículo",
+      "ship": "Barco",
+      "submarine": "Submarino",
+      "figure": "Figura",
+      "diorama": "Diorama",
+      "scifi": "Sci-Fi",
+      "other": "Otro"
+    }
+  },
+  "upgrade": {
+    "limitReached": "Límite Alcanzado",
+    "limitDescription": "Has alcanzado el límite de 10 ítems del plan gratuito (kits + materiales + lista de deseos).",
+    "upgradePrompt": "Haz el upgrade al plan Full y obtén:",
+    "features": {
+      "unlimited": "Kits, materiales y lista de deseos ilimitados",
+      "export": "Exportación de datos (CSV)",
+      "storage": "Almacenamiento expandido para fotos",
+      "exclusive": "Recursos exclusivos",
+      "copilot": "Copiloto siempre disponible para todos tus proyectos"
+    },
+    "launchPromo": "¡Promoción de Lanzamiento!",
+    "internationalPricing": "Precio Internacional",
+    "payInBRL": "Pagar en Reales Brasileños (R$)",
+    "price": "$ {{price}}",
+    "perMonth": "/mes",
+    "doUpgrade": "Hacer Upgrade",
+    "continueFree": "Continuar en el plan gratuito",
+    "freePlan": "Plan Gratuito",
+    "itemsUsed": "{{used}}/{{limit}} ítems usados",
+    "upgradeNow": "Hacer Upgrade",
+    "successTitle": "¡Bienvenido a ModelHero Full!",
+    "successDescription": "Tu pago fue confirmado. Tu cuenta será activada en breve. ¡Disfruta de todas las funciones premium!",
+    "cancelTitle": "Pago Cancelado",
+    "cancelDescription": "No se realizó ningún cobro. Puedes intentarlo de nuevo cuando quieras.",
+    "goToDashboard": "Ir al Panel",
+    "autoRedirect": "Serás redirigido automáticamente en unos segundos..."
+  },
+  "aiUpgrade": {
+    "title": "Estás usando la IA de ModelHero de la manera correcta",
+    "description": "La IA ya te está ayudando a organizar mejor tu colección, ahorrar tiempo y tomar decisiones más rápidas.",
+    "callToAction": "Para seguir usando la IA sin límites y llevar tu organización al siguiente nivel, el plan Full libera todo el potencial de ModelHero.",
+    "benefitsTitle": "Con el plan Full, desbloqueas:",
+    "benefits": {
+      "aiUnlimited": "IA siempre disponible, sin interrupciones",
+      "completeOrganization": "Organización completa de tu colección",
+      "historyControl": "Historial, control y visión total de tu progreso",
+      "seriousHobbyist": "Recursos pensados para quienes se toman el hobby en serio"
+    },
+    "upgradeButton": "Hacer upgrade al plan Full"
+  },
+  "settings": {
+    "title": "Configuración",
+    "theme": "Tema",
+    "language": "Idioma",
+    "currency": "Moneda",
+    "darkMode": "Modo Oscuro",
+    "lightMode": "Modo Claro"
+  },
+  "languages": {
+    "pt": "Português",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語"
+  },
+  "errors": {
+    "loadingKits": "Error al cargar los kits",
+    "generic": "Ocurrió un error",
+    "notFound": "Página no encontrada",
+    "unauthorized": "No autorizado",
+    "forbidden": "Acceso denegado",
+    "serverError": "Error del servidor",
+    "networkError": "Error de conexión",
+    "validationError": "Error de validación"
+  },
+  "confirmations": {
+    "deleteKit": "¿Estás seguro de que quieres eliminar este kit?",
+    "deleteMaterial": "¿Estás seguro de que quieres eliminar este material?",
+    "deleteItem": "¿Estás seguro de que quieres eliminar este item?",
+    "unsavedChanges": "Tienes cambios sin guardar. ¿Quieres salir de todos modos?"
+  },
+  "toasts": {
+    "kitAdded": "¡Kit registrado!",
+    "kitAddedDesc": "Tu kit fue añadido con éxito.",
+    "kitCreated": "Kit creado con éxito",
+    "kitUpdated": "Kit actualizado con éxito",
+    "kitDeleted": "Kit eliminado con éxito",
+    "materialCreated": "Material creado con éxito",
+    "materialUpdated": "Material actualizado con éxito",
+    "materialDeleted": "Material eliminado con éxito",
+    "settingsSaved": "Configuración guardada",
+    "errorSaving": "Error al guardar",
+    "errorLoading": "Error al cargar",
+    "timerStarted": "Cronómetro iniciado",
+    "timerStopped": "Cronómetro parado"
+  },
+  "inProgress": {
+    "title": "En el Banco",
+    "subtitle": "{{count}} kit en construcción",
+    "subtitle_plural": "{{count}} kits en construcción",
+    "photoWithAI": "Registro por foto con IA (mucho más rápido)",
+    "newKitInProgress": "Nuevo Kit en el Banco",
+    "noKitsInProgress": "Ningún kit en progreso",
+    "startNewProject": "Comienza un nuevo proyecto haciendo clic en el botón de arriba",
+    "emptyState": {
+      "title": "Tu banco de trabajo está vacío",
+      "description": "Los modelistas organizados siempre tienen\nal menos un proyecto en curso.\n\nAquí es donde sigues el progreso,\ntiempo invertido y evolución del montaje.",
+      "primaryCta": "Poner un kit en el banco",
+      "secondaryCta": "O elegir un kit ya registrado"
+    },
+    "habitState": {
+      "title": "Proyecto activo",
+      "description": "Mantener un kit en el banco te ayuda a:",
+      "benefit1": "Retomar el montaje más rápido",
+      "benefit2": "Visualizar el progreso",
+      "benefit3": "No abandonar proyectos a mitad de camino"
+    },
+    "engagedState": {
+      "title": "Consejo de organización",
+      "tip": "Los modelistas más productivos suelen mantener 1 o 2 proyectos activos a la vez."
+    },
+    "placeholder": {
+      "first": "Tu primer kit en progreso",
+      "second": "Tu segundo kit en progreso",
+      "third": "Tu tercer kit en progreso",
+      "cta": "Añadir kit"
+    },
+    "routineTip": "Consejo: vuelve aquí cada vez que te sientes a modelar."
+  },
+  "gamification": {
+    "organizedModeler": "Modelista Organizado",
+    "youAre": "Eres un",
+    "maxLevel": "Nivel Máximo",
+    "itemsToNext": "Faltan {{count}} artículos para el siguiente nivel",
+    "itemsToNext_one": "Falta {{count}} artículo para el siguiente nivel",
+    "itemsRegistered": "{{count}} artículos registrados",
+    "itemsRegistered_one": "{{count}} artículo registrado",
+    "levels": {
+      "1": "Nivel Principiante",
+      "2": "Nivel Bronce",
+      "3": "Nivel Plata",
+      "4": "Nivel Oro",
+      "5": "Nivel Diamante"
+    },
+    "levelUp": {
+      "1": {
+        "title": "¡Primer Paso!",
+        "description": "Comenzaste tu viaje como modelista organizado. ¡Sigue registrando tus artículos!"
+      },
+      "2": {
+        "title": "¡Tu estante virtual está tomando forma!",
+        "description": "Ya tienes 8 modelos protegidos y organizados."
+      },
+      "3": {
+        "title": "¡Coleccionista Dedicado!",
+        "description": "Con 20 artículos registrados, tu colección ya impresiona. ¡Sigue así!"
+      },
+      "4": {
+        "title": "¡Maestro Modelista!",
+        "description": "¡50 artículos! Eres un verdadero entusiasta del hobby. ¡Tu organización es ejemplar!"
+      },
+      "5": {
+        "title": "¡Legendario!",
+        "description": "¡100 artículos registrados! Has alcanzado el nivel máximo. ¡Tu colección es una verdadera obra de arte!"
+      }
+    },
+    "levelNames": {
+      "1": "Principiante",
+      "2": "Bronce",
+      "3": "Plata",
+      "4": "Oro",
+      "5": "Diamante"
+    }
+  },
+  "todaySession": {
+    "title": "Sesión de hoy",
+    "question": "¿Qué planeas hacer hoy en el banco de trabajo?",
+    "activities": {
+      "assembly": "Montaje",
+      "painting": "Pintura",
+      "decals": "Calcomanías",
+      "weathering": "Envejecido",
+      "organizing": "Solo organizar"
+    },
+    "markSession": "Marcar sesión",
+    "confirmed": "Buena sesión. El banco de trabajo es tuyo.",
+    "workbenchDays": "Días que pasaste en el banco: {{count}}",
+    "workbenchDaysTooltip": "No se trata de producir. Se trata de vivir el banco de trabajo.",
+    "daysAwayLabel": "días sin pasar por el banco",
+    "daysAwayTooltip": "¿Qué tal volver al hobby hoy?"
+  },
+  "share": {
+    "share": "Compartir",
+    "copied": "¡Copiado!",
+    "linkCopied": "¡Enlace copiado!",
+    "linkCopiedDesc": "Comparte este enlace con cualquiera para mostrar tu colección.",
+    "error": "Error",
+    "errorDesc": "No se pudo generar el enlace para compartir.",
+    "shareTooltip": "Copiar enlace público para compartir",
+    "publicCollection": "Colección de {{name}}",
+    "kits": "Kits",
+    "materials": "Materiales",
+    "statistics": "Estadísticas",
+    "totalKits": "Total de Kits",
+    "totalHours": "Total de Horas",
+    "totalInvested": "Total Invertido",
+    "kitsByStatus": "Kits por Estado",
+    "kitsByScale": "Kits por Escala",
+    "topBrands": "Principales Marcas",
+    "noKitsFound": "No se encontraron kits",
+    "noMaterialsFound": "No se encontraron materiales",
+    "profileNotFound": "Perfil no encontrado",
+    "backToCollection": "Volver a la colección",
+    "progress": "Progreso",
+    "hoursWorked": "Horas Trabajadas",
+    "rating": "Calificación",
+    "paints": "Pinturas",
+    "buildPhotos": "Fotos de Construcción",
+    "notes": "Notas",
+    "poweredBy": "Powered by ModelHero"
+  }
+}

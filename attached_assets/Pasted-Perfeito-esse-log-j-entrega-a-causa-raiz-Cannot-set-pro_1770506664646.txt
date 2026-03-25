@@ -1,0 +1,132 @@
+Perfeito — esse log já entrega a causa raiz:
+
+Cannot set properties of undefined (setting 'userId') em POST /api/auth/login
+
+Isso significa que, dentro da rota de login, você está fazendo algo como:
+
+req.session.userId = user.id
+
+
+…mas req.session está undefined.
+
+✅ Isso acontece em 99% dos casos por ordem errada de middlewares: suas rotas (registerRoutes) estão sendo registradas antes do app.use(session(...)).
+
+Resultado: o layout (menu/topbar) carrega porque o React sobe, mas qualquer página que depende da API quebra (login, kits, etc.) porque a sessão nunca existe.
+
+Como corrigir (passo a passo)
+1) Abra server/index.ts
+
+Você precisa garantir que estes middlewares vêm ANTES de registerRoutes(...):
+
+express.json() / express.urlencoded()
+
+session(...) (express-session + store)
+
+(opcional) app.set("trust proxy", 1) em produção
+
+Ordem correta (modelo)
+
+Use esta ordem como referência:
+
+const app = express();
+
+const isProduction =
+  process.env.NODE_ENV === "production" ||
+  process.env.REPLIT_DEPLOYMENT === "1";
+
+if (isProduction) {
+  app.set("trust proxy", 1);
+}
+
+// 1) parsers ANTES das rotas
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true }));
+
+// 2) session ANTES das rotas
+app.use(
+  session({
+    store: new (connectPgSimple(session))({
+      pool,
+      createTableIfMissing: true,
+    }),
+    secret: process.env.SESSION_SECRET || "dev-secret-change-me",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: isProduction, // importante em produção
+    },
+  })
+);
+
+// 3) SOMENTE AGORA registre rotas
+registerRoutes(server, app);
+registerObjectStorageRoutes(app);
+
+// 4) static/vite depois disso...
+
+
+✅ O ponto crítico é: app.use(session(...)) tem que vir antes de registerRoutes(...).
+
+2) Ajuste específico no seu caso (onde costuma estar errado)
+
+Pelo que você mostrou em conversas anteriores, você tem algo assim:
+
+registerRoutes(server, app);
+registerObjectStorageRoutes(app);
+...
+app.use(session(...)); // <-- tarde demais
+
+
+✅ Corrija para:
+
+app.use(session(...));
+registerRoutes(server, app);
+registerObjectStorageRoutes(app);
+
+3) Garanta que o login não “assuma” sessão
+
+Mesmo com a ordem correta, é bom blindar a rota de login:
+
+if (!req.session) {
+  return res.status(500).json({ message: "Session middleware not initialized" });
+}
+req.session.userId = user.id;
+
+
+Se isso disparar, é porque a ordem ainda está errada ou o session middleware não está ativo.
+
+4) Redeploy e valide em 2 testes
+Teste A — Login
+
+Faça login e veja se não aparece mais o 500 no /api/auth/login.
+
+Teste B — Sessão existe
+
+Abra o Network e veja /api/auth/me:
+
+Deve retornar 200 com o usuário
+
+E o request deve carregar cookie de sessão
+
+Por que isso derruba “erro ao carregar kits”
+
+Porque sem sessão:
+
+login falha (500)
+
+GET /api/kits provavelmente depende de req.session.userId
+
+então ou retorna 401/500, e a Home fica travada
+
+Próximo passo (sem adivinhação)
+
+Cole aqui o trecho do seu server/index.ts que contém:
+
+app.use(session(...))
+
+a linha registerRoutes(server, app);
+
+Só essas partes (não precisa o arquivo inteiro).
+Aí eu te digo exatamente em que posição colocar e se falta algum detalhe (ex.: trust proxy, secure, SESSION_SECRET).

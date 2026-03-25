@@ -1,0 +1,120 @@
+2026-02-07 18:23:40.96
+41b7cc9a
+User
+stack: "TypeError: Cannot set properties of undefined (setting 'userId')\n" +
+2026-02-07 18:23:40.96
+41b7cc9a
+User
+🔥 API ERROR: {
+2026-02-07 18:23:40.96
+41b7cc9a
+User
+}
+2026-02-07 18:23:40.96
+41b7cc9a
+User
+' at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+🔥 API ERROR: {
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+method: 'POST',
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+stack: "TypeError: Cannot set properties of undefined (setting 'userId')\n" +
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+' at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+' at /home/runner/workspace/dist/index.cjs:617:14817\n' +
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+message: "Cannot set properties of undefined (setting 'userId')",
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+}
+2026-02-07 18:24:12.48
+41b7cc9a
+User
+url: '/api/auth/login',
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+message: "Cannot set properties of undefined (setting 'userId')",
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+' at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+stack: "TypeError: Cannot set properties of undefined (setting 'userId')\n" +
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+method: 'POST',
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+🔥 API ERROR: {
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+}
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+url: '/api/auth/login',
+2026-02-07 18:29:09.43
+41b7cc9a
+User
+' at /home/runner/workspace/dist/index.cjs:617:14817\n' +
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+stack: "TypeError: Cannot set properties of undefined (setting 'userId')\n" +
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+' at /home/runner/workspace/dist/index.cjs:617:14817\n' +
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+🔥 API ERROR: {
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+method: 'POST',
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+url: '/api/auth/login',
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+message: "Cannot set properties of undefined (setting 'userId')",
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+' at process.processTicksAndRejections (node:internal/process/task_queues:95:5)'
+2026-02-07 18:32:34.57
+41b7cc9a
+User
+}
+2026-02-07 18:40:18.64
+38b0c6d6
+User
+To enable Stripe, configure it in Replit Tools → Integrations → Stripe
+2026-02-07 18:40:18.64
+38b0c6d6
+User
+⚠️ Stripe not configured for this environment. Stripe features will be disabled.

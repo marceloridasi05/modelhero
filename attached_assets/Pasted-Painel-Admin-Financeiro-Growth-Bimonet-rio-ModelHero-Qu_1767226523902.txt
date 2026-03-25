@@ -1,0 +1,182 @@
+Painel Admin Financeiro & Growth Bimonetário (ModelHero)
+
+Quero transformar o painel administrativo do ModelHero em um cockpit completo de decisão financeira e de crescimento pago, para um SaaS B2C nichado, com suporte total a BRL e USD.
+
+O painel deve permitir simulação de cenários, não apenas exibição de métricas.
+
+PRINCÍPIOS FUNDAMENTAIS
+
+Considerar apenas OPEX mensal recorrente
+
+CAPEX (desenvolvimento, vibe coding, IA de build, aprendizado) NÃO entra em nenhum cálculo
+
+Linguagem simples, clara e orientada a decisão de fundador
+
+Todos os cálculos devem reagir em tempo real a qualquer alteração de input
+
+O painel deve responder à pergunta:
+“Com este preço e este custo de ads, meu SaaS é saudável?”
+
+1. MOEDA (OBRIGATÓRIO)
+
+Criar seletor de moeda: USD / BRL
+
+Definir USD como moeda-base de cálculo
+
+Converter valores para BRL apenas na exibição
+
+Criar campo manual para taxa de câmbio (USD → BRL)
+
+Todos os valores e indicadores devem reagir ao seletor de moeda
+
+2. ESTRUTURA DE CUSTOS — INPUTS MANUAIS (OPEX)
+
+Criar campos editáveis para:
+
+Custo mensal de infraestrutura (USD)
+
+Custo mensal de marketing / ads (USD) (valor variável)
+
+Custos variáveis futuros (USD)
+(ex: IA do produto, e-mail, storage)
+
+Calcular automaticamente:
+
+OPEX mensal total
+
+3. RECEITA ATUAL
+
+Mostrar claramente:
+
+MRR atual
+
+Número de usuários pagantes
+
+Ticket médio (ARPU)
+
+4. INPUTS DE CRESCIMENTO (TRÁFEGO PAGO)
+
+Criar campos editáveis para simulação de ads:
+
+CPC médio (USD)
+
+CTR (%)
+(campo informativo para contexto de qualidade de tráfego)
+
+Taxa de conversão (%)
+(clique → usuário pagante)
+
+Esses campos devem ser usados para simular crescimento pago.
+
+5. CÁLCULOS AUTOMÁTICOS (ENGINE DO PAINEL)
+
+Calcular e atualizar em tempo real:
+
+Tráfego e aquisição
+
+Cliques estimados = Ads mensais ÷ CPC
+
+Usuários pagantes estimados = Cliques × Taxa de conversão
+
+CAC (Custo de Aquisição por Cliente) = Ads ÷ Usuários pagantes
+
+Receita
+
+MRR gerado por ads = Usuários pagantes × Ticket
+
+MRR total
+
+Financeiro
+
+Margem (%) = (MRR − OPEX) ÷ MRR
+
+6. INDICADORES AUTOMÁTICOS DE SAÚDE
+
+Calcular e exibir claramente:
+
+MRR de breakeven = 1× OPEX
+
+MRR saudável = 3× OPEX
+
+MRR confortável = 5× OPEX
+
+Mostrar também:
+
+Usuários necessários para cada cenário
+
+O número de usuários do cenário confortável deve ser explicitamente apresentado como “usuários para ficar tranquilo” (ADIÇÃO CIRÚRGICA)
+
+7. SIMULADOR DE PREÇO (OBRIGATÓRIO)
+
+Criar input editável para:
+
+Ticket mensal hipotético (USD)
+
+Ao alterar o ticket, recalcular automaticamente:
+
+Breakeven
+
+Usuários necessários
+
+CAC aceitável
+
+Impacto direto na margem
+
+Viabilidade de sustentar ads
+
+8. REGRAS DE SAÚDE (LÓGICA DE ALERTA)
+CAC vs Ticket
+
+Classificar automaticamente:
+
+❌ CAC > 3× Ticket → insustentável
+
+⚠️ CAC entre 2× e 3× Ticket → atenção
+
+✅ CAC ≤ 2× Ticket → saudável
+
+Margem
+
+Classificar:
+
+❌ < 50% → risco
+
+⚠️ 50–70% → MVP
+
+✅ > 70% → saudável
+
+9. UX / FEEDBACK VISUAL
+
+Destaques visuais claros para:
+
+risco
+
+atenção
+
+saudável
+
+conforto (ADIÇÃO CIRÚRGICA)
+
+Alertas explícitos quando:
+
+MRR < OPEX
+
+Ticket não sustenta ads
+
+CAC incompatível com conversão
+
+Linguagem de fundador, não de contador
+
+OBJETIVO FINAL DO PAINEL
+
+Ao abrir o painel (ou alterar qualquer campo), o fundador deve saber em até 10 segundos:
+
+se o SaaS é sustentável
+
+qual ticket faz sentido
+
+se os ads podem ser escalados ou devem ser pausados
+
+quanto precisa faturar para ficar tranquilo
+
+Tudo deve reagir automaticamente ao seletor de moeda BRL / USD e aos inputs variáveis.

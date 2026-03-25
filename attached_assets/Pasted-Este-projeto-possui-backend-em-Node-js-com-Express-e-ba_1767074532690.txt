@@ -1,0 +1,46 @@
+Este projeto possui backend em Node.js com Express e banco de dados relacional (PostgreSQL). Existe distinção entre usuários admin e não-admin, além de diferenciação entre usuários free e pagos. Já existe um endpoint /admin que retorna métricas gerais do produto. Quero estender esse endpoint para incluir métricas específicas de uso de Inteligência Artificial, sempre excluindo usuários admin de todos os cálculos.
+
+Assuma que existe (ou deve ser criada, se não existir) uma tabela de log de ações de IA, por exemplo ia_actions, contendo ao menos os campos: id, user_id, created_at. Cada registro representa uma chamada explícita de IA feita pelo usuário no produto.
+
+As métricas de IA devem aceitar filtro opcional por data via query params startDate e endDate. Se o filtro não for informado, considerar todo o histórico disponível. O filtro de data deve ser aplicado sobre ia_actions.created_at. Se apenas startDate for informado, considerar até a data atual. Se apenas endDate for informado, considerar desde o início dos dados.
+
+O endpoint /admin deve passar a retornar, além das métricas existentes, os seguintes campos relacionados à IA:
+
+iaUsersCount
+Número total de usuários não-admin que realizaram pelo menos uma chamada de IA no período considerado.
+
+iaUsersNeverUsedCount
+Número total de usuários não-admin que nunca realizaram nenhuma chamada de IA desde o cadastro (ou no período filtrado, se aplicado).
+
+iaUsersNeverUsedPercentage
+Percentual de usuários não-admin que nunca utilizaram IA. Deve ser calculado como iaUsersNeverUsedCount dividido pelo total de usuários não-admin.
+
+iaActionsTotal
+Número total de chamadas de IA realizadas por usuários não-admin no período considerado.
+
+iaActionsPerUserAverage
+Média de chamadas de IA por usuário que utilizou IA. Deve ser calculada como iaActionsTotal dividido por iaUsersCount. Usuários que nunca usaram IA não entram nesse cálculo.
+
+iaUsageDistribution
+Distribuição de uso de IA por usuário, considerando apenas usuários não-admin, agrupada exatamente nas seguintes faixas:
+
+oneAction: usuários com exatamente 1 ação de IA
+
+twoToFiveActions: usuários com 2 a 5 ações de IA
+
+sixToTwentyActions: usuários com 6 a 20 ações de IA
+
+moreThanTwentyActions: usuários com mais de 20 ações de IA
+
+Essa distribuição deve ser retornada como um objeto JSON com esses quatro campos.
+
+paidUsersIaCount
+Número de usuários pagos (não-admin) que realizaram pelo menos uma chamada de IA.
+
+paidUsersIaPercentage
+Percentual de usuários pagos que utilizam IA. Deve ser calculado como paidUsersIaCount dividido pelo total de usuários pagos.
+
+iaActionsPerPaidUserAverage
+Média de chamadas de IA por usuário pago que utilizou IA. Deve ser calculada como total de ações de IA feitas por usuários pagos dividido pelo número de usuários pagos que usaram IA.
+
+A resposta do endpoint /admin deve incluir esses novos campos sem alterar o comportamento existente. Não incluir dados pessoais de usuários, apenas números agregados. Priorizar clareza e confiabilidade das queries, podendo usar subqueries ou CTEs. O objetivo dessas métricas é permitir análise de adoção, intensidade de uso e risco de custo de IA no produto.

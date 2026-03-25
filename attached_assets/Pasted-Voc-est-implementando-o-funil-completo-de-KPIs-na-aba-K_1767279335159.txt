@@ -1,0 +1,120 @@
+Você está implementando o funil completo de KPIs
+na aba "KPIs" do app web ModelHero.
+
+OBJETIVO
+Visualizar claramente o funil completo de usuários,
+do clique ao upgrade pago, com base em eventos definidos.
+
+--------------------------------------------------
+1. FUNIL OFICIAL (EVENTOS)
+--------------------------------------------------
+
+O funil deve seguir EXATAMENTE esta ordem:
+
+1. Clique               → ad_click
+2. Cadastro             → sign_up
+3. Primeiro kit         → kit_created_1
+4. Uso inicial          → kit_created_3
+5. Ativação             → kit_created_5 / usuario_ativado
+6. Pré-upgrade          → kit_created_7
+7. Gatilho de upgrade   → kit_created_10
+8. Conversão paga       → upgrade_pro
+
+--------------------------------------------------
+2. DADOS DE ORIGEM (BANCO)
+--------------------------------------------------
+
+Assuma que existem eventos persistidos com:
+- user_id
+- event_name
+- created_at
+
+Os dados devem ser agregados por:
+- número de usuários únicos por etapa
+- respeitando o período selecionado
+
+--------------------------------------------------
+3. FILTRO DE PERÍODO
+--------------------------------------------------
+
+Adicionar seletor global com:
+- Últimos 7 dias
+- Últimos 30 dias
+- Período personalizado (data início / fim)
+
+O filtro deve atualizar TODO o funil.
+
+--------------------------------------------------
+4. VISUALIZAÇÃO DO FUNIL
+--------------------------------------------------
+
+Exibir o funil como:
+
+- Lista vertical ou funil visual
+- Cada etapa deve mostrar:
+  • Nome da etapa
+  • Total de usuários
+  • % de conversão em relação à etapa anterior
+
+Exemplo:
+Cadastro: 120 (40%)
+Primeiro kit: 80 (66%)
+
+--------------------------------------------------
+5. CAMPOS DE DADOS EXTERNOS (MANUAL)
+--------------------------------------------------
+
+Adicionar campos manuais (frontend):
+- Investimento em mídia no período
+- Receita total no período
+- Observações estratégicas
+
+Usar esses dados para calcular:
+- Custo por cadastro
+- Custo por usuário ativado
+- CAC (upgrade_pro)
+
+--------------------------------------------------
+6. API / BACKEND
+--------------------------------------------------
+
+Criar endpoint:
+
+GET /api/kpis/funnel
+
+Parâmetros:
+- start_date
+- end_date
+
+Resposta:
+- users_per_stage (mapa evento → total)
+- conversion_rates (calculadas no backend ou frontend)
+
+--------------------------------------------------
+7. ABA KPIs (FRONTEND)
+--------------------------------------------------
+
+Na aba "KPIs":
+- Seção: Funil completo
+- Seção: Métricas financeiras (campos manuais)
+- Seção: Observações
+
+Tudo na mesma tela, com leitura clara.
+
+--------------------------------------------------
+8. RESTRIÇÕES
+--------------------------------------------------
+
+- Não usar ferramentas externas de BI
+- Código simples
+- Fácil manutenção
+- Pensado para evolução futura
+
+--------------------------------------------------
+9. RESULTADO ESPERADO
+--------------------------------------------------
+
+Ao final:
+- Funil completo visível e compreensível
+- Métricas certas no lugar certo
+- Base sólida para decisões de produto, mídia e pricing

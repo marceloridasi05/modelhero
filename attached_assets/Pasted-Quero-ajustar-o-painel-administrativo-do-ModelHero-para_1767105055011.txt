@@ -1,0 +1,111 @@
+Quero ajustar o painel administrativo do ModelHero para permitir excluir manualmente determinados usuários das métricas principais de produto e IA, independentemente do plano (free/pago), origem ou status anterior (ex-tester, convidado, etc.).
+
+Implemente a seguinte solução completa:
+
+Estrutura de dados
+Criar um atributo persistente no usuário chamado:
+
+exclude_from_metrics: boolean (default = false)
+
+Esse campo será a única fonte de verdade para decidir se o usuário deve ou não ser considerado nas métricas globais do painel /admin.
+
+Interface no painel Admin (tabela de usuários)
+Na tabela de usuários do /admin, adicionar:
+
+Uma coluna chamada “Excluir métricas”
+
+Um botão toggle (switch ou checkbox) por usuário com os estados:
+
+Considerado nas métricas (exclude_from_metrics = false)
+
+Excluído das métricas (exclude_from_metrics = true)
+
+O botão deve:
+
+Atualizar o campo exclude_from_metrics imediatamente ao ser acionado
+
+Persistir no banco de dados
+
+Ter feedback visual claro (ex: cinza = incluído, vermelho ou ícone de corte = excluído)
+
+Filtros visuais e controle
+Adicionar no topo do painel Admin:
+
+Um filtro:
+
+“Mostrar todos”
+
+“Somente considerados nas métricas”
+
+“Somente excluídos das métricas”
+
+Adicionar também:
+
+Um contador visível:
+
+Total de usuários excluídos das métricas
+
+Total de usuários considerados nas métricas
+
+Impacto nas métricas (regra central)
+Todas as métricas exibidas na aba KPIs e no painel híbrido devem:
+
+Considerar apenas usuários onde exclude_from_metrics = false
+
+Isso inclui explicitamente:
+
+Total de usuários
+
+Total de kits cadastrados
+
+Média de kits por usuário
+
+Usuários com 1+ kit
+
+Usuários com 2+ kits
+
+Tempo médio até o primeiro kit (em dias)
+
+Métricas de uso de IA:
+
+Usuários que usam IA
+
+Total de ações de IA
+
+Média de ações por usuário ativo
+
+Distribuição de uso de IA (1 ação, 2–5, 6–20, 20+)
+
+% de usuários que nunca usam IA
+
+% de usuários pagos que usam IA
+
+Ações de IA por usuário pago
+
+Usuários marcados como exclude_from_metrics = true:
+
+Não entram em nenhum cálculo agregado
+
+Não afetam médias, percentuais ou distribuições
+
+Continuam aparecendo normalmente na lista de usuários (não são ocultados)
+
+Transparência no painel de KPIs
+Na aba KPIs, exibir claramente:
+
+Um aviso textual discreto:
+“X usuários estão excluídos das métricas”
+
+Um tooltip ou texto de apoio explicando que testers, convidados ou usuários não representativos podem ser removidos manualmente para não distorcer análises
+
+Segurança e rastreabilidade
+Garantir que:
+
+Apenas admins podem alterar o campo exclude_from_metrics
+
+A ação fique registrada (ex: updated_at do usuário)
+
+A mudança seja reversível a qualquer momento
+
+Objetivo final:
+Permitir que eu refine manualmente a coorte analisada, removendo usuários de teste, convites antigos ou casos não representativos, sem depender de origem, plano ou e-mails fixos, garantindo que todas as métricas do produto reflitam apenas usuários reais e comparáveis.

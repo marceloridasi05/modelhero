@@ -1,0 +1,113 @@
+O React está carregando (sidebar + topbar renderizam) ✅
+
+Mas o conteúdo depende de chamadas à API (ex.: /api/kits) e essa API está devolvendo 500 ❌
+→ Por isso a Home “não carrega” e aparece “erro ao carregar kits”.
+
+Ou seja: não é rota SPA / static agora. É backend (rota /api/kits ou algo “antes” dela, como sessão/DB).
+
+O que quase sempre causa esse cenário (top 4)
+1) Falha de banco (Neon/PG) em produção
+
+Sintoma típico: /api/kits dá 500 e no log aparece connection, ssl, timeout, ECONNRESET, etc.
+
+Como confirmar (rápido):
+
+No log do deploy, procure o erro exatamente no momento do GET /api/kits.
+
+No browser (Network), clique no request que falhou e veja o Response (às vezes vem “relation does not exist”, “column does not exist”, etc).
+
+Correção típica:
+
+Verifique se DATABASE_URL está setada nos Secrets do Deploy (não só no dev).
+
+Confirme SSL: com Neon geralmente precisa sslmode=require (na URL) ou ssl: { rejectUnauthorized: false } no pool (dependendo do driver/config).
+
+2) Migrações/tabelas não existem em produção (schema mismatch)
+
+Se o banco do deploy é outro/novo, pode faltar tabela/coluna.
+
+Sintoma típico no log:
+
+relation "kits" does not exist
+
+column "xyz" does not exist
+
+Correção:
+
+Rodar migrações do Drizzle no banco do deploy (ou aplicar o schema).
+
+Atenção: runMigrations do stripe-replit-sync não é migração do seu schema do app (é do Stripe sync). Então é bem comum o app “subir” e quebrar no primeiro CRUD.
+
+3) O middleware de sessão está quebrando (connect-pg-simple)
+
+Se o express-session + connect-pg-simple não conseguem escrever/ler a tabela de sessão, toda request que passa por session pode falhar e virar 500.
+
+Sintomas típicos:
+
+Erro falando de tabela session/sessions, ou permissão, ou “cannot read property …” vindo do store.
+
+Correção:
+
+Garantir que a tabela de sessão existe (o connect-pg-simple pode criar se createTableIfMissing: true, dependendo da config).
+
+Garantir que o pool está OK e com SSL certinho.
+
+4) Erro em autenticação/req.user e a rota explode
+
+Ex.: sua rota /api/kits assume req.user.id, mas em produção req.user vem undefined e isso gera exception → 500.
+
+Sintoma: stack trace com Cannot read properties of undefined.
+
+Correção:
+
+Validar sessão no início da rota (if (!req.session.userId) return res.status(401)...)
+
+Logar userId na rota.
+
+O passo-a-passo mais eficiente (sem adivinhação)
+Passo 1 — Descobrir QUAL endpoint está 500
+
+Abra DevTools → Network → clique no request vermelho.
+Normalmente é um destes:
+
+GET /api/kits
+
+GET /api/auth/me
+
+GET /api/usage
+
+Se você me disser qual é e colar o Response (mesmo que seja pequeno), eu fecho o diagnóstico.
+
+Passo 2 — Fazer o backend te devolver o erro real (agora ele só mostra “500”)
+
+No seu server/index.ts, garanta que existe um error handler no final de tudo:
+
+app.use((err: any, _req: any, res: any, _next: any) => {
+  console.error("🔥 UNHANDLED ERROR:", err?.stack || err);
+  res.status(500).json({
+    message: "Internal Server Error",
+    error: String(err?.message || err),
+  });
+});
+
+
+Isso faz o log mostrar o motivo real do 500.
+
+Passo 3 — Adicionar um /api/health que isola “DB ok vs rota ok”
+
+Crie temporariamente:
+
+app.get("/api/health", async (_req, res) => {
+  try {
+    const r = await pool.query("select 1 as ok");
+    res.json({ ok: true, db: r.rows[0]?.ok === 1 });
+  } catch (e: any) {
+    console.error("DB HEALTH FAIL:", e?.stack || e);
+    res.status(500).json({ ok: false, db: false, error: e?.message });
+  }
+});
+
+
+Se /api/health der 500 → é DB/SSL/env.
+
+Se /api/health der 200 e /api/kits der 500 → é schema/migração/bug de rota/auth.

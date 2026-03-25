@@ -1,0 +1,1282 @@
+{
+  "common": {
+    "tagline": "整理されたモデリング",
+    "loading": "読み込み中...",
+    "loadingKits": "キットを読み込み中...",
+    "tryAgain": "再試行",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "add": "追加",
+    "search": "検索",
+    "filter": "フィルター",
+    "sort": "並べ替え",
+    "all": "すべて",
+    "none": "なし",
+    "yes": "はい",
+    "no": "いいえ",
+    "confirm": "確認",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "page": "ページ {{current}} / {{total}}",
+    "close": "閉じる",
+    "open": "開く",
+    "view": "表示",
+    "details": "詳細",
+    "actions": "アクション",
+    "status": "ステータス",
+    "type": "タイプ",
+    "name": "名前",
+    "brand": "ブランド",
+    "scale": "スケール",
+    "price": "価格",
+    "value": "値",
+    "date": "日付",
+    "notes": "メモ",
+    "description": "説明",
+    "image": "画像",
+    "images": "画像",
+    "photo": "写真",
+    "photos": "写真",
+    "upload": "アップロード",
+    "download": "ダウンロード",
+    "downloadPdf": "PDFをダウンロード",
+    "downloadExcel": "Excelをダウンロード",
+    "export": "エクスポート",
+    "exportList": "リストをエクスポート",
+    "downloadPremium": {
+      "title": "プレミアム機能",
+      "message": "リストのダウンロード機能はFullプランでのみ利用可能です。",
+      "unlock": "無制限ダウンロードを解除"
+    },
+    "copilotUpgrade": {
+      "limitReached": "制限に達しました",
+      "limitDescription": "無料プランのコパイロットへの3回の問い合わせ制限に達しました。",
+      "cta": "Fullプランに登録"
+    },
+    "photoAIUpgrade": {
+      "limitReached": "AI制限に達しました",
+      "limitDescription": "無料プランのAI写真分析10回の制限に達しました。",
+      "cta": "Fullプランに登録"
+    },
+    "duplicateCheckUpgrade": {
+      "limitReached": "制限に達しました",
+      "limitDescription": "無料プランの重複チェック1回の制限に達しました。",
+      "cta": "Fullプランに登録"
+    },
+    "remove": "削除",
+    "clear": "クリア",
+    "reset": "リセット",
+    "apply": "適用",
+    "error": "エラー",
+    "success": "成功",
+    "warning": "警告",
+    "info": "情報",
+    "uploadLoading": "ファイルを読み込み中...",
+    "notifications": {
+      "title": "通知",
+      "empty": "通知なし",
+      "receivedAt": "受け取った日時"
+    },
+    "changePassword": {
+      "title": "パスワード変更",
+      "descriptionNewUser": "初期パスワードは123456です。セキュリティ向上のため変更をお勧めします。",
+      "descriptionExisting": "現在のパスワードと新しいパスワードを入力してください。",
+      "currentPassword": "現在のパスワード",
+      "newPassword": "新しいパスワード",
+      "confirmPassword": "新しいパスワードの確認",
+      "currentPasswordPlaceholder": "現在のパスワード",
+      "newPasswordPlaceholder": "新しいパスワードを入力",
+      "confirmPasswordPlaceholder": "新しいパスワードを確認",
+      "changeLater": "後で変更",
+      "changing": "変更中...",
+      "changeButton": "パスワードを変更",
+      "successTitle": "パスワード変更完了！",
+      "successDescription": "パスワードが正常に変更されました。",
+      "errorTitle": "パスワード変更エラー",
+      "errorDescription": "パスワードを変更できませんでした。",
+      "validation": {
+        "currentRequired": "現在のパスワードは必須です",
+        "minLength": "新しいパスワードは6文字以上必要です",
+        "confirmRequired": "新しいパスワードを確認してください",
+        "mismatch": "パスワードが一致しません"
+      }
+    },
+    "userMenu": {
+      "changePhoto": "写真を変更",
+      "changePassword": "パスワードを変更",
+      "logout": "ログアウト",
+      "changeProfilePhoto": "プロフィール写真を変更",
+      "selectPhoto": "写真を選択",
+      "saving": "保存中...",
+      "photoUpdated": "写真が正常に更新されました！",
+      "photoError": "写真の更新中にエラーが発生しました"
+    }
+  },
+  "nav": {
+    "navigation": "ナビゲーション",
+    "administration": "管理",
+    "home": "ホーム",
+    "inProgress": "作業台",
+    "kits": "キット",
+    "myKits": "マイキット",
+    "materials": "材料",
+    "statistics": "統計",
+    "stats": "統計",
+    "wishlist": "ウィッシュリスト",
+    "admin": "管理",
+    "logout": "ログアウト",
+    "login": "ログイン",
+    "register": "登録"
+  },
+  "home": {
+    "title": "ダッシュボード",
+    "welcome": "ようこそ、{{name}}さん!",
+    "subtitle": "これはモデラーのダッシュボードです",
+    "recentKits": "最近のキット",
+    "quickStats": "クイック統計",
+    "emptyState": {
+      "title": "あなたのModelHeroは空です。",
+      "subtitle": "最初のキットを登録して、コレクションの整理を始めましょう。",
+      "benefit": "1つ以上のキットを登録したモデラーは、ModelHeroをより活用できます",
+      "tip": "手元にあるキットから始めましょう",
+      "tipEdit": "後ですべて編集できます",
+      "button": "最初のキットを登録",
+      "note": "1分もかかりません • 後で編集できます"
+    },
+    "totalKits": "キット総数",
+    "kitsCompleted": "完成キット",
+    "inProgressKits": "進行中",
+    "completedKits": "完成",
+    "totalHours": "作業時間",
+    "hoursInProgress": "進行中の時間",
+    "investment": "投資額",
+    "viewAll": "すべて表示",
+    "kitsInProgress": "進行中のキット",
+    "kitsPaused": "開始して中断中のキット",
+    "noKitsInProgress": "進行中のキットはありません",
+    "noKitsPaused": "開始して中断中のキットはありません",
+    "photoWithAI": "AIで写真登録（はるかに速い）",
+    "newKit": "新規キット",
+    "welcomeModal": {
+      "title": "今すぐ最初のアイテムを整理しましょう",
+      "description": "これがないと、ModelHeroはまだお手伝いできません。",
+      "tryAI": "AIをお試しください：写真またはキットのリンクを送信して登録",
+      "closing": "これはコレクションを整理する最初のステップです。",
+      "registerFirstKit": "最初のアイテムを登録",
+      "microcopy": "1分もかかりません • 後で編集できます"
+    },
+    "firstKitModal": {
+      "title": "良いスタートです。さあ、本格的に整理しましょう。",
+      "description": "最初のアイテムを登録して、最初の一歩を踏み出しました。あと2つのアイテムを登録して、何が進行中か、次に何が来るか、時間がどこに投資されているかを確認しましょう。",
+      "registerAnother": "次のアイテムを登録",
+      "viewKitDetails": "このアイテムの詳細を完成"
+    },
+    "thirdKitModal": {
+      "title": "素晴らしい進歩",
+      "description": "これでModelHeroがあなたのコレクションのパターンを認識し始めます。",
+      "encouragement": "あと2つのアイテムを登録して、何が進行中か、次に何が来るか、時間がどこに投資されているかの全体像を把握しましょう。",
+      "registerNext": "次のアイテムを登録"
+    },
+    "fifthItemModal": {
+      "title": "これであなたのModelHeroが本当に機能し始めました。",
+      "description": "5つのアイテムを登録して、テスト段階を終え、本格的な整理段階に入りました。",
+      "helpIntro": "これからModelHeroがお手伝いすること：",
+      "benefit1": "進行中のものと保留中のものを把握",
+      "benefit2": "時間とお金がどこに投資されているかを理解",
+      "benefit3": "次のキットをより明確に計画",
+      "conclusion": "これが整理が報われ始めるポイントです。",
+      "addMore": "もう1つアイテムを登録",
+      "viewOrganization": "整理状況を見る",
+      "microcopy": "登録するアイテムが増えるほど、ModelHeroはより便利になります。"
+    },
+    "seventhItemModal": {
+      "title": "コレクションが成長しています！",
+      "description": "7つのアイテムを登録しました。",
+      "freePlanInfo": "無料プランは始めるのに最適で、あなたの整理を理解するのに役立ちます。",
+      "limitInfo": "成長を続けると、このプランの自然な制限にすぐ達します。",
+      "noChange": "今は何も変わりません — これは前もって知っておき、計画できるようにするためです。",
+      "understood": "わかりました"
+    },
+    "tenthItemModal": {
+      "title": "無料プランの制限に達しました。",
+      "description": "10個のアイテムを登録し、すでにModelHeroを継続的に使用しています。",
+      "continueInfo": "ここから先、中断なくコレクションを整理し続けるには、フルプランが必要です。",
+      "fullPlanAllows": "フルプランでできること：",
+      "features": {
+        "unlimited": "無制限のアイテム登録",
+        "noBlocks": "ブロックなしでコレクションを追跡",
+        "continuous": "ModelHeroを試用ではなく継続的なシステムとして使用"
+      },
+      "naturalStep": "これは整理を本気で取り組むことを決めた方にとって自然なステップです。",
+      "unlockAccess": "フルアクセスを解除",
+      "viewItems": "登録済みアイテムを見る",
+      "microcopy": "アップグレード後、中断したところから正確に続けることができます。"
+    },
+    "kitCompleted": {
+      "firstKit": {
+        "title": "ミッション達成！",
+        "text": "このキットが完成コレクションに加わりました。整理、進歩、そして情熱 — すべてModelHeroに記録されています。\n次のチャレンジに挑みますか？",
+        "cta": "次のキットを選ぶ"
+      },
+      "rotation1": {
+        "title": "プロジェクト完了！",
+        "text": "おめでとうございます！もう一つキットを完成させ、整理されたモデラーとしての道をさらに一歩進みました。\n次のプロジェクトを選んで、ModelHeroで各ステップを記録しませんか？",
+        "cta": "新しいプロジェクトを始める"
+      },
+      "rotation2": {
+        "title": "もう一つ完成！",
+        "text": "このプロジェクトが完成コレクションに加わりました。完成したキットの一つ一つが、モデラーとしての成長を示しています。\n次を始める準備はできましたか？",
+        "cta": "次のキットを選ぶ"
+      },
+      "rotation3": {
+        "title": "キット完成おめでとうございます！",
+        "text": "もう一つのプロジェクトが完了し、記録されました。今日の整理が、明日の誇りになります。\nModelHeroで製作と記録を続けましょう。",
+        "cta": "新しい製作を開始"
+      },
+      "rotation4": {
+        "title": "素晴らしい仕事です！",
+        "text": "キットを完成させることは常に勝利です。コレクションが整理されて成長していくのを見るのは、さらに素晴らしいことです。\n次のプロジェクトを選びましょう。",
+        "cta": "次のプロジェクトを計画"
+      },
+      "rotation5": {
+        "title": "プロジェクト完了！",
+        "text": "記録された各ステップが、あなたの製作ストーリーを語っています。このキットは完成し、カタログに登録されました。\n次に進みましょう！",
+        "cta": "次のキットを選択"
+      }
+    },
+    "scaleConverter": {
+      "title": "スケール変換",
+      "measureLabel": "寸法 (mm, cm など)",
+      "placeholder": "例: 10",
+      "currentScale": "現在のスケール",
+      "convertTo": "変換先",
+      "convert": "変換",
+      "result": "結果",
+      "inScale": "スケール"
+    },
+    "paintConverter": {
+      "title": "塗料対応表",
+      "description": "異なるブランドの同等塗料を検索",
+      "freeSearch": "フリー検索",
+      "fsCode": "FSコード",
+      "ralCode": "RALコード",
+      "rlmCode": "RLMコード",
+      "searchDescription": "名前、FS/RAL/RLMコード、または塗料コードで検索 (例: XF-62, H309, AK755)",
+      "searchPlaceholder": "例: Olive Drab, 34087, XF-62, RAL 7028...",
+      "selectFsCode": "Federal Standardコード (FS 595) を選択",
+      "chooseFsCode": "FSコードを選択...",
+      "selectRalCode": "RALコードを選択",
+      "chooseRalCode": "RALコードを選択...",
+      "selectRlmCode": "RLMコード (Reichs-Luftfahrt-Ministerium) を選択",
+      "chooseRlmCode": "RLMコードを選択...",
+      "filterCodes": "コードをフィルター...",
+      "resultsFound": "{{count}}件の結果が見つかりました",
+      "clickToSearch": "「検索」をクリックして一致を検索",
+      "noResults": "一致するものが見つかりません",
+      "brandLabel": "ブランド",
+      "colorLabel": "色",
+      "equivalents": "同等品",
+      "usafCamo": "USAF/USMC/US ARMY/NATO",
+      "camoSearchDescription": "USAF/USMC/US Army/NATOの迷彩スキームを検索（航空機名、車両、時代など）",
+      "camoSearchPlaceholder": "例: F-15, Vietnam, Ghost Grey...",
+      "schemesFound": "{{count}}件のスキームが見つかりました",
+      "clickToViewPaints": "クリックして塗料を表示"
+    },
+    "boxScan": {
+      "title": "箱の写真で登録",
+      "description": "AIが写真を分析してキットを識別し、情報を抽出しています。",
+      "analyzing": "写真を分析してキットを識別中...",
+      "kitsRegistered": "{{count}}個のキットが仮登録されました!",
+      "kitsAddedSuccess": "キットがコレクションに追加されました。編集して情報を完成させることができます。",
+      "kitsIdentified": "識別されたキット:",
+      "noKitsFound": "写真からキットを識別できませんでした。",
+      "tryBetterPhoto": "キットの箱や側面のより鮮明な写真を撮ってみてください。",
+      "tryAnotherPhoto": "別の写真を試す",
+      "close": "閉じる",
+      "successToast": "キットが登録されました!",
+      "successDescription": "{{count}}個のキットが正常に仮登録されました。",
+      "errorAnalyzing": "写真を分析できませんでした。もう一度お試しください。",
+      "errorProcessing": "写真の処理中にエラーが発生しました。もう一度お試しください。"
+    },
+    "duplicateChecker": {
+      "title": "重複チェッカー",
+      "description": "購入前に製品（キット、塗料、材料）がすでにコレクションにあるか確認します。",
+      "photo": "写真",
+      "text": "テキスト",
+      "takePhoto": "写真を撮るか選択",
+      "textSearchDesc": "製品名、ブランド、またはコードを入力",
+      "textPlaceholder": "例: Tamiya F-15C 1/48, Vallejo 71.062, Mr.Color C1...",
+      "urlSearchDesc": "オンラインショップの製品URLを貼り付け",
+      "checking": "重複を確認中...",
+      "identifiedProduct": "識別された製品:",
+      "code": "コード",
+      "duplicatesFound": "重複の可能性があります！",
+      "duplicatesFoundDesc": "この製品はすでにコレクションにある可能性があります。",
+      "noDuplicates": "重複は見つかりませんでした",
+      "noDuplicatesDesc": "この製品は新規購入のようです。",
+      "duplicatesAlert": "コレクション内の重複の可能性:",
+      "noMatch": "コレクションに重複は見つかりませんでした",
+      "checkError": "重複確認中にエラーが発生しました。もう一度お試しください。",
+      "itemTypes": {
+        "kit": "キット",
+        "paint": "塗料",
+        "supply": "材料",
+        "tool": "工具",
+        "decal": "デカール"
+      }
+    },
+    "favoriteLinks": {
+      "title": "お気に入りリンク",
+      "addLink": "リンクを追加",
+      "siteUrl": "サイトURL",
+      "urlHint": "お気に入りのモデリングサイト、ショップ、ブログのURLを貼り付けてください",
+      "noLinks": "お気に入りリンクがありません",
+      "noLinksHint": "素早くアクセスするためにお気に入りのモデリングサイトやショップを追加してください",
+      "linkAdded": "リンクが追加されました！",
+      "linkAddedDesc": "リンクがお気に入りに保存されました。",
+      "linkRemoved": "リンクが削除されました",
+      "linkRemovedDesc": "リンクがお気に入りから削除されました。",
+      "deleteLink": "リンクを削除",
+      "deleteConfirmation": "「{{title}}」をお気に入りから削除してもよろしいですか？"
+    },
+    "rssFeeds": {
+      "title": "RSSフィード",
+      "description": "モデリングブログやウェブサイトの最新ニュースをフォロー",
+      "addFeed": "フィードを追加",
+      "addFeedTitle": "RSSフィードを追加",
+      "feedUrl": "フィードURL",
+      "urlHint": "モデリングブログやウェブサイトのRSSフィードURLを貼り付けてください",
+      "noFeeds": "RSSフィードが設定されていません",
+      "noFeedsHint": "モデリングブログやウェブサイトのフィードを追加して最新ニュースをチェックしましょう",
+      "noArticles": "記事がありません",
+      "updated": "更新済み",
+      "refreshFeed": "フィードを更新",
+      "removeFeed": "フィードを削除",
+      "saving": "保存中...",
+      "feedAdded": "フィードが追加されました！",
+      "feedAddedDesc": "RSSフィードが正常に追加されました。",
+      "feedRemoved": "フィードが削除されました",
+      "feedRemovedDesc": "RSSフィードが削除されました。",
+      "feedRefreshed": "フィードが更新されました！",
+      "feedRefreshedDesc": "記事が更新されました。",
+      "deleteFeed": "フィードを削除",
+      "deleteConfirmation": "フィード「{{title}}」を削除してもよろしいですか？",
+      "invalidUrl": "無効またはアクセスできないフィードURL"
+    },
+    "badges": {
+      "title": "実績",
+      "earned": "獲得済み",
+      "tiers": {
+        "bronze": "ブロンズ",
+        "silver": "シルバー",
+        "gold": "ゴールド"
+      },
+      "categories": {
+        "building": "製作",
+        "collection": "コレクション",
+        "dedication": "献身"
+      },
+      "progress": {
+        "kitFinished": "{{current}}/{{target}} キット完成",
+        "kitsFinished": "{{current}}/{{target}} キット完成",
+        "kitsPainted": "{{current}}/{{target}} キット塗装済み",
+        "kitsWeathered": "{{current}}/{{target}} キットウェザリング済み",
+        "stashControlled": "{{current}} 完成 > {{target}} 未開封",
+        "stashNotControlled": "{{current}} 未開封 vs {{target}} 完成",
+        "kits": "{{current}}/{{target}} キット",
+        "hours": "{{current}}/{{target}} 時間",
+        "fiveStarKits": "{{current}}/{{target}} 5つ星キット",
+        "photos": "{{current}}/{{target}} 写真",
+        "scales": "{{current}}/{{target}} スケール",
+        "inProgress": "{{current}}/{{target}} 製作中"
+      },
+      "list": {
+        "construtor_iniciante": {
+          "name": "初心者ビルダー",
+          "description": "最初のキットを完成させた"
+        },
+        "construtor_consistente": {
+          "name": "一貫したビルダー",
+          "description": "3つのキットを完成させた"
+        },
+        "construtor_veterano": {
+          "name": "ベテランビルダー",
+          "description": "10のキットを完成させた"
+        },
+        "pintor_dedicado": {
+          "name": "献身的なペインター",
+          "description": "5つのキットで塗装段階を完了した"
+        },
+        "weathering_master": {
+          "name": "ウェザリングマスター",
+          "description": "5つのキットにウェザリングを適用した"
+        },
+        "stash_controlado": {
+          "name": "コントロールされたストック",
+          "description": "完成したキットより未開封のキットが少ない"
+        },
+        "colecionador": {
+          "name": "コレクター",
+          "description": "コレクションに10個以上のキットを所有"
+        },
+        "grande_colecionador": {
+          "name": "グランドコレクター",
+          "description": "コレクションに25個以上のキットを所有"
+        },
+        "dedicado": {
+          "name": "献身的なモデラー",
+          "description": "キット作業に50時間を費やした"
+        },
+        "mestre_artesao": {
+          "name": "マスタークラフトマン",
+          "description": "キット作業に100時間を費やした"
+        },
+        "perfeccionista": {
+          "name": "完璧主義者",
+          "description": "3つの完成キットに5つ星を付けた"
+        },
+        "fotografo": {
+          "name": "ワークベンチフォトグラファー",
+          "description": "20枚の進捗写真を記録した"
+        },
+        "multi_escala": {
+          "name": "マルチスケール",
+          "description": "3つの異なるスケールのキットを所有"
+        },
+        "velocista": {
+          "name": "スピードスター",
+          "description": "3つのキットを同時に製作中"
+        },
+        "finalizador": {
+          "name": "フィニッシャー",
+          "description": "3つのキットで最終段階を完了した"
+        }
+      }
+    }
+  },
+  "kits": {
+    "title": "マイキット",
+    "addKit": "キットを追加",
+    "editKit": "キットを編集",
+    "deleteKit": "キットを削除",
+    "kitDetails": "キット詳細",
+    "kitNumber": "キット番号",
+    "kitName": "キット名",
+    "noKits": "キットが見つかりません",
+    "emptyState": {
+      "title": "コレクションはここから始まります",
+      "subtitle": "最初のキットを登録することで、ModelHeroが本当に役立つツールになります。",
+      "benefit1": "進行中の作業を追跡",
+      "benefit2": "重複購入を防止",
+      "benefit3": "時間と投資を整理",
+      "button": "最初のキットを登録",
+      "note": "1分もかかりません • 後で編集できます"
+    },
+    "progressState": {
+      "title": "コレクションの進捗",
+      "progress": "3キット中{{current}}キット登録済み",
+      "remaining": "あと{{remaining}}キットで最初の整理マイルストーンを達成",
+      "button": "次のキットを登録"
+    },
+    "habitState": {
+      "title": "順調な進捗!",
+      "description": "5キット以上登録しているモデラーは、進捗と製作時間をより適切に追跡できます。",
+      "remaining": "次のレベルまであと{{remaining}}キットです。",
+      "button": "もう1つキットを登録"
+    },
+    "searchPlaceholder": "キットを検索...",
+    "filterByStatus": "ステータスでフィルター",
+    "filterByType": "タイプでフィルター",
+    "filterByScale": "スケールでフィルター",
+    "filterByBrand": "ブランドでフィルター",
+    "filterByDestino": "用途でフィルター",
+    "sortBy": "並べ替え",
+    "sortRecent": "最新順",
+    "sortAlphabetical": "アルファベット順",
+    "tabs": {
+      "all": "すべて",
+      "forSale": "販売中",
+      "sold": "売却済み"
+    },
+    "status": {
+      "na_caixa": "未開封",
+      "em_andamento": "製作中",
+      "iniciado_parado": "中断中",
+      "montado": "完成",
+      "aguardando_reforma": "修復待ち"
+    },
+    "destino": {
+      "exposto_em_casa": "展示中",
+      "a_venda": "販売中",
+      "vendido": "売却済み",
+      "doado": "寄贈済み",
+      "emprestado": "貸出中",
+      "descartado": "廃棄済み",
+      "nenhum": "用途未定"
+    },
+    "filters": {
+      "allStatus": "すべてのステータス",
+      "allDestino": "すべての用途",
+      "allTypes": "すべてのタイプ",
+      "allScales": "すべてのスケール",
+      "allBrands": "すべてのブランド",
+      "clearFilters": "クリア",
+      "destino": "用途"
+    },
+    "form": {
+      "basicInfo": "基本情報",
+      "financialInfo": "財務情報",
+      "paidValue": "購入価格",
+      "estimatedValue": "推定価格",
+      "saleValue": "販売価格",
+      "ratings": "評価",
+      "moldQuality": "金型品質",
+      "instructionsQuality": "説明書品質",
+      "decalsQuality": "デカール品質",
+      "worthIt": "購入価値あり？",
+      "progress": "進捗",
+      "hoursWorked": "作業時間",
+      "observations": "メモ",
+      "referenceFiles": "参考ファイル",
+      "selectImage": "画像を選択",
+      "extractFromUrl": "URLから抽出",
+      "extractFromPhoto": "写真から抽出"
+    }
+  },
+  "kitDetail": {
+    "timer": {
+      "title": "製作タイマー",
+      "currentSession": "現在のセッション",
+      "totalAccumulated": "累計時間",
+      "start": "開始",
+      "stop": "停止",
+      "startedOn": "開始日",
+      "finishedOn": "完成日"
+    },
+    "copilot": {
+      "title": "AIプロジェクトアシスタント",
+      "description": "人工知能を使用して、プロジェクトの次のステップについてパーソナライズされた提案を取得します。",
+      "nextStep": "次のステップ",
+      "analyzing": "AIがプロジェクトを分析中...",
+      "projectChecklist": "プロジェクトチェックリスト",
+      "estimatedTime": "推定時間",
+      "risksTitle": "リスクと注意事項",
+      "materialsTitle": "推奨材料",
+      "tipsTitle": "アシスタントからのヒント",
+      "lastFreeUseMessage": "無料のアシスタント相談をすべて使用しました。",
+      "availableOnFullPlan": "Fullプランでアシスタント利用可能"
+    },
+    "paints": {
+      "title": "カラーとスキーム",
+      "add": "追加",
+      "noPaints": "塗料が追加されていません",
+      "dragToReorder": "ドラッグして並べ替え",
+      "selectScheme": "スキームを選択",
+      "schemeApplied": "スキーム: {{name}}",
+      "noSchemeSelected": "スキームが選択されていません",
+      "addPaint": "塗料を追加",
+      "searchByFs": "FSで検索",
+      "searchByName": "名前で検索",
+      "brand": "ブランド",
+      "selectBrand": "ブランドを選択",
+      "searchBrand": "ブランドを検索...",
+      "noBrandFound": "ブランドが見つかりません。",
+      "code": "コード",
+      "selectCode": "コードを選択",
+      "searchCode": "コードを検索...",
+      "noCodeFound": "コードが見つかりません。",
+      "name": "塗料名",
+      "fsCode": "FSコード",
+      "rlmCode": "RLMコード",
+      "ralCode": "RALコード",
+      "color": "色（プレビュー）",
+      "chooseColorManually": "色を手動で選択",
+      "select": "選択...",
+      "searchFs": "FSコードを検索...",
+      "noFsFound": "コードが見つかりません。",
+      "paintsFound": "{{count}}件の塗料が見つかりました",
+      "searchInMarketplace": "マーケットプレイスで検索"
+    },
+    "schemeSelector": {
+      "title": "カラースキームを選択",
+      "search": "スキームを検索...",
+      "category": "カテゴリ",
+      "allCategories": "すべて",
+      "colors": "カラー",
+      "selectBrandForColor": "各色のブランドを選択",
+      "apply": "スキームを適用",
+      "cancel": "キャンセル",
+      "noSchemes": "スキームが見つかりません",
+      "removeScheme": "スキームを削除"
+    },
+    "references": {
+      "title": "参考ファイル",
+      "add": "追加",
+      "noFiles": "参考ファイルなし",
+      "upload": "ファイルをアップロード"
+    },
+    "info": {
+      "title": "情報",
+      "kitNumber": "キット番号",
+      "brand": "ブランド",
+      "scale": "スケール",
+      "type": "タイプ",
+      "status": "ステータス",
+      "destino": "用途",
+      "progress": "進捗",
+      "hoursWorked": "作業時間",
+      "sale": "販売",
+      "salePrice": "販売価格",
+      "profit": "利益",
+      "markAsSold": "売却済みにする",
+      "rating": "評価",
+      "currentStage": "現在の工程",
+      "recipientName": "受取人",
+      "values": "価格",
+      "paid": "支払済",
+      "current": "現在",
+      "military": "軍用",
+      "civil": "民間"
+    },
+    "financial": {
+      "title": "財務情報",
+      "paidValue": "購入価格",
+      "estimatedValue": "推定価格",
+      "saleValue": "販売価格"
+    },
+    "ratings": {
+      "title": "評価",
+      "moldQuality": "金型品質",
+      "instructionsQuality": "説明書品質",
+      "decalsQuality": "デカール品質",
+      "worthIt": "購入価値あり？"
+    },
+    "observations": {
+      "title": "メモ",
+      "noObservations": "メモなし"
+    },
+    "notFound": "キットが見つかりません",
+    "saving": "保存中...",
+    "photos": {
+      "reference": "参考写真",
+      "noReferencePhotos": "参考写真なし",
+      "build": "制作写真",
+      "noBuildPhotos": "制作写真なし",
+      "takePhoto": "写真を撮る"
+    },
+    "links": {
+      "title": "便利なリンク",
+      "urlPlaceholder": "リンクURL",
+      "descriptionPlaceholder": "内容の説明",
+      "addLink": "リンクを追加"
+    },
+    "documents": {
+      "title": "参考資料",
+      "noDocuments": "参考資料なし",
+      "clickToView": "クリックして表示",
+      "browserNotSupported": "お使いのブラウザはPDF表示に対応していません。",
+      "openInNewTab": "新しいタブで開く"
+    },
+    "boxImage": {
+      "title": "箱絵",
+      "addTitle": "箱絵を追加",
+      "imageUrl": "画像URL",
+      "urlPlaceholder": "https://example.com/image.jpg",
+      "boxAlt": "キットの箱",
+      "uploading": "箱絵をアップロード中...",
+      "rotateError": "画像の回転エラー"
+    },
+    "aftermarket": {
+      "title": "アフターマーケット",
+      "noAftermarket": "アフターマーケット未使用",
+      "decais": "デカール",
+      "resina_mods": "レジン改造",
+      "resina_assentos": "レジンシート",
+      "armamentos_extras": "追加武装",
+      "rodas_novas": "新しいホイール",
+      "acessorios": "アクセサリー",
+      "scratchbuild": "スクラッチビルド"
+    },
+    "etapas": {
+      "montagem": "組立",
+      "emassamento": "パテ処理",
+      "pintura": "塗装",
+      "verniz": "クリアコート",
+      "decais": "デカール",
+      "pannel_line": "パネルライン",
+      "wash": "ウォッシュ",
+      "weathering": "ウェザリング",
+      "finalizacao": "仕上げ"
+    },
+    "marketplace": {
+      "title": "マーケットプレイスで検索",
+      "searching": "AIが最適なオプションを検索中...",
+      "description": "AIがこの塗料をマーケットプレイスで検索しました。下の検索結果をご覧ください。",
+      "searchLinks": "検索リンク：",
+      "noResults": "検索リンクを生成できませんでした"
+    },
+    "photoAnalysis": {
+      "title": "AI写真分析",
+      "selectPhoto": "分析する制作写真を選択",
+      "noPhotos": "この機能を使うには制作写真を追加してください",
+      "analyze": "AIで分析",
+      "analyzing": "AIが写真を分析中...",
+      "issue": "問題",
+      "howToFix": "修正方法",
+      "howToPrevent": "予防方法",
+      "overallAssessment": "総合評価",
+      "noIssues": "AIは写真に問題を見つけませんでした。"
+    },
+    "toasts": {
+      "limitReached": "上限に達しました",
+      "maxPhotos": "参考写真は最大{{max}}枚までです。",
+      "maxBuildPhotos": "制作写真は最大{{max}}枚までです。"
+    }
+  },
+  "materials": {
+    "title": "材料",
+    "newMaterial": "新規材料",
+    "addMaterial": "材料を追加",
+    "editMaterial": "材料を編集",
+    "deleteMaterial": "材料を削除",
+    "noMaterials": "材料が見つかりません",
+    "noMaterialsInCategory": "このカテゴリーには登録された材料がありません",
+    "searchPlaceholder": "材料を検索...",
+    "lowStock": "在庫少",
+    "lowStockWarning": "在庫が少ない商品が{{count}}件あります",
+    "lowStockWarning_plural": "在庫が少ない商品が{{count}}件あります",
+    "premiumFeature": "プレミアムプランで利用可能な機能",
+    "exportCsv": "CSVエクスポート",
+    "downloadStarted": "ダウンロード開始",
+    "materialsExported": "{{count}}件の材料をエクスポートしました。",
+    "registerByPhoto": "AIで写真から登録",
+    "analyzingPhoto": "写真を分析中...",
+    "paintFound": "塗料が見つかりました！",
+    "paintIdentified": "塗料が識別されました！",
+    "dataFilledFromExisting": "既存の塗料からデータを入力しました",
+    "dataFilledFromMaterial": "既存の材料からデータを入力しました",
+    "couldNotIdentify": "識別できませんでした",
+    "tryClearerPhoto": "ボトルのより鮮明な写真をお試しください",
+    "analysisError": "分析エラー",
+    "couldNotAnalyzePhoto": "写真を分析できませんでした",
+    "errorReadingFile": "ファイルの読み取りエラー",
+    "tabs": {
+      "paints": "塗料",
+      "supplies": "消耗品",
+      "tools": "工具",
+      "decals": "デカール"
+    },
+    "filters": {
+      "allBrands": "すべてのブランド",
+      "allColors": "すべての色",
+      "recent": "最新",
+      "alphabetical": "A-Z",
+      "clearFilters": "フィルターをクリア",
+      "sort": "並べ替え"
+    },
+    "stats": {
+      "total": "合計",
+      "colorsFromBrand": "このブランドの{{count}}色",
+      "colorsFound": "{{count}}色が見つかりました"
+    },
+    "form": {
+      "name": "名前",
+      "nameRequired": "名前 *",
+      "colorName": "色の名前",
+      "colorNameRequired": "色の名前 *",
+      "category": "カテゴリー",
+      "brand": "ブランド",
+      "unit": "単位",
+      "currentQuantity": "現在の数量",
+      "minQuantity": "最小数量",
+      "line": "ライン",
+      "code": "コード",
+      "manufacturerCode": "メーカーコード",
+      "color": "色",
+      "hexColor": "色 (Hex)",
+      "reference": "参照 (FS/RAL/RLM)",
+      "paintType": "塗料タイプ",
+      "finish": "仕上げ",
+      "supplyType": "消耗品タイプ",
+      "toolType": "工具タイプ",
+      "toolState": "状態",
+      "lastMaintenance": "最終メンテナンス",
+      "scale": "スケール",
+      "targetKit": "対象キット",
+      "decoration": "単位/装飾",
+      "typeRequired": "タイプ *",
+      "select": "選択",
+      "selectType": "タイプを選択",
+      "urlPlaceholder": "製品URLを貼り付けて自動入力...",
+      "materialName": "材料名"
+    },
+    "paintTypes": {
+      "acrilica": "アクリル",
+      "esmalte": "エナメル",
+      "laca": "ラッカー"
+    },
+    "finishes": {
+      "fosco": "つや消し",
+      "satin": "サテン",
+      "brilho": "光沢",
+      "metalico": "メタリック"
+    },
+    "units": {
+      "ml": "ml",
+      "g": "g",
+      "unidades": "個",
+      "folhas": "枚",
+      "frascos": "本",
+      "frasco": "本"
+    },
+    "toolStates": {
+      "ok": "OK",
+      "precisa_manutencao": "メンテナンス必要",
+      "trocar": "交換"
+    },
+    "materialTypes": {
+      "tintas": "塗料",
+      "insumos": "消耗品",
+      "ferramentas": "工具",
+      "decais": "デカール"
+    },
+    "supplyTypes": {
+      "primer": "プライマー",
+      "putty": "パテ",
+      "lixas": "サンドペーパー",
+      "fitas": "テープ",
+      "mascaras": "マスキング",
+      "laminas": "ブレード",
+      "cola": "接着剤",
+      "thinner": "シンナー",
+      "diluente": "希釈液",
+      "verniz_fosco": "つや消しクリアー",
+      "verniz_satin": "半光沢クリアー",
+      "verniz_brilho": "光沢クリアー",
+      "decal_softener": "デカール軟化剤"
+    },
+    "toolTypes": {
+      "estiletes": "デザインナイフ",
+      "aerografo": "エアブラシ",
+      "compressores": "コンプレッサー",
+      "pinceis": "筆"
+    },
+    "noColorDefined": "色未定義",
+    "colorsFound": "{{count}}色が見つかりました",
+    "materialFound": "{{type}}が見つかりました！",
+    "delete": {
+      "title": "材料を削除",
+      "confirmation": "「{{name}}」を削除してもよろしいですか？この操作は取り消せません。",
+      "deleting": "削除中..."
+    },
+    "toasts": {
+      "materialCreated": "材料を登録しました！",
+      "materialUpdated": "材料を更新しました！",
+      "materialDeleted": "材料を削除しました！",
+      "errorCreating": "作成エラー",
+      "errorUpdating": "更新エラー",
+      "errorDeleting": "削除エラー",
+      "fillColorName": "色の名前を入力してください",
+      "fillRequiredFields": "必須項目を入力してください",
+      "dataExtracted": "データを抽出しました",
+      "noDataFoundInUrl": "URLにデータが見つかりません",
+      "errorExtractingData": "データ抽出エラー",
+      "couldNotExtractFromUrl": "このURLからデータを抽出できませんでした",
+      "serverConnectionError": "サーバー接続に失敗しました",
+      "codeFoundInDatabase": "コード{{code}}がデータベースで見つかりました",
+      "dataFilledAutomatically": "データが自動的に入力されました",
+      "verifyIdentifiedData": "識別されたデータを確認してください"
+    },
+    "marketplace": {
+      "title": "マーケットプレイスで検索",
+      "searchingAI": "AIが最適なオプションを検索中...",
+      "aiSearchedPaint": "AIがマーケットプレイスでこの塗料を検索しました。下記の検索結果をご覧ください。",
+      "searchLinks": "検索リンク：",
+      "couldNotGenerateLinks": "検索リンクを生成できませんでした",
+      "searchInMarketplace": "マーケットプレイスで検索"
+    },
+    "pagination": {
+      "previous": "前へ",
+      "next": "次へ",
+      "page": "ページ {{current}} / {{total}}"
+    },
+    "saving": "保存中..."
+  },
+  "statistics": {
+    "title": "統計",
+    "subtitle": "あなたのモデラーライフの概要",
+    "overview": "概要",
+    "byStatus": "ステータス別",
+    "byScale": "スケール別",
+    "byBrand": "ブランド別",
+    "byType": "タイプ別",
+    "hoursOverTime": "時間推移",
+    "totalValue": "合計値",
+    "averageTime": "平均時間",
+    "totalKits": "キット総数",
+    "kitsCompleted": "完成キット",
+    "inProgress": "作業台",
+    "inBox": "未開封",
+    "awaitingReform": "修復待ち",
+    "totalInvestment": "総投資額",
+    "totalHours": "総時間",
+    "hoursInProgress": "進行中の時間",
+    "kitsForSale": "販売中のキット",
+    "forSaleValue": "販売価値",
+    "kitsSold": "売却済みキット",
+    "totalSoldValue": "売却総額",
+    "kitsByStatus": "ステータス別キット",
+    "kitsByScale": "スケール別キット",
+    "kitsByCategory": "カテゴリー別キット",
+    "topBrands": "トップブランド",
+    "investmentByCategory": "カテゴリー別投資",
+    "salesByMonth": "月別売上",
+    "forSaleVsSold": "月別 販売中 vs 売却済み",
+    "noKitsRegistered": "登録されたキットがありません",
+    "noInvestmentRegistered": "登録された投資がありません",
+    "noSalesRegistered": "登録された売上がありません",
+    "noSalesData": "売上データがありません",
+    "errorLoadingData": "データの読み込みエラー",
+    "investment": "投資",
+    "value": "値",
+    "forSaleAccumulated": "販売中（累計）",
+    "sold": "売却済み",
+    "unknown": "不明",
+    "kits": "キット",
+    "months": {
+      "jan": "1月",
+      "feb": "2月",
+      "mar": "3月",
+      "apr": "4月",
+      "may": "5月",
+      "jun": "6月",
+      "jul": "7月",
+      "aug": "8月",
+      "sep": "9月",
+      "oct": "10月",
+      "nov": "11月",
+      "dec": "12月"
+    },
+    "status": {
+      "na_caixa": "未開封",
+      "em_andamento": "製作中",
+      "montado": "完成",
+      "aguardando_reforma": "修復待ち"
+    },
+    "premium": {
+      "title": "完全な統計",
+      "message": "完全な統計はFullプランでご利用いただけます。",
+      "unlock": "無制限トラッキングを解除"
+    }
+  },
+  "wishlist": {
+    "title": "ウィッシュリスト",
+    "addItem": "アイテムを追加",
+    "editItem": "アイテムを編集",
+    "deleteItem": "アイテムを削除",
+    "noItems": "ウィッシュリストは空です",
+    "priority": "優先度",
+    "estimatedPrice": "推定価格",
+    "link": "リンク"
+  },
+  "auth": {
+    "login": "ログイン",
+    "register": "登録",
+    "logout": "ログアウト",
+    "username": "ユーザー名",
+    "email": "メールアドレス",
+    "emailPlaceholder": "your@email.com",
+    "password": "パスワード",
+    "passwordPlaceholder": "パスワードを入力",
+    "passwordMinPlaceholder": "6文字以上",
+    "confirmPassword": "パスワード確認",
+    "confirmPasswordPlaceholder": "パスワードを再入力",
+    "name": "名前",
+    "namePlaceholder": "フルネーム",
+    "forgotPassword": "パスワードを忘れました",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "hasAccount": "すでにアカウントをお持ちですか？",
+    "createAccount": "アカウント作成",
+    "createFreeAccount": "無料アカウントを作成",
+    "createMyFreeAccount": "無料アカウントを作成する",
+    "doLogin": "ログインする",
+    "loginSubtitle": "アカウントにアクセスしてキットを管理",
+    "registerSubtitle": "アカウントを作成してキット管理を開始",
+    "loginError": "ログインエラー",
+    "registerError": "登録エラー",
+    "invalidCredentials": "認証情報が無効です",
+    "welcomeBack": "おかえりなさい!",
+    "loginSuccess": "ログインに成功しました。",
+    "loggingIn": "ログイン中...",
+    "accountCreated": "アカウントが作成されました!",
+    "welcomeToModelHero": "ModelHeroへようこそ!",
+    "creatingAccount": "アカウント作成中...",
+    "couldNotCreateAccount": "アカウントを作成できませんでした。",
+    "recoverPassword": "パスワードを回復",
+    "recoverPasswordDescription": "パスワードを回復するには、システム管理者にお問い合わせください。",
+    "sendEmailTo": "メールの送信先:",
+    "informYourEmail": "登録したメールアドレスを入力し、パスワードリセットをリクエストしてください。",
+    "understood": "了解",
+    "validation": {
+      "invalidEmail": "無効なメールアドレス",
+      "passwordRequired": "パスワードは必須です",
+      "nameRequired": "名前は必須です",
+      "passwordMin": "パスワードは6文字以上必要です",
+      "confirmPasswordRequired": "パスワードを確認してください",
+      "passwordsMismatch": "パスワードが一致しません"
+    }
+  },
+  "kitCard": {
+    "hoursWorked": "{{hours}}時間作業",
+    "sale": "販売",
+    "sold": "売却済み",
+    "forSale": "販売中",
+    "purchase": "購入",
+    "current": "現在",
+    "salePrice": "販売価格",
+    "markAsSold": "売却済みとしてマーク",
+    "updateProgress": "進捗を更新",
+    "progressSaved": "進捗が更新されました",
+    "progressSavedDescription": "進捗が{{progress}}%に変更されました",
+    "active": "アクティブ"
+  },
+  "upgrade": {
+    "limitReached": "制限に達しました",
+    "limitDescription": "無料プランの10アイテムの制限に達しました（キット + 材料 + ウィッシュリスト）。",
+    "upgradePrompt": "フルプランにアップグレードして以下を取得:",
+    "features": {
+      "unlimited": "無制限のキット、材料、ウィッシュリスト",
+      "export": "データエクスポート（CSV）",
+      "storage": "写真の拡張ストレージ",
+      "exclusive": "限定機能",
+      "copilot": "すべてのプロジェクトでコパイロットが常に利用可能"
+    },
+    "launchPromo": "ローンチプロモ！",
+    "internationalPricing": "国際価格",
+    "payInBRL": "ブラジルレアル（R$）で支払う",
+    "price": "$ {{price}}",
+    "perMonth": "/月",
+    "doUpgrade": "アップグレード",
+    "continueFree": "無料プランを続ける",
+    "freePlan": "無料プラン",
+    "itemsUsed": "{{used}}/{{limit}} アイテム使用中",
+    "upgradeNow": "今すぐアップグレード",
+    "successTitle": "ModelHero Full へようこそ！",
+    "successDescription": "お支払いが確認されました。アカウントは間もなく有効化されます。すべてのプレミアム機能をお楽しみください！",
+    "cancelTitle": "支払いキャンセル",
+    "cancelDescription": "請求は発生していません。いつでも再度お試しいただけます。",
+    "goToDashboard": "ダッシュボードへ",
+    "autoRedirect": "数秒後に自動的にリダイレクトされます..."
+  },
+  "aiUpgrade": {
+    "title": "ModelHeroのAIを正しく使っています",
+    "description": "AIはすでにコレクションの整理、時間の節約、より速い意思決定を支援しています。",
+    "callToAction": "AIを制限なく使い続け、整理を次のレベルに引き上げるには、FullプランがModelHeroの全ての可能性を解放します。",
+    "benefitsTitle": "Fullプランで解放される機能:",
+    "benefits": {
+      "aiUnlimited": "AIが常に利用可能、中断なし",
+      "completeOrganization": "コレクションの完全な整理",
+      "historyControl": "履歴、コントロール、進捗の完全な可視化",
+      "seriousHobbyist": "本気で趣味に取り組む人のための機能"
+    },
+    "upgradeButton": "Fullプランにアップグレード"
+  },
+  "settings": {
+    "title": "設定",
+    "theme": "テーマ",
+    "language": "言語",
+    "currency": "通貨",
+    "darkMode": "ダークモード",
+    "lightMode": "ライトモード"
+  },
+  "languages": {
+    "pt": "Português",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語"
+  },
+  "errors": {
+    "loadingKits": "キットの読み込みエラー",
+    "generic": "エラーが発生しました",
+    "notFound": "ページが見つかりません",
+    "unauthorized": "認証されていません",
+    "forbidden": "アクセスが拒否されました",
+    "serverError": "サーバーエラー",
+    "networkError": "接続エラー",
+    "validationError": "検証エラー"
+  },
+  "confirmations": {
+    "deleteKit": "このキットを削除してもよろしいですか？",
+    "deleteMaterial": "この材料を削除してもよろしいですか？",
+    "deleteItem": "このアイテムを削除してもよろしいですか？",
+    "unsavedChanges": "保存されていない変更があります。それでも終了しますか？"
+  },
+  "toasts": {
+    "kitAdded": "キットを登録しました！",
+    "kitAddedDesc": "キットが正常に追加されました。",
+    "kitCreated": "キットが正常に作成されました",
+    "kitUpdated": "キットが正常に更新されました",
+    "kitDeleted": "キットが正常に削除されました",
+    "materialCreated": "材料が正常に作成されました",
+    "materialUpdated": "材料が正常に更新されました",
+    "materialDeleted": "材料が正常に削除されました",
+    "settingsSaved": "設定が保存されました",
+    "errorSaving": "保存エラー",
+    "errorLoading": "読み込みエラー",
+    "timerStarted": "タイマー開始",
+    "timerStopped": "タイマー停止"
+  },
+  "inProgress": {
+    "title": "作業台",
+    "subtitle": "{{count}}キットが製作中",
+    "subtitle_plural": "{{count}}キットが製作中",
+    "photoWithAI": "AIで写真登録（はるかに速い）",
+    "newKitInProgress": "新規キットを作業台へ",
+    "noKitsInProgress": "進行中のキットはありません",
+    "startNewProject": "上のボタンをクリックして新しいプロジェクトを開始",
+    "emptyState": {
+      "title": "作業台は空です",
+      "description": "整理されたモデラーは常に\n少なくとも1つのプロジェクトを進行中です。\n\nここで進捗、投資時間、\n組み立ての進化を追跡します。",
+      "primaryCta": "キットを作業台に置く",
+      "secondaryCta": "または登録済みのキットを選ぶ"
+    },
+    "habitState": {
+      "title": "アクティブなプロジェクト",
+      "description": "作業台にキットを置いておくと:",
+      "benefit1": "組み立てを素早く再開できる",
+      "benefit2": "進捗を可視化できる",
+      "benefit3": "プロジェクトを途中で放棄しない"
+    },
+    "engagedState": {
+      "title": "整理のヒント",
+      "tip": "最も生産的なモデラーは通常、一度に1つか2つのプロジェクトを進めています。"
+    },
+    "placeholder": {
+      "first": "最初の進行中キット",
+      "second": "2つ目の進行中キット",
+      "third": "3つ目の進行中キット",
+      "cta": "キットを追加"
+    },
+    "routineTip": "ヒント：モデリングを始めるときはここに戻ってきてください。"
+  },
+  "gamification": {
+    "organizedModeler": "整理されたモデラー",
+    "youAre": "あなたは",
+    "maxLevel": "最高レベル",
+    "itemsToNext": "次のレベルまで残り{{count}}アイテム",
+    "itemsToNext_one": "次のレベルまで残り{{count}}アイテム",
+    "itemsRegistered": "{{count}}アイテム登録済み",
+    "itemsRegistered_one": "{{count}}アイテム登録済み",
+    "levels": {
+      "1": "初心者レベル",
+      "2": "ブロンズレベル",
+      "3": "シルバーレベル",
+      "4": "ゴールドレベル",
+      "5": "ダイヤモンドレベル"
+    },
+    "levelUp": {
+      "1": {
+        "title": "第一歩！",
+        "description": "整理されたモデラーとしての旅が始まりました。アイテムの登録を続けましょう！"
+      },
+      "2": {
+        "title": "あなたの仮想棚が形になってきました！",
+        "description": "すでに8つのモデルが保護・整理されています。"
+      },
+      "3": {
+        "title": "熱心なコレクター！",
+        "description": "20アイテムの登録で、あなたのコレクションはすでに印象的です。この調子で！"
+      },
+      "4": {
+        "title": "マスターモデラー！",
+        "description": "50アイテム！あなたは真の趣味愛好家です。あなたの整理は模範的です！"
+      },
+      "5": {
+        "title": "伝説的！",
+        "description": "100アイテム登録達成！最高レベルに到達しました。あなたのコレクションは真の芸術作品です！"
+      }
+    },
+    "levelNames": {
+      "1": "初心者",
+      "2": "ブロンズ",
+      "3": "シルバー",
+      "4": "ゴールド",
+      "5": "ダイヤモンド"
+    }
+  },
+  "todaySession": {
+    "title": "今日のセッション",
+    "question": "今日はワークベンチで何をする予定ですか？",
+    "activities": {
+      "assembly": "組み立て",
+      "painting": "塗装",
+      "decals": "デカール",
+      "weathering": "ウェザリング",
+      "organizing": "整理するだけ"
+    },
+    "markSession": "セッションを記録",
+    "confirmed": "良いセッションを。ワークベンチはあなたのものです。",
+    "workbenchDays": "ワークベンチで過ごした日数: {{count}}",
+    "workbenchDaysTooltip": "生産することではありません。ワークベンチを体験することです。",
+    "daysAwayLabel": "作業台から離れた日数",
+    "daysAwayTooltip": "今日、趣味に戻ってみませんか？"
+  },
+  "share": {
+    "share": "共有",
+    "copied": "コピーしました！",
+    "linkCopied": "リンクをコピーしました！",
+    "linkCopiedDesc": "このリンクを共有して、コレクションを見せましょう。",
+    "error": "エラー",
+    "errorDesc": "共有リンクを生成できませんでした。",
+    "shareTooltip": "公開リンクをコピー",
+    "publicCollection": "{{name}}のコレクション",
+    "kits": "キット",
+    "materials": "マテリアル",
+    "statistics": "統計",
+    "totalKits": "キット合計",
+    "totalHours": "合計時間",
+    "totalInvested": "投資総額",
+    "kitsByStatus": "ステータス別キット",
+    "kitsByScale": "スケール別キット",
+    "topBrands": "人気ブランド",
+    "noKitsFound": "キットが見つかりません",
+    "noMaterialsFound": "マテリアルが見つかりません",
+    "profileNotFound": "プロフィールが見つかりません",
+    "backToCollection": "コレクションに戻る",
+    "progress": "進捗",
+    "hoursWorked": "作業時間",
+    "rating": "評価",
+    "paints": "塗料",
+    "buildPhotos": "制作写真",
+    "notes": "メモ",
+    "poweredBy": "Powered by ModelHero"
+  },
+  "kitForm": {
+    "militaryInfo": "軍事情報",
+    "paintScheme": "塗装スキーム",
+    "epoch": "時代",
+    "airForce": "空軍",
+    "armyNavy": "陸軍/海軍",
+    "unitSquadron": "部隊/飛行隊",
+    "comments": "コメント",
+    "types": {
+      "airplane": "航空機",
+      "helicopter": "ヘリコプター",
+      "military": "軍用車両",
+      "vehicle": "車両",
+      "ship": "船",
+      "submarine": "潜水艦",
+      "figure": "フィギュア",
+      "diorama": "ジオラマ",
+      "scifi": "Sci-Fi",
+      "other": "その他"
+    }
+  }
+}

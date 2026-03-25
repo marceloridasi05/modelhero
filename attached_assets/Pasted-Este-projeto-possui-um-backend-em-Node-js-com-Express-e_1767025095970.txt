@@ -1,0 +1,46 @@
+Este projeto possui um backend em Node.js com Express e banco de dados relacional (PostgreSQL). Existe autenticação e distinção clara entre usuários admin e não-admin. Quero aprimorar o endpoint /admin para retornar métricas agregadas de uso do produto, com foco em comportamento real de usuários, excluindo completamente usuários admin de todos os cálculos. As métricas devem aceitar filtro opcional por data via query params startDate e endDate. Se os filtros não forem enviados, considerar todo o histórico disponível.
+
+O objetivo é retornar métricas simples, confiáveis e orientadas a uso do produto, para acompanhamento manual posterior em planilha.
+
+O endpoint /admin deve retornar as seguintes métricas:
+
+totalUsers
+Número total de usuários cadastrados que não sejam admin. Deve considerar a data de criação do usuário e respeitar o filtro de data quando informado.
+
+totalKits
+Número total de kits cadastrados por usuários não-admin. Deve considerar a data de criação do kit e respeitar o filtro de data quando informado.
+
+averageKitsPerUser
+Média de kits por usuário, calculada como totalKits dividido por totalUsers. Deve ser retornada como número decimal.
+
+usersWithAtLeastOneKit
+Número de usuários não-admin que possuem pelo menos um kit cadastrado. Deve respeitar o filtro de data considerando a criação do kit.
+
+usersWithTwoOrMoreKits
+Número de usuários não-admin que possuem dois ou mais kits cadastrados. Deve respeitar o filtro de data considerando a criação dos kits.
+
+averageDaysToFirstKit
+Tempo médio até o primeiro cadastro de kit, em dias. Para cada usuário não-admin que possua ao menos um kit, calcular a diferença entre a data de criação do primeiro kit e a data de criação do usuário. Calcular a média desses valores em dias. Usuários sem kits não devem ser considerados nesse cálculo.
+
+usersAtFreeLimit
+Número de usuários não-admin que atingiram ou ultrapassaram o limite do plano free. Considerar que existe um limite free configurado no sistema (por exemplo, 5 kits). Contar usuários cujo número total de kits cadastrados seja maior ou igual a esse limite. Respeitar filtro de data quando aplicável.
+
+O endpoint deve aceitar chamadas no formato GET /admin?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD. As datas devem filtrar tanto usuários (por created_at) quanto kits (por created_at). Se apenas startDate for informado, considerar até a data atual. Se apenas endDate for informado, considerar desde o início dos dados.
+
+A resposta do endpoint deve ser um objeto JSON com exatamente os seguintes campos: totalUsers, totalKits, averageKitsPerUser, usersWithAtLeastOneKit, usersWithTwoOrMoreKits, averageDaysToFirstKit, usersAtFreeLimit.
+
+Exemplo de resposta esperada:
+
+{
+"totalUsers": 120,
+"totalKits": 438,
+"averageKitsPerUser": 3.65,
+"usersWithAtLeastOneKit": 82,
+"usersWithTwoOrMoreKits": 57,
+"averageDaysToFirstKit": 3.4,
+"usersAtFreeLimit": 18
+}
+
+Não incluir métricas de sessão, pageviews, tracking de marketing ou dados pessoais. Não alterar funcionalidades existentes do endpoint além de adicionar essas métricas. Priorizar clareza e legibilidade das queries, podendo usar subqueries ou CTEs se necessário. O foco é confiabilidade dos números, não otimização extrema de performance.
+
+Essas métricas existem para responder se os usuários estão usando o produto, se passam do primeiro esforço, se aprofundam o uso e se existe pressão real para monetização.

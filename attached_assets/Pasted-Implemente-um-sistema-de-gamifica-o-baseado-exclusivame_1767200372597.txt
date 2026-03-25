@@ -1,0 +1,130 @@
+Implemente um sistema de gamificação baseado exclusivamente na quantidade total de itens cadastrados pelo usuário, com níveis, badges, progresso visual e modais comemorativos, conforme as regras abaixo.
+
+1. Objetivo do Sistema
+
+Estimular o cadastro contínuo de itens por meio de:
+
+Badges por nível
+
+Feedback visual constante
+
+Celebrações progressivas
+
+Sensação clara de avanço e conquista
+
+2. Critério Único de Progressão
+
+A progressão é baseada apenas no número total de itens cadastrados
+
+Cada item cadastrado incrementa a contagem em +1
+
+Não existe perda de progresso
+
+3. Níveis e Regras de Desbloqueio
+Nível	Nome do Badge	Itens Necessários
+1	Modelista Organizado – Nível Iniciante	1 item
+2	Modelista Organizado – Nível Bronze	8 itens
+3	Modelista Organizado – Nível Prata	20 itens
+4	Modelista Organizado – Nível Ouro	50 itens
+5	Modelista Organizado – Nível Diamante	100 itens
+4. Comportamento ao Desbloquear um Nível
+
+Sempre que um usuário atingir exatamente o número de itens exigido para um novo nível:
+
+Exibir um modal comemorativo imediatamente após o cadastro
+
+Atualizar o badge ativo do usuário
+
+Atualizar barra de progresso e contador
+
+Exibir uma frase de incentivo não repetitiva
+
+5. Exibição Permanente do Badge
+
+O badge ativo deve ser exibido permanentemente no topo do app e com o nome do nível atingido para lembrar do que se trata
+
+Ele permanece visível até o usuário atingir o próximo nível
+
+Apenas um badge fica ativo por vez
+
+6. Barra de Progresso e Contador
+
+Ao lado do badge ativo, exibir:
+
+Um contador textual:
+
+“Faltam X itens para o próximo nível”
+
+Uma barra de progresso visual, proporcional ao avanço dentro do nível atual
+
+A progressão deve ser recalculada a cada novo item cadastrado
+
+📌 Exceção – Nível Diamante
+Ao atingir o nível Diamante:
+
+Não exibir contador
+
+Não exibir barra de progresso
+
+Exibir apenas o badge, pois o nível máximo foi alcançado
+
+7. Modais Comemorativos
+
+Todo nível gera um modal
+
+O impacto visual deve crescer conforme o nível
+
+O modal do Nível Diamante deve ser significativamente mais impactante que os anteriores:
+
+Animação especial
+
+Possível uso de som
+
+Destaque visual superior
+
+8. Variabilidade de Recompensas
+
+As frases de incentivo devem variar
+
+Nunca usar mensagens genéricas ou repetitivas
+
+O objetivo é evitar sensação de “mensagem automática de sistema”
+
+As mensagens devem reforçar:
+
+Progresso
+
+Organização
+
+Orgulho da coleção
+
+Continuidade
+
+9. Texto Obrigatório – Modal do Nível Bronze
+
+Ao desbloquear o Modelista Organizado – Nível Bronze (8 itens), o modal deve conter exatamente o texto abaixo:
+
+“Sua estante virtual está começando a ganhar forma!
+Você já tem 8 modelos protegidos e organizados.”
+
+10. Atualização Retroativa de Usuários Existentes
+
+Ao aplicar essa regra:
+
+Verificar todos os usuários existentes
+
+Caso a quantidade atual de itens já corresponda a algum nível:
+
+Atualizar automaticamente o badge
+
+Ajustar barra de progresso ou estado final (Diamante)
+
+Não exibir modais retroativos para usuários antigos (apenas ajuste silencioso de estado)
+
+11. Restrições Importantes
+
+Um usuário não pode pular níveis
+
+Cada nível só pode ser conquistado uma única vez
+
+O sistema deve ser totalmente determinístico com base no número total de itens

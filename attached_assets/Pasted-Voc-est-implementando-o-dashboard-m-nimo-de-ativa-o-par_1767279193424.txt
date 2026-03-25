@@ -1,0 +1,119 @@
+Você está implementando o dashboard mínimo de ativação
+para o app web ModelHero.
+
+OBJETIVO
+Criar um dashboard simples e acionável que permita acompanhar
+a ativação de usuários com base no evento "usuario_ativado",
+definido como usuários que cadastraram 5 kits.
+
+--------------------------------------------------
+1. DEFINIÇÃO DE ATIVAÇÃO
+--------------------------------------------------
+
+Usuário ativado:
+- Evento: usuario_ativado
+- Disparado quando kits_count >= 5
+- Persistir activated_at no usuário
+
+--------------------------------------------------
+2. DADOS DE ORIGEM (BANCO)
+--------------------------------------------------
+
+Assuma que existem as seguintes tabelas / campos:
+
+users
+- id
+- created_at
+- activated_at (nullable)
+
+kits
+- id
+- user_id
+- created_at
+
+events (opcional ou implícito)
+- user_id
+- event_name
+- created_at
+
+--------------------------------------------------
+3. MÉTRICAS DO DASHBOARD
+--------------------------------------------------
+
+Exibir os seguintes KPIs:
+
+- Usuários cadastrados no período
+- Usuários ativados no período
+- Taxa de ativação (%)
+- Tempo médio até ativação (em dias)
+- Custo por usuário ativado (campo manual)
+
+--------------------------------------------------
+4. FILTRO DE PERÍODO
+--------------------------------------------------
+
+Adicionar seletor de período com opções:
+- Últimos 7 dias
+- Últimos 30 dias
+- Período personalizado (data início / fim)
+
+O filtro deve afetar TODAS as métricas.
+
+--------------------------------------------------
+5. CAMPOS DE DADOS EXTERNOS (MANUAL)
+--------------------------------------------------
+
+Criar campos editáveis no frontend (não persistidos):
+- Investimento em mídia no período
+- Observações (texto livre)
+
+Usar o investimento para calcular:
+- Custo por usuário ativado
+
+--------------------------------------------------
+6. API / BACKEND
+--------------------------------------------------
+
+Criar endpoint:
+
+GET /api/kpis/activation
+
+Parâmetros:
+- start_date
+- end_date
+
+Resposta:
+- total_signups
+- total_activated
+- activation_rate
+- avg_days_to_activation
+
+--------------------------------------------------
+7. FRONTEND
+--------------------------------------------------
+
+Criar uma aba ou seção chamada:
+"Ativação"
+
+Exibir:
+- KPIs em cards
+- Campo de investimento manual
+- Campo de observações
+- Datas selecionáveis
+
+--------------------------------------------------
+8. RESTRIÇÕES
+--------------------------------------------------
+
+- Não usar bibliotecas pesadas
+- Código simples e legível
+- Foco em leitura rápida para tomada de decisão
+
+--------------------------------------------------
+9. RESULTADO ESPERADO
+--------------------------------------------------
+
+Ao final:
+- É possível entender rapidamente se os usuários estão ativando
+- É possível calcular custo por ativação
+- Dashboard serve como base para decisões de mídia e produto

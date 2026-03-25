@@ -1,0 +1,170 @@
+Você está redesenhando o wireframe da aba "KPIs" do app web ModelHero.
+
+OBJETIVO
+Criar um dashboard claro, hierárquico e acionável, dividido em dois modos:
+1) CEO Mode — leitura executiva e decisões rápidas
+2) Product Mode — diagnóstico detalhado de produto e funil
+
+O dashboard deve evitar poluição visual, priorizar tomada de decisão
+e permitir evolução futura sem refatoração estrutural.
+
+--------------------------------------------------
+1. PRINCÍPIOS DE DESIGN (OBRIGATÓRIOS)
+--------------------------------------------------
+
+- O usuário deve entender a saúde do negócio em até 30 segundos
+- Métricas estratégicas > métricas diagnósticas
+- Nenhuma métrica irrelevante deve competir visualmente com o funil
+- Tudo que não gera decisão imediata deve ser colapsável
+- O mesmo dado nunca deve aparecer duas vezes sem motivo claro
+
+--------------------------------------------------
+2. ESTRUTURA GERAL DA ABA KPIs
+--------------------------------------------------
+
+Topo da aba:
+- Toggle visível: [ CEO MODE | PRODUCT MODE ]
+- Seletor global de período:
+  • Últimos 7 dias
+  • Últimos 30 dias
+  • Período personalizado
+
+O período selecionado afeta TODOS os dados exibidos.
+
+--------------------------------------------------
+3. CEO MODE (VISÃO EXECUTIVA)
+--------------------------------------------------
+
+Este modo deve mostrar APENAS métricas que suportam decisões
+de investimento, continuidade ou ajuste de estratégia.
+
+### BLOCO 1 — KPIs EXECUTIVOS (PRIMEIRA DOBRA)
+
+Exibir exatamente estes cards (e somente estes):
+
+- Usuários no período
+- Cadastros no período
+- Usuários ativados (>= 5 kits)
+- Conversões pagas
+- Receita no período
+- MRR atual
+
+Cada card deve exibir:
+- valor absoluto
+- variação vs período anterior (quando aplicável)
+
+--------------------------------------------------
+### BLOCO 2 — FUNIL EXECUTIVO (CENTRO DO DASHBOARD)
+
+Exibir funil completo, em formato visual (vertical ou horizontal):
+
+Etapas fixas:
+1. Cliques (ad_click)
+2. Cadastros (sign_up)
+3. Primeiro kit (kit_created_1)
+4. Uso inicial (kit_created_3)
+5. Ativação (kit_created_5 / usuario_ativado)
+6. Pré-upgrade (kit_created_7)
+7. Gatilho de upgrade (kit_created_10)
+8. Conversão paga (upgrade_pro)
+
+Cada etapa deve mostrar:
+- total de usuários
+- % de conversão em relação à etapa anterior
+
+O funil é o elemento visual mais importante do CEO Mode.
+
+--------------------------------------------------
+### BLOCO 3 — ECONOMIA DO FUNIL (ENXUTO)
+
+Campos manuais (editáveis no frontend):
+- Investimento em mídia (R$)
+- Observações estratégicas
+
+KPIs calculados automaticamente:
+- Custo por cadastro
+- Custo por usuário ativado
+- CAC (upgrade_pro)
+- Receita / CAC (payback simplificado)
+
+--------------------------------------------------
+4. PRODUCT MODE (VISÃO DIAGNÓSTICA)
+--------------------------------------------------
+
+Este modo deve ajudar a responder:
+"Onde o usuário está travando e por quê?"
+
+--------------------------------------------------
+### BLOCO 1 — ATIVAÇÃO E ENGAGEMENT
+
+Exibir métricas detalhadas:
+- % usuários com 1+ kits
+- % usuários com 3+ kits
+- % usuários com 5+ kits (ativação)
+- % usuários com 10+ kits
+- Tempo médio até 1º kit
+- Tempo médio até ativação
+
+--------------------------------------------------
+### BLOCO 2 — USO DO PRODUTO
+
+Exibir:
+- Média de itens por usuário
+- Total de itens cadastrados
+- Usuários sem nenhum item
+- Usuários ativos 7d / 30d
+
+--------------------------------------------------
+### BLOCO 3 — USO DE IA (COLAPSÁVEL)
+
+Esta seção deve ser colapsada por padrão.
+
+Exibir apenas quando aberta:
+- Usuários que usaram IA
+- Total de ações de IA
+- Média de ações por usuário
+- Distribuição de uso (1 ação, 2–5, 6–20, etc.)
+
+--------------------------------------------------
+### BLOCO 4 — CONVERSÃO E MONETIZAÇÃO
+
+Exibir:
+- Usuários no limite (10 kits)
+- Cliques em upgrade
+- Conversões pagas
+- Taxa de conversão Free → Pro
+- Tempo médio entre ativação e upgrade
+
+--------------------------------------------------
+5. REGRAS DE VISIBILIDADE
+--------------------------------------------------
+
+- CEO Mode:
+  • NÃO exibir métricas de IA
+  • NÃO exibir médias técnicas irrelevantes
+  • NÃO exibir detalhes operacionais
+
+- Product Mode:
+  • Permitir métricas granulares
+  • Priorizar diagnóstico e gargalos
+  • Usar seções colapsáveis
+
+--------------------------------------------------
+6. PREPARAÇÃO PARA FUTURO
+--------------------------------------------------
+
+O wireframe deve permitir adicionar futuramente:
+- Cohorts por data de cadastro
+- Comparação entre períodos
+- Segmentação por origem de tráfego
+- Métricas adicionais sem quebrar layout
+
+--------------------------------------------------
+7. RESULTADO ESPERADO
+--------------------------------------------------
+
+Ao final:
+- CEO Mode permite decidir "continuar, pausar ou ajustar" rapidamente
+- Product Mode permite entender "onde melhorar o produto"
+- Nenhuma métrica importante é perdida
+- O dashboard fica mais leve, legível e escalável

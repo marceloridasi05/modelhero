@@ -1,0 +1,1282 @@
+{
+  "common": {
+    "tagline": "Организованный моделизм",
+    "loading": "Загрузка...",
+    "loadingKits": "Загрузка наборов...",
+    "tryAgain": "Попробовать снова",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "add": "Добавить",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "sort": "Сортировка",
+    "all": "Все",
+    "none": "Нет",
+    "yes": "Да",
+    "no": "Нет",
+    "confirm": "Подтвердить",
+    "back": "Назад",
+    "next": "Далее",
+    "previous": "Предыдущий",
+    "page": "Страница {{current}} из {{total}}",
+    "close": "Закрыть",
+    "open": "Открыть",
+    "view": "Просмотр",
+    "details": "Детали",
+    "actions": "Действия",
+    "status": "Статус",
+    "type": "Тип",
+    "name": "Название",
+    "brand": "Бренд",
+    "scale": "Масштаб",
+    "price": "Цена",
+    "value": "Стоимость",
+    "date": "Дата",
+    "notes": "Заметки",
+    "description": "Описание",
+    "image": "Изображение",
+    "images": "Изображения",
+    "photo": "Фото",
+    "photos": "Фото",
+    "upload": "Загрузить",
+    "download": "Скачать",
+    "downloadPdf": "Скачать PDF",
+    "downloadExcel": "Скачать Excel",
+    "export": "Экспорт",
+    "exportList": "Экспортировать Список",
+    "downloadPremium": {
+      "title": "Премиум Функция",
+      "message": "Функция скачивания списков доступна только в плане Full.",
+      "unlock": "Разблокировать безлимитные загрузки"
+    },
+    "copilotUpgrade": {
+      "limitReached": "Лимит Достигнут",
+      "limitDescription": "Вы достигли лимита в 3 запроса к Copilot бесплатного плана.",
+      "cta": "Подписаться на план Full"
+    },
+    "photoAIUpgrade": {
+      "limitReached": "Лимит ИИ Достигнут",
+      "limitDescription": "Вы достигли лимита в 10 анализов фото с ИИ бесплатного плана.",
+      "cta": "Подписаться на план Full"
+    },
+    "duplicateCheckUpgrade": {
+      "limitReached": "Лимит Достигнут",
+      "limitDescription": "Вы достигли лимита в 1 проверку дубликатов бесплатного плана.",
+      "cta": "Подписаться на план Full"
+    },
+    "remove": "Убрать",
+    "clear": "Очистить",
+    "reset": "Сбросить",
+    "apply": "Применить",
+    "error": "Ошибка",
+    "success": "Успех",
+    "warning": "Предупреждение",
+    "info": "Информация",
+    "uploadLoading": "Загрузка файла...",
+    "notifications": {
+      "title": "Уведомления",
+      "empty": "Нет уведомлений",
+      "receivedAt": "Получено"
+    },
+    "changePassword": {
+      "title": "Изменить пароль",
+      "descriptionNewUser": "Ваш начальный пароль — 123456. Рекомендуем изменить его для большей безопасности.",
+      "descriptionExisting": "Введите текущий пароль и желаемый новый пароль.",
+      "currentPassword": "Текущий пароль",
+      "newPassword": "Новый пароль",
+      "confirmPassword": "Подтвердите новый пароль",
+      "currentPasswordPlaceholder": "Ваш текущий пароль",
+      "newPasswordPlaceholder": "Введите новый пароль",
+      "confirmPasswordPlaceholder": "Подтвердите новый пароль",
+      "changeLater": "Изменить позже",
+      "changing": "Изменение...",
+      "changeButton": "Изменить пароль",
+      "successTitle": "Пароль изменён!",
+      "successDescription": "Ваш пароль был успешно изменён.",
+      "errorTitle": "Ошибка при изменении пароля",
+      "errorDescription": "Не удалось изменить пароль.",
+      "validation": {
+        "currentRequired": "Текущий пароль обязателен",
+        "minLength": "Новый пароль должен содержать не менее 6 символов",
+        "confirmRequired": "Подтвердите новый пароль",
+        "mismatch": "Пароли не совпадают"
+      }
+    },
+    "userMenu": {
+      "changePhoto": "Изменить Фото",
+      "changePassword": "Изменить Пароль",
+      "logout": "Выйти",
+      "changeProfilePhoto": "Изменить Фото Профиля",
+      "selectPhoto": "Выбрать Фото",
+      "saving": "Сохранение...",
+      "photoUpdated": "Фото успешно обновлено!",
+      "photoError": "Ошибка при обновлении фото"
+    }
+  },
+  "nav": {
+    "navigation": "Навигация",
+    "administration": "Администрация",
+    "home": "Главная",
+    "inProgress": "На Верстаке",
+    "kits": "Наборы",
+    "myKits": "Мои Наборы",
+    "materials": "Материалы",
+    "statistics": "Статистика",
+    "stats": "Стат",
+    "wishlist": "Список Желаний",
+    "admin": "Админ",
+    "logout": "Выйти",
+    "login": "Войти",
+    "register": "Регистрация"
+  },
+  "home": {
+    "title": "Панель",
+    "welcome": "Добро пожаловать, {{name}}!",
+    "subtitle": "Это панель моделиста",
+    "recentKits": "Недавние Наборы",
+    "quickStats": "Быстрая Статистика",
+    "emptyState": {
+      "title": "Ваш ModelHero пуст.",
+      "subtitle": "Зарегистрируйте свой первый набор, чтобы начать организовывать свою коллекцию.",
+      "benefit": "Моделисты, которые регистрируют хотя бы 1 набор, получают гораздо больше пользы от ModelHero",
+      "tip": "Начните с набора, который у вас под рукой",
+      "tipEdit": "Вы можете отредактировать всё позже",
+      "button": "Зарегистрировать мой первый набор",
+      "note": "Занимает меньше 1 минуты • Можно редактировать позже"
+    },
+    "totalKits": "Всего Наборов",
+    "kitsCompleted": "Завершённые Наборы",
+    "inProgressKits": "В Работе",
+    "completedKits": "Завершено",
+    "totalHours": "Отработанные Часы",
+    "hoursInProgress": "Часы в Работе",
+    "investment": "Инвестиции",
+    "viewAll": "Смотреть все",
+    "kitsInProgress": "Наборы в Работе",
+    "kitsPaused": "Наборы Начаты и Приостановлены",
+    "noKitsInProgress": "Нет наборов в работе",
+    "noKitsPaused": "Нет начатых и приостановленных наборов",
+    "photoWithAI": "Регистрация по фото с ИИ (намного быстрее)",
+    "newKit": "Новый Набор",
+    "welcomeModal": {
+      "title": "Давайте организуем ваш первый элемент сейчас",
+      "description": "Без этого ModelHero пока не может вам помочь.",
+      "tryAI": "Попробуйте наш ИИ: Зарегистрируйте, отправив фото или ссылку с набором",
+      "closing": "Это первый шаг к организации вашей коллекции.",
+      "registerFirstKit": "Зарегистрировать мой первый элемент",
+      "microcopy": "Занимает меньше 1 минуты • Можно редактировать позже"
+    },
+    "firstKitModal": {
+      "title": "Хорошее начало. Теперь давайте действительно организуемся.",
+      "description": "С первым зарегистрированным элементом вы сделали первый шаг. Зарегистрируйте ещё 2 элемента, чтобы начать видеть, что в работе, что дальше и куда инвестируется ваше время.",
+      "registerAnother": "Зарегистрировать следующий элемент",
+      "viewKitDetails": "Заполнить детали этого элемента"
+    },
+    "thirdKitModal": {
+      "title": "Отличный прогресс",
+      "description": "Теперь ModelHero начинает видеть закономерности в вашей коллекции.",
+      "encouragement": "Зарегистрируйте ещё 2 элемента, чтобы получить полную картину того, что в работе, что дальше и куда инвестируется ваше время.",
+      "registerNext": "Зарегистрировать следующий элемент"
+    },
+    "fifthItemModal": {
+      "title": "Теперь ваш ModelHero действительно работает.",
+      "description": "С 5 зарегистрированными элементами вы вышли из фазы тестирования и вошли в фазу реальной организации.",
+      "helpIntro": "Теперь ModelHero начинает помогать вам:",
+      "benefit1": "видеть, что в работе и что приостановлено",
+      "benefit2": "понимать, куда инвестируются ваше время и деньги",
+      "benefit3": "планировать следующие наборы с большей ясностью",
+      "conclusion": "Это момент, когда организация начинает окупаться.",
+      "addMore": "Зарегистрировать ещё один элемент",
+      "viewOrganization": "Посмотреть мою организацию",
+      "microcopy": "Чем больше элементов вы регистрируете, тем полезнее становится ModelHero."
+    },
+    "seventhItemModal": {
+      "title": "Ваша коллекция растёт!",
+      "description": "Вы зарегистрировали 7 элементов.",
+      "freePlanInfo": "Бесплатный план идеален для начала и понимания вашей организации.",
+      "limitInfo": "Если вы продолжите расти, скоро достигнете естественного лимита этого плана.",
+      "noChange": "Сейчас ничего не меняется — это просто для того, чтобы вы знали и могли спланировать заранее.",
+      "understood": "Понятно"
+    },
+    "tenthItemModal": {
+      "title": "Вы достигли лимита бесплатного плана.",
+      "description": "Вы зарегистрировали 10 элементов и уже используете ModelHero последовательно.",
+      "continueInfo": "Чтобы продолжить организовывать вашу коллекцию без перерывов, необходимо перейти на полный план.",
+      "fullPlanAllows": "Полный план позволяет:",
+      "features": {
+        "unlimited": "Регистрировать неограниченное количество элементов",
+        "noBlocks": "Отслеживать коллекцию без блокировок",
+        "continuous": "Использовать ModelHero как постоянную систему, а не только как тест"
+      },
+      "naturalStep": "Это естественный шаг для тех, кто решил серьёзно заняться организацией.",
+      "unlockAccess": "Разблокировать полный доступ",
+      "viewItems": "Посмотреть мои зарегистрированные элементы",
+      "microcopy": "Вы можете продолжить именно с того места, где остановились, после обновления."
+    },
+    "kitCompleted": {
+      "firstKit": {
+        "title": "Миссия выполнена!",
+        "text": "Этот набор теперь часть вашей завершённой коллекции. Организация, прогресс и преданность делу — всё зафиксировано в ModelHero.\nГотовы к следующему вызову?",
+        "cta": "Выбрать следующий набор"
+      },
+      "rotation1": {
+        "title": "Проект завершён!",
+        "text": "Поздравляем! Вы завершили ещё один набор и сделали ещё один шаг на пути организованного моделиста.\nКак насчёт выбрать следующий проект и отслеживать каждый этап с ModelHero?",
+        "cta": "Начать новый проект"
+      },
+      "rotation2": {
+        "title": "Ещё один готов!",
+        "text": "Этот проект теперь часть вашей завершённой коллекции. Каждый готовый набор показывает ваш рост как моделиста.\nГотовы начать следующий?",
+        "cta": "Выбрать следующий набор"
+      },
+      "rotation3": {
+        "title": "Набор успешно завершён!",
+        "text": "Ещё один проект завершён и задокументирован. Организация сегодня — гордость завтра.\nПродолжайте собирать и отслеживать всё с ModelHero.",
+        "cta": "Начать новую сборку"
+      },
+      "rotation4": {
+        "title": "Отличная работа!",
+        "text": "Завершить набор — это всегда победа. Видеть, как ваша коллекция растёт организованно, — ещё лучше.\nВремя выбрать следующий проект.",
+        "cta": "Спланировать следующий проект"
+      },
+      "rotation5": {
+        "title": "Проект завершён!",
+        "text": "Каждый записанный этап рассказывает историю вашей сборки. Этот набор теперь завершён и каталогизирован.\nПереходим к следующему?",
+        "cta": "Выбрать следующий набор"
+      }
+    },
+    "scaleConverter": {
+      "title": "Конвертер Масштабов",
+      "measureLabel": "Измерение (мм, см и т.д.)",
+      "placeholder": "Напр.: 10",
+      "currentScale": "Текущий Масштаб",
+      "convertTo": "Преобразовать В",
+      "convert": "Преобразовать",
+      "result": "Результат",
+      "inScale": "в масштабе"
+    },
+    "paintConverter": {
+      "title": "Соответствие Красок",
+      "description": "Найдите эквивалентные краски разных производителей",
+      "freeSearch": "Свободный Поиск",
+      "fsCode": "Код FS",
+      "ralCode": "Код RAL",
+      "rlmCode": "Код RLM",
+      "searchDescription": "Поиск по названию, коду FS/RAL/RLM или коду краски (напр.: XF-62, H309, AK755)",
+      "searchPlaceholder": "Напр.: Olive Drab, 34087, XF-62, RAL 7028...",
+      "selectFsCode": "Выберите код Federal Standard (FS 595)",
+      "chooseFsCode": "Выберите код FS...",
+      "selectRalCode": "Выберите код RAL",
+      "chooseRalCode": "Выберите код RAL...",
+      "selectRlmCode": "Выберите код RLM (Reichs-Luftfahrt-Ministerium)",
+      "chooseRlmCode": "Выберите код RLM...",
+      "filterCodes": "Фильтр кодов...",
+      "resultsFound": "Найдено {{count}} результат(ов)",
+      "clickToSearch": "Нажмите \"Поиск\" для поиска соответствий",
+      "noResults": "Соответствия не найдены",
+      "brandLabel": "Бренд",
+      "colorLabel": "Цвет",
+      "equivalents": "Эквиваленты",
+      "usafCamo": "USAF/USMC/US ARMY/NATO",
+      "camoSearchDescription": "Поиск схем камуфляжа USAF/USMC/US Army/NATO (название самолёта, техники, период и т.д.)",
+      "camoSearchPlaceholder": "Напр.: F-15, Vietnam, Ghost Grey...",
+      "schemesFound": "Найдено {{count}} схема(ы)",
+      "clickToViewPaints": "Нажмите, чтобы увидеть краски"
+    },
+    "boxScan": {
+      "title": "Регистрация по Фото Коробки",
+      "description": "ИИ анализирует фото для идентификации наборов и извлечения информации.",
+      "analyzing": "Анализ фото и идентификация наборов...",
+      "kitsRegistered": "{{count}} набор(ов) предварительно зарегистрировано!",
+      "kitsAddedSuccess": "Наборы добавлены в вашу коллекцию. Вы можете отредактировать их для заполнения информации.",
+      "kitsIdentified": "Идентифицированные наборы:",
+      "noKitsFound": "Не удалось идентифицировать наборы на фото.",
+      "tryBetterPhoto": "Попробуйте сделать более чёткое фото коробки или боковой стороны набора.",
+      "tryAnotherPhoto": "Попробовать Другое Фото",
+      "close": "Закрыть",
+      "successToast": "Наборы зарегистрированы!",
+      "successDescription": "{{count}} набор(ов) успешно предварительно зарегистрировано.",
+      "errorAnalyzing": "Не удалось проанализировать фото. Попробуйте снова.",
+      "errorProcessing": "Ошибка обработки фото. Попробуйте снова."
+    },
+    "duplicateChecker": {
+      "title": "Детектор Дубликатов",
+      "description": "Проверьте, есть ли продукт (набор, краска или материал) уже в вашей коллекции перед покупкой.",
+      "photo": "Фото",
+      "text": "Текст",
+      "takePhoto": "Сделать или выбрать фото",
+      "textSearchDesc": "Введите название продукта, бренд или код",
+      "textPlaceholder": "Напр.: Tamiya F-15C 1/48, Vallejo 71.062, Mr.Color C1...",
+      "urlSearchDesc": "Вставьте URL продукта из интернет-магазина",
+      "checking": "Проверка дубликатов...",
+      "identifiedProduct": "Идентифицированный продукт:",
+      "code": "Код",
+      "duplicatesFound": "Возможные дубликаты найдены!",
+      "duplicatesFoundDesc": "Этот продукт может уже быть в вашей коллекции.",
+      "noDuplicates": "Дубликаты не найдены",
+      "noDuplicatesDesc": "Этот продукт похоже на новую покупку.",
+      "duplicatesAlert": "Возможные дубликаты в вашей коллекции:",
+      "noMatch": "Дубликаты в вашей коллекции не найдены",
+      "checkError": "Ошибка при проверке дубликатов. Попробуйте снова.",
+      "itemTypes": {
+        "kit": "Набор",
+        "paint": "Краска",
+        "supply": "Материал",
+        "tool": "Инструмент",
+        "decal": "Декаль"
+      }
+    },
+    "favoriteLinks": {
+      "title": "Избранные Ссылки",
+      "addLink": "Добавить Ссылку",
+      "siteUrl": "URL Сайта",
+      "urlHint": "Вставьте URL любимого сайта, магазина или блога о моделизме",
+      "noLinks": "Нет избранных ссылок",
+      "noLinksHint": "Добавьте любимые сайты и магазины моделизма для быстрого доступа",
+      "linkAdded": "Ссылка добавлена!",
+      "linkAddedDesc": "Ссылка сохранена в избранном.",
+      "linkRemoved": "Ссылка удалена",
+      "linkRemovedDesc": "Ссылка удалена из избранного.",
+      "deleteLink": "Удалить ссылку",
+      "deleteConfirmation": "Вы уверены, что хотите удалить \"{{title}}\" из избранного?"
+    },
+    "rssFeeds": {
+      "title": "RSS-ленты",
+      "description": "Следите за последними новостями блогов и сайтов о моделизме",
+      "addFeed": "Добавить Ленту",
+      "addFeedTitle": "Добавить RSS-ленту",
+      "feedUrl": "URL Ленты",
+      "urlHint": "Вставьте URL RSS-ленты блога или сайта о моделизме",
+      "noFeeds": "RSS-ленты не настроены",
+      "noFeedsHint": "Добавьте ленты блогов и сайтов о моделизме, чтобы видеть последние новости",
+      "noArticles": "Нет доступных статей",
+      "updated": "Обновлено",
+      "refreshFeed": "Обновить ленту",
+      "removeFeed": "Удалить ленту",
+      "saving": "Сохранение...",
+      "feedAdded": "Лента добавлена!",
+      "feedAddedDesc": "RSS-лента успешно добавлена.",
+      "feedRemoved": "Лента удалена",
+      "feedRemovedDesc": "RSS-лента удалена.",
+      "feedRefreshed": "Лента обновлена!",
+      "feedRefreshedDesc": "Статьи обновлены.",
+      "deleteFeed": "Удалить Ленту",
+      "deleteConfirmation": "Вы уверены, что хотите удалить ленту \"{{title}}\"?",
+      "invalidUrl": "Недействительный или недоступный URL ленты"
+    },
+    "badges": {
+      "title": "Достижения",
+      "earned": "Получено",
+      "tiers": {
+        "bronze": "Бронза",
+        "silver": "Серебро",
+        "gold": "Золото"
+      },
+      "categories": {
+        "building": "Строительство",
+        "collection": "Коллекция",
+        "dedication": "Преданность"
+      },
+      "progress": {
+        "kitFinished": "{{current}}/{{target}} набор завершён",
+        "kitsFinished": "{{current}}/{{target}} наборов завершено",
+        "kitsPainted": "{{current}}/{{target}} наборов покрашено",
+        "kitsWeathered": "{{current}}/{{target}} наборов с weathering",
+        "stashControlled": "{{current}} завершено > {{target}} в коробке",
+        "stashNotControlled": "{{current}} в коробке vs {{target}} завершено",
+        "kits": "{{current}}/{{target}} наборов",
+        "hours": "{{current}}/{{target}} часов",
+        "fiveStarKits": "{{current}}/{{target}} 5-звёздочных наборов",
+        "photos": "{{current}}/{{target}} фото",
+        "scales": "{{current}}/{{target}} масштабов",
+        "inProgress": "{{current}}/{{target}} в работе"
+      },
+      "list": {
+        "construtor_iniciante": {
+          "name": "Начинающий Строитель",
+          "description": "Завершил свой первый набор"
+        },
+        "construtor_consistente": {
+          "name": "Постоянный Строитель",
+          "description": "Завершил 3 набора"
+        },
+        "construtor_veterano": {
+          "name": "Ветеран-Строитель",
+          "description": "Завершил 10 наборов"
+        },
+        "pintor_dedicado": {
+          "name": "Преданный Маляр",
+          "description": "Прошёл этап покраски на 5 наборах"
+        },
+        "weathering_master": {
+          "name": "Мастер Weathering",
+          "description": "Применил weathering на 5 наборах"
+        },
+        "stash_controlado": {
+          "name": "Контролируемый Запас",
+          "description": "Имеет меньше наборов в коробке, чем завершённых"
+        },
+        "colecionador": {
+          "name": "Коллекционер",
+          "description": "Владеет 10 или более наборами в коллекции"
+        },
+        "grande_colecionador": {
+          "name": "Великий Коллекционер",
+          "description": "Владеет 25 или более наборами в коллекции"
+        },
+        "dedicado": {
+          "name": "Преданный Моделист",
+          "description": "Накопил 50 часов работы над наборами"
+        },
+        "mestre_artesao": {
+          "name": "Мастер-Ремесленник",
+          "description": "Накопил 100 часов работы над наборами"
+        },
+        "perfeccionista": {
+          "name": "Перфекционист",
+          "description": "Поставил 5 звёзд 3 завершённым наборам"
+        },
+        "fotografo": {
+          "name": "Фотограф Мастерской",
+          "description": "Сделал 20 фото прогресса"
+        },
+        "multi_escala": {
+          "name": "Мульти-Масштаб",
+          "description": "Владеет наборами в 3 разных масштабах"
+        },
+        "velocista": {
+          "name": "Спринтер",
+          "description": "Имеет 3 набора в работе одновременно"
+        },
+        "finalizador": {
+          "name": "Завершитель",
+          "description": "Прошёл этап финализации на 3 наборах"
+        }
+      }
+    }
+  },
+  "kits": {
+    "title": "Мои Наборы",
+    "addKit": "Добавить Набор",
+    "editKit": "Редактировать Набор",
+    "deleteKit": "Удалить Набор",
+    "kitDetails": "Детали Набора",
+    "kitNumber": "Номер Набора",
+    "kitName": "Название Набора",
+    "noKits": "Наборы не найдены",
+    "emptyState": {
+      "title": "Ваша коллекция начинается здесь",
+      "subtitle": "Регистрация первых наборов делает ModelHero по-настоящему полезным.",
+      "benefit1": "Отслеживайте текущие проекты",
+      "benefit2": "Избегайте повторных покупок",
+      "benefit3": "Организуйте время и инвестиции",
+      "button": "Зарегистрировать первый набор",
+      "note": "Занимает меньше 1 минуты • Можно отредактировать позже"
+    },
+    "progressState": {
+      "title": "Прогресс вашей коллекции",
+      "progress": "{{current}} из 3 наборов зарегистрировано",
+      "remaining": "Осталось всего {{remaining}} до первого организационного достижения",
+      "button": "Зарегистрировать следующий набор"
+    },
+    "habitState": {
+      "title": "Хороший прогресс!",
+      "description": "Моделисты с 5 и более зарегистрированными наборами могут лучше отслеживать прогресс и время сборки.",
+      "remaining": "Вам осталось {{remaining}} набор(ов) до следующего уровня.",
+      "button": "Зарегистрировать ещё один набор"
+    },
+    "searchPlaceholder": "Поиск наборов...",
+    "filterByStatus": "Фильтр по Статусу",
+    "filterByType": "Фильтр по Типу",
+    "filterByScale": "Фильтр по Масштабу",
+    "filterByBrand": "Фильтр по Бренду",
+    "filterByDestino": "Фильтр по Назначению",
+    "sortBy": "Сортировать по",
+    "sortRecent": "Новейшие",
+    "sortAlphabetical": "По Алфавиту",
+    "tabs": {
+      "all": "Все",
+      "forSale": "На Продажу",
+      "sold": "Проданные"
+    },
+    "status": {
+      "na_caixa": "В Коробке",
+      "em_andamento": "В Работе",
+      "iniciado_parado": "Начато/Остановлено",
+      "montado": "Завершено",
+      "aguardando_reforma": "Ожидает Ремонта"
+    },
+    "destino": {
+      "exposto_em_casa": "На Выставке",
+      "a_venda": "На Продажу",
+      "vendido": "Продано",
+      "doado": "Подарено",
+      "emprestado": "Одолжено",
+      "descartado": "Утилизировано",
+      "nenhum": "Без Назначения"
+    },
+    "filters": {
+      "allStatus": "Все Статусы",
+      "allDestino": "Все Назначения",
+      "allTypes": "Все Типы",
+      "allScales": "Все Масштабы",
+      "allBrands": "Все Бренды",
+      "clearFilters": "Очистить",
+      "destino": "Назначение"
+    },
+    "form": {
+      "basicInfo": "Основная Информация",
+      "financialInfo": "Финансовая Информация",
+      "paidValue": "Оплаченная Стоимость",
+      "estimatedValue": "Оценочная Стоимость",
+      "saleValue": "Цена Продажи",
+      "ratings": "Оценки",
+      "moldQuality": "Качество Литья",
+      "instructionsQuality": "Качество Инструкций",
+      "decalsQuality": "Качество Декалей",
+      "worthIt": "Стоит ли?",
+      "progress": "Прогресс",
+      "hoursWorked": "Отработанные Часы",
+      "observations": "Наблюдения",
+      "referenceFiles": "Справочные Файлы",
+      "selectImage": "Выбрать Изображение",
+      "extractFromUrl": "Извлечь из URL",
+      "extractFromPhoto": "Извлечь из Фото"
+    }
+  },
+  "kitDetail": {
+    "timer": {
+      "title": "Таймер Сборки",
+      "currentSession": "Текущая сессия",
+      "totalAccumulated": "Всего накоплено",
+      "start": "Старт",
+      "stop": "Стоп",
+      "startedOn": "Начато",
+      "finishedOn": "Завершено"
+    },
+    "copilot": {
+      "title": "ИИ-Помощник Проекта",
+      "description": "Используйте искусственный интеллект для получения персонализированных рекомендаций о следующем шаге вашего проекта.",
+      "nextStep": "Следующий Шаг",
+      "analyzing": "ИИ анализирует ваш проект...",
+      "projectChecklist": "Контрольный Список Проекта",
+      "estimatedTime": "Расчётное Время",
+      "risksTitle": "Риски и Меры Предосторожности",
+      "materialsTitle": "Рекомендуемые Материалы",
+      "tipsTitle": "Совет от Помощника",
+      "lastFreeUseMessage": "Вы использовали все бесплатные запросы к Помощнику.",
+      "availableOnFullPlan": "Помощник доступен в Full плане"
+    },
+    "paints": {
+      "title": "Цвета и Схемы",
+      "add": "Добавить",
+      "noPaints": "Краски не добавлены",
+      "dragToReorder": "Перетащите для изменения порядка",
+      "selectScheme": "Выбрать Схему",
+      "schemeApplied": "Схема: {{name}}",
+      "noSchemeSelected": "Схема не выбрана",
+      "addPaint": "Добавить Краску",
+      "searchByFs": "Искать по FS",
+      "searchByName": "Искать по названию",
+      "brand": "Бренд",
+      "selectBrand": "Выбрать бренд",
+      "searchBrand": "Искать бренд...",
+      "noBrandFound": "Бренд не найден.",
+      "code": "Код",
+      "selectCode": "Выбрать код",
+      "searchCode": "Искать код...",
+      "noCodeFound": "Код не найден.",
+      "name": "Название Краски",
+      "fsCode": "Код FS",
+      "rlmCode": "Код RLM",
+      "ralCode": "Код RAL",
+      "color": "Цвет (предпросмотр)",
+      "chooseColorManually": "Выбрать цвет вручную",
+      "select": "Выбрать...",
+      "searchFs": "Искать код FS...",
+      "noFsFound": "Код не найден.",
+      "paintsFound": "{{count}} красок найдено",
+      "searchInMarketplace": "Искать в Маркетплейсе"
+    },
+    "schemeSelector": {
+      "title": "Выбрать Цветовую Схему",
+      "search": "Поиск схем...",
+      "category": "Категория",
+      "allCategories": "Все",
+      "colors": "Цвета",
+      "selectBrandForColor": "Выберите бренд для каждого цвета",
+      "apply": "Применить Схему",
+      "cancel": "Отмена",
+      "noSchemes": "Схемы не найдены",
+      "removeScheme": "Удалить Схему"
+    },
+    "references": {
+      "title": "Справочные Файлы",
+      "add": "Добавить",
+      "noFiles": "Нет справочных файлов",
+      "upload": "Загрузить Файл"
+    },
+    "info": {
+      "title": "Информация",
+      "kitNumber": "Номер Набора",
+      "brand": "Бренд",
+      "scale": "Масштаб",
+      "type": "Тип",
+      "status": "Статус",
+      "destino": "Назначение",
+      "progress": "Прогресс",
+      "hoursWorked": "Отработанные Часы",
+      "sale": "Продажа",
+      "salePrice": "Цена Продажи",
+      "profit": "Прибыль",
+      "markAsSold": "Отметить как проданный",
+      "rating": "Оценка",
+      "currentStage": "Текущий Этап",
+      "recipientName": "Получатель",
+      "values": "Стоимость",
+      "paid": "Оплачено",
+      "current": "Текущая",
+      "military": "Военная",
+      "civil": "Гражданская"
+    },
+    "financial": {
+      "title": "Финансовая Информация",
+      "paidValue": "Оплаченная Стоимость",
+      "estimatedValue": "Оценочная Стоимость",
+      "saleValue": "Цена Продажи"
+    },
+    "ratings": {
+      "title": "Оценки",
+      "moldQuality": "Качество Литья",
+      "instructionsQuality": "Качество Инструкций",
+      "decalsQuality": "Качество Декалей",
+      "worthIt": "Стоит ли?"
+    },
+    "observations": {
+      "title": "Наблюдения",
+      "noObservations": "Нет наблюдений"
+    },
+    "notFound": "Модель не найдена",
+    "saving": "Сохранение...",
+    "photos": {
+      "reference": "Справочные Фото",
+      "noReferencePhotos": "Нет справочных фото",
+      "build": "Фото Сборки",
+      "noBuildPhotos": "Нет фото сборки",
+      "takePhoto": "Сделать Фото"
+    },
+    "links": {
+      "title": "Полезные Ссылки",
+      "urlPlaceholder": "URL ссылки",
+      "descriptionPlaceholder": "Описание содержания",
+      "addLink": "Добавить Ссылку"
+    },
+    "documents": {
+      "title": "Справочные Документы",
+      "noDocuments": "Нет справочных документов",
+      "clickToView": "Нажмите для просмотра",
+      "browserNotSupported": "Ваш браузер не поддерживает просмотр PDF.",
+      "openInNewTab": "Открыть в новой вкладке"
+    },
+    "boxImage": {
+      "title": "Фото Коробки",
+      "addTitle": "Добавить Фото Коробки",
+      "imageUrl": "URL Изображения",
+      "urlPlaceholder": "https://пример.com/изображение.jpg",
+      "boxAlt": "Коробка набора",
+      "uploading": "Загрузка фото коробки...",
+      "rotateError": "Ошибка при повороте изображения"
+    },
+    "aftermarket": {
+      "title": "Афтермаркет",
+      "noAftermarket": "Афтермаркет не использовался",
+      "decais": "Декали",
+      "resina_mods": "Модификации из Смолы",
+      "resina_assentos": "Сиденья из Смолы",
+      "armamentos_extras": "Дополнительное Вооружение",
+      "rodas_novas": "Новые Колёса",
+      "acessorios": "Аксессуары",
+      "scratchbuild": "Scratchbuild"
+    },
+    "etapas": {
+      "montagem": "Сборка",
+      "emassamento": "Шпаклёвка",
+      "pintura": "Покраска",
+      "verniz": "Лак",
+      "decais": "Декали",
+      "pannel_line": "Расшивка",
+      "wash": "Смывка",
+      "weathering": "Везеринг",
+      "finalizacao": "Завершение"
+    },
+    "marketplace": {
+      "title": "Искать в Маркетплейсе",
+      "searching": "ИИ ищет лучшие варианты...",
+      "description": "Наш ИИ нашёл эту краску для вас в Маркетплейсе. Смотрите результаты ниже.",
+      "searchLinks": "Ссылки для поиска:",
+      "noResults": "Не удалось создать ссылки для поиска"
+    },
+    "photoAnalysis": {
+      "title": "Анализ Фото ИИ",
+      "selectPhoto": "Выберите фото сборки для анализа",
+      "noPhotos": "Добавьте фото сборки, чтобы использовать эту функцию",
+      "analyze": "Анализировать с ИИ",
+      "analyzing": "ИИ анализирует фото...",
+      "issue": "Проблема",
+      "howToFix": "Как исправить",
+      "howToPrevent": "Как предотвратить",
+      "overallAssessment": "Общая Оценка",
+      "noIssues": "ИИ не обнаружил проблем на фото."
+    },
+    "toasts": {
+      "limitReached": "Лимит достигнут",
+      "maxPhotos": "Максимум {{max}} справочных фото на набор.",
+      "maxBuildPhotos": "Максимум {{max}} фото сборки на набор."
+    }
+  },
+  "materials": {
+    "title": "Материалы",
+    "newMaterial": "Новый Материал",
+    "addMaterial": "Добавить Материал",
+    "editMaterial": "Редактировать Материал",
+    "deleteMaterial": "Удалить Материал",
+    "noMaterials": "Материалы не найдены",
+    "noMaterialsInCategory": "В этой категории нет зарегистрированных материалов",
+    "searchPlaceholder": "Поиск материалов...",
+    "lowStock": "Низкий Запас",
+    "lowStockWarning": "{{count}} товар с низким запасом",
+    "lowStockWarning_plural": "{{count}} товаров с низким запасом",
+    "premiumFeature": "Функция доступна в плане Premium",
+    "exportCsv": "Экспорт CSV",
+    "downloadStarted": "Загрузка начата",
+    "materialsExported": "Экспортировано {{count}} материалов.",
+    "registerByPhoto": "Зарегистрировать по фото с ИИ",
+    "analyzingPhoto": "Анализ фото...",
+    "paintFound": "Краска найдена!",
+    "paintIdentified": "Краска идентифицирована!",
+    "dataFilledFromExisting": "Данные заполнены из существующей краски",
+    "dataFilledFromMaterial": "Данные заполнены из существующего материала",
+    "couldNotIdentify": "Не удалось идентифицировать",
+    "tryClearerPhoto": "Попробуйте более чёткое фото флакона",
+    "analysisError": "Ошибка анализа",
+    "couldNotAnalyzePhoto": "Не удалось проанализировать фото",
+    "errorReadingFile": "Ошибка чтения файла",
+    "tabs": {
+      "paints": "Краски",
+      "supplies": "Расходники",
+      "tools": "Инструменты",
+      "decals": "Декали"
+    },
+    "filters": {
+      "allBrands": "Все бренды",
+      "allColors": "Все цвета",
+      "recent": "Недавние",
+      "alphabetical": "А-Я",
+      "clearFilters": "Очистить фильтры",
+      "sort": "Сортировка"
+    },
+    "stats": {
+      "total": "Всего",
+      "colorsFromBrand": "{{count}} цветов этого бренда",
+      "colorsFound": "Найдено {{count}} цветов"
+    },
+    "form": {
+      "name": "Название",
+      "nameRequired": "Название *",
+      "colorName": "Название Цвета",
+      "colorNameRequired": "Название Цвета *",
+      "category": "Категория",
+      "brand": "Бренд",
+      "unit": "Единица",
+      "currentQuantity": "Текущее Количество",
+      "minQuantity": "Минимальное Количество",
+      "line": "Линия",
+      "code": "Код",
+      "manufacturerCode": "Код Производителя",
+      "color": "Цвет",
+      "hexColor": "Цвет (Hex)",
+      "reference": "Ссылка (FS/RAL/RLM)",
+      "paintType": "Тип Краски",
+      "finish": "Финиш",
+      "supplyType": "Тип Расходника",
+      "toolType": "Тип Инструмента",
+      "toolState": "Состояние",
+      "lastMaintenance": "Последнее Обслуживание",
+      "scale": "Масштаб",
+      "targetKit": "Для какого набора",
+      "decoration": "Единица/Декорация",
+      "typeRequired": "Тип *",
+      "select": "Выбрать",
+      "selectType": "Выберите тип",
+      "urlPlaceholder": "Вставьте URL продукта для автозаполнения...",
+      "materialName": "Название материала"
+    },
+    "paintTypes": {
+      "acrilica": "Акриловая",
+      "esmalte": "Эмаль",
+      "laca": "Лак"
+    },
+    "finishes": {
+      "fosco": "Матовый",
+      "satin": "Сатиновый",
+      "brilho": "Глянцевый",
+      "metalico": "Металлик"
+    },
+    "units": {
+      "ml": "мл",
+      "g": "г",
+      "unidades": "штук",
+      "folhas": "листов",
+      "frascos": "флаконов",
+      "frasco": "флакон"
+    },
+    "toolStates": {
+      "ok": "ОК",
+      "precisa_manutencao": "Требует Обслуживания",
+      "trocar": "Заменить"
+    },
+    "materialTypes": {
+      "tintas": "Краски",
+      "insumos": "Расходники",
+      "ferramentas": "Инструменты",
+      "decais": "Декали"
+    },
+    "supplyTypes": {
+      "primer": "Грунтовка",
+      "putty": "Шпаклёвка",
+      "lixas": "Наждачная Бумага",
+      "fitas": "Ленты",
+      "mascaras": "Маски",
+      "laminas": "Лезвия",
+      "cola": "Клей",
+      "thinner": "Растворитель",
+      "diluente": "Разбавитель",
+      "verniz_fosco": "Матовый Лак",
+      "verniz_satin": "Сатиновый Лак",
+      "verniz_brilho": "Глянцевый Лак",
+      "decal_softener": "Размягчитель Декалей"
+    },
+    "toolTypes": {
+      "estiletes": "Ножи",
+      "aerografo": "Аэрограф",
+      "compressores": "Компрессоры",
+      "pinceis": "Кисти"
+    },
+    "noColorDefined": "Цвет не определён",
+    "colorsFound": "{{count}} цветов найдено",
+    "materialFound": "{{type}} найден!",
+    "delete": {
+      "title": "Удалить материал",
+      "confirmation": "Вы уверены, что хотите удалить \"{{name}}\"? Это действие нельзя отменить.",
+      "deleting": "Удаление..."
+    },
+    "toasts": {
+      "materialCreated": "Материал зарегистрирован!",
+      "materialUpdated": "Материал обновлён!",
+      "materialDeleted": "Материал удалён!",
+      "errorCreating": "Ошибка при создании",
+      "errorUpdating": "Ошибка при обновлении",
+      "errorDeleting": "Ошибка при удалении",
+      "fillColorName": "Заполните название цвета",
+      "fillRequiredFields": "Заполните обязательные поля",
+      "dataExtracted": "Данные извлечены",
+      "noDataFoundInUrl": "Данные в URL не найдены",
+      "errorExtractingData": "Ошибка извлечения данных",
+      "couldNotExtractFromUrl": "Не удалось извлечь данные из этого URL",
+      "serverConnectionError": "Ошибка подключения к серверу",
+      "codeFoundInDatabase": "Код {{code}} найден в базе соответствий",
+      "dataFilledAutomatically": "Данные заполнены автоматически",
+      "verifyIdentifiedData": "Проверьте идентифицированные данные"
+    },
+    "marketplace": {
+      "title": "Искать на Marketplace",
+      "searchingAI": "ИИ ищет лучшие варианты...",
+      "aiSearchedPaint": "Наш ИИ нашёл эту краску для вас на Marketplace. Смотрите результаты поиска ниже.",
+      "searchLinks": "Ссылки для поиска:",
+      "couldNotGenerateLinks": "Не удалось сгенерировать ссылки для поиска",
+      "searchInMarketplace": "Искать на Marketplace"
+    },
+    "pagination": {
+      "previous": "Назад",
+      "next": "Вперёд",
+      "page": "Страница {{current}} из {{total}}"
+    },
+    "saving": "Сохранение..."
+  },
+  "statistics": {
+    "title": "Статистика",
+    "subtitle": "Обзор вашей жизни моделиста",
+    "overview": "Обзор",
+    "byStatus": "По Статусу",
+    "byScale": "По Масштабу",
+    "byBrand": "По Бренду",
+    "byType": "По Типу",
+    "hoursOverTime": "Часы по Времени",
+    "totalValue": "Общая Стоимость",
+    "averageTime": "Среднее Время",
+    "totalKits": "Всего Наборов",
+    "kitsCompleted": "Завершённые Наборы",
+    "inProgress": "На Верстаке",
+    "inBox": "В Коробке",
+    "awaitingReform": "Ожидает Ремонта",
+    "totalInvestment": "Общие Инвестиции",
+    "totalHours": "Всего Часов",
+    "hoursInProgress": "Часы в Работе",
+    "kitsForSale": "Наборы на Продажу",
+    "forSaleValue": "Стоимость на Продажу",
+    "kitsSold": "Проданные Наборы",
+    "totalSoldValue": "Общая Стоимость Продаж",
+    "kitsByStatus": "Наборы по Статусу",
+    "kitsByScale": "Наборы по Масштабу",
+    "kitsByCategory": "Наборы по Категории",
+    "topBrands": "Топ Брендов",
+    "investmentByCategory": "Инвестиции по Категории",
+    "salesByMonth": "Продажи по Месяцам",
+    "forSaleVsSold": "На Продажу vs Продано по Месяцам",
+    "noKitsRegistered": "Нет зарегистрированных наборов",
+    "noInvestmentRegistered": "Нет зарегистрированных инвестиций",
+    "noSalesRegistered": "Нет зарегистрированных продаж",
+    "noSalesData": "Нет данных о продажах",
+    "errorLoadingData": "Ошибка загрузки данных",
+    "investment": "Инвестиции",
+    "value": "Стоимость",
+    "forSaleAccumulated": "На Продажу (Накопительно)",
+    "sold": "Продано",
+    "unknown": "Неизвестно",
+    "kits": "Наборы",
+    "months": {
+      "jan": "Янв",
+      "feb": "Фев",
+      "mar": "Мар",
+      "apr": "Апр",
+      "may": "Май",
+      "jun": "Июн",
+      "jul": "Июл",
+      "aug": "Авг",
+      "sep": "Сен",
+      "oct": "Окт",
+      "nov": "Ноя",
+      "dec": "Дек"
+    },
+    "status": {
+      "na_caixa": "В Коробке",
+      "em_andamento": "В Работе",
+      "montado": "Завершено",
+      "aguardando_reforma": "Ожидает Ремонта"
+    },
+    "premium": {
+      "title": "Полная Статистика",
+      "message": "Полная статистика доступна в плане Full.",
+      "unlock": "Разблокировать безлимитное отслеживание"
+    }
+  },
+  "wishlist": {
+    "title": "Список Желаний",
+    "addItem": "Добавить",
+    "editItem": "Редактировать",
+    "deleteItem": "Удалить",
+    "noItems": "Список желаний пуст",
+    "priority": "Приоритет",
+    "estimatedPrice": "Ориентировочная Цена",
+    "link": "Ссылка"
+  },
+  "auth": {
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти",
+    "username": "Имя пользователя",
+    "email": "Email",
+    "emailPlaceholder": "ваш@email.com",
+    "password": "Пароль",
+    "passwordPlaceholder": "Ваш пароль",
+    "passwordMinPlaceholder": "Минимум 6 символов",
+    "confirmPassword": "Подтвердить Пароль",
+    "confirmPasswordPlaceholder": "Введите пароль ещё раз",
+    "name": "Имя",
+    "namePlaceholder": "Ваше полное имя",
+    "forgotPassword": "Я забыл пароль",
+    "noAccount": "Нет аккаунта?",
+    "hasAccount": "Уже есть аккаунт?",
+    "createAccount": "Создать Аккаунт",
+    "createFreeAccount": "Создать бесплатный аккаунт",
+    "createMyFreeAccount": "Создать мой бесплатный аккаунт",
+    "doLogin": "Войти",
+    "loginSubtitle": "Войдите в аккаунт для управления наборами",
+    "registerSubtitle": "Создайте аккаунт, чтобы начать управлять наборами",
+    "loginError": "Ошибка входа",
+    "registerError": "Ошибка регистрации",
+    "invalidCredentials": "Неверные учетные данные",
+    "welcomeBack": "С возвращением!",
+    "loginSuccess": "Вход выполнен успешно.",
+    "loggingIn": "Вход...",
+    "accountCreated": "Аккаунт создан!",
+    "welcomeToModelHero": "Добро пожаловать в ModelHero!",
+    "creatingAccount": "Создание аккаунта...",
+    "couldNotCreateAccount": "Не удалось создать аккаунт.",
+    "recoverPassword": "Восстановить Пароль",
+    "recoverPasswordDescription": "Для восстановления пароля свяжитесь с администратором системы.",
+    "sendEmailTo": "Отправьте email на:",
+    "informYourEmail": "Укажите зарегистрированный email и запросите сброс пароля.",
+    "understood": "Понятно",
+    "validation": {
+      "invalidEmail": "Неверный email",
+      "passwordRequired": "Пароль обязателен",
+      "nameRequired": "Имя обязательно",
+      "passwordMin": "Пароль должен содержать минимум 6 символов",
+      "confirmPasswordRequired": "Подтвердите пароль",
+      "passwordsMismatch": "Пароли не совпадают"
+    }
+  },
+  "kitCard": {
+    "hoursWorked": "{{hours}}ч отработано",
+    "sale": "Продажа",
+    "sold": "Продано",
+    "forSale": "Продается",
+    "purchase": "Покупка",
+    "current": "Текущий",
+    "salePrice": "Продажа",
+    "markAsSold": "Отметить как Проданное",
+    "updateProgress": "Обновить прогресс",
+    "progressSaved": "Прогресс обновлен",
+    "progressSavedDescription": "Прогресс изменен на {{progress}}%",
+    "active": "Активный"
+  },
+  "upgrade": {
+    "limitReached": "Лимит Достигнут",
+    "limitDescription": "Вы достигли лимита в 10 элементов бесплатного плана (наборы + материалы + список желаний).",
+    "upgradePrompt": "Перейдите на план Full и получите:",
+    "features": {
+      "unlimited": "Неограниченные наборы, материалы и список желаний",
+      "export": "Экспорт данных (CSV)",
+      "storage": "Расширенное хранилище для фото",
+      "exclusive": "Эксклюзивные функции",
+      "copilot": "Копилот всегда доступен для всех ваших проектов"
+    },
+    "launchPromo": "Акция Запуска!",
+    "internationalPricing": "Международные Цены",
+    "payInBRL": "Оплатить в Бразильских Реалах (R$)",
+    "price": "$ {{price}}",
+    "perMonth": "/месяц",
+    "doUpgrade": "Сделать Апгрейд",
+    "continueFree": "Продолжить с бесплатным планом",
+    "freePlan": "Бесплатный План",
+    "itemsUsed": "{{used}}/{{limit}} элементов использовано",
+    "upgradeNow": "Апгрейд Сейчас",
+    "successTitle": "Добро пожаловать в ModelHero Full!",
+    "successDescription": "Ваш платёж подтверждён. Ваш аккаунт будет активирован в ближайшее время. Наслаждайтесь всеми премиум-функциями!",
+    "cancelTitle": "Платёж Отменён",
+    "cancelDescription": "Никаких списаний не было. Вы можете попробовать снова в любое время.",
+    "goToDashboard": "Перейти на Панель",
+    "autoRedirect": "Вы будете перенаправлены автоматически через несколько секунд..."
+  },
+  "aiUpgrade": {
+    "title": "Вы правильно используете ИИ ModelHero",
+    "description": "ИИ уже помогает вам лучше организовать коллекцию, экономить время и принимать решения быстрее.",
+    "callToAction": "Чтобы продолжать использовать ИИ без ограничений и вывести организацию на новый уровень, план Full раскрывает весь потенциал ModelHero.",
+    "benefitsTitle": "С планом Full вы разблокируете:",
+    "benefits": {
+      "aiUnlimited": "ИИ всегда доступен, без перерывов",
+      "completeOrganization": "Полная организация вашей коллекции",
+      "historyControl": "История, контроль и полный обзор вашего прогресса",
+      "seriousHobbyist": "Функции для тех, кто серьёзно относится к хобби"
+    },
+    "upgradeButton": "Перейти на план Full"
+  },
+  "settings": {
+    "title": "Настройки",
+    "theme": "Тема",
+    "language": "Язык",
+    "currency": "Валюта",
+    "darkMode": "Темный Режим",
+    "lightMode": "Светлый Режим"
+  },
+  "languages": {
+    "pt": "Português",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語"
+  },
+  "errors": {
+    "loadingKits": "Ошибка загрузки наборов",
+    "generic": "Произошла ошибка",
+    "notFound": "Страница не найдена",
+    "unauthorized": "Не авторизован",
+    "forbidden": "Доступ запрещен",
+    "serverError": "Ошибка сервера",
+    "networkError": "Ошибка соединения",
+    "validationError": "Ошибка валидации"
+  },
+  "confirmations": {
+    "deleteKit": "Вы уверены, что хотите удалить этот набор?",
+    "deleteMaterial": "Вы уверены, что хотите удалить этот материал?",
+    "deleteItem": "Вы уверены, что хотите удалить этот элемент?",
+    "unsavedChanges": "У вас есть несохраненные изменения. Вы уверены, что хотите выйти?"
+  },
+  "toasts": {
+    "kitAdded": "Набор зарегистрирован!",
+    "kitAddedDesc": "Ваш набор был успешно добавлен.",
+    "kitCreated": "Набор успешно создан",
+    "kitUpdated": "Набор успешно обновлен",
+    "kitDeleted": "Набор успешно удален",
+    "materialCreated": "Материал успешно создан",
+    "materialUpdated": "Материал успешно обновлен",
+    "materialDeleted": "Материал успешно удален",
+    "settingsSaved": "Настройки сохранены",
+    "errorSaving": "Ошибка сохранения",
+    "errorLoading": "Ошибка загрузки",
+    "timerStarted": "Таймер запущен",
+    "timerStopped": "Таймер остановлен"
+  },
+  "inProgress": {
+    "title": "На Верстаке",
+    "subtitle": "{{count}} набор в работе",
+    "subtitle_plural": "{{count}} наборов в работе",
+    "photoWithAI": "Регистрация по фото с ИИ (намного быстрее)",
+    "newKitInProgress": "Новый Набор на Верстаке",
+    "noKitsInProgress": "Нет наборов в работе",
+    "startNewProject": "Начните новый проект, нажав на кнопку выше",
+    "emptyState": {
+      "title": "Ваш верстак пуст",
+      "description": "Организованные моделисты всегда имеют\nхотя бы один проект в работе.\n\nЗдесь вы отслеживаете прогресс,\nвложенное время и развитие сборки.",
+      "primaryCta": "Положить набор на верстак",
+      "secondaryCta": "Или выбрать уже зарегистрированный набор"
+    },
+    "habitState": {
+      "title": "Активный проект",
+      "description": "Держать набор на верстаке помогает вам:",
+      "benefit1": "Быстрее возобновить сборку",
+      "benefit2": "Визуализировать прогресс",
+      "benefit3": "Не бросать проекты на полпути"
+    },
+    "engagedState": {
+      "title": "Совет по организации",
+      "tip": "Самые продуктивные моделисты обычно держат 1 или 2 активных проекта одновременно."
+    },
+    "placeholder": {
+      "first": "Ваш первый набор в работе",
+      "second": "Ваш второй набор в работе",
+      "third": "Ваш третий набор в работе",
+      "cta": "Добавить набор"
+    },
+    "routineTip": "Совет: возвращайтесь сюда каждый раз, когда садитесь моделировать."
+  },
+  "gamification": {
+    "organizedModeler": "Организованный Моделист",
+    "youAre": "Вы",
+    "maxLevel": "Максимальный Уровень",
+    "itemsToNext": "{{count}} предметов до следующего уровня",
+    "itemsToNext_one": "{{count}} предмет до следующего уровня",
+    "itemsRegistered": "{{count}} предметов зарегистрировано",
+    "itemsRegistered_one": "{{count}} предмет зарегистрирован",
+    "levels": {
+      "1": "Уровень Новичок",
+      "2": "Бронзовый Уровень",
+      "3": "Серебряный Уровень",
+      "4": "Золотой Уровень",
+      "5": "Алмазный Уровень"
+    },
+    "levelUp": {
+      "1": {
+        "title": "Первый Шаг!",
+        "description": "Вы начали свой путь организованного моделиста. Продолжайте регистрировать ваши предметы!"
+      },
+      "2": {
+        "title": "Ваша виртуальная полка начинает обретать форму!",
+        "description": "У вас уже 8 моделей защищены и организованы."
+      },
+      "3": {
+        "title": "Преданный Коллекционер!",
+        "description": "С 20 зарегистрированными предметами ваша коллекция уже впечатляет. Продолжайте!"
+      },
+      "4": {
+        "title": "Мастер Моделист!",
+        "description": "50 предметов! Вы настоящий энтузиаст хобби. Ваша организация образцовая!"
+      },
+      "5": {
+        "title": "Легендарный!",
+        "description": "100 предметов зарегистрировано! Вы достигли максимального уровня. Ваша коллекция - настоящее произведение искусства!"
+      }
+    },
+    "levelNames": {
+      "1": "Новичок",
+      "2": "Бронза",
+      "3": "Серебро",
+      "4": "Золото",
+      "5": "Алмаз"
+    }
+  },
+  "todaySession": {
+    "title": "Сегодняшняя сессия",
+    "question": "Что вы планируете делать сегодня за верстаком?",
+    "activities": {
+      "assembly": "Сборка",
+      "painting": "Покраска",
+      "decals": "Декали",
+      "weathering": "Везеринг",
+      "organizing": "Просто организовать"
+    },
+    "markSession": "Отметить сессию",
+    "confirmed": "Удачной сессии. Верстак ваш.",
+    "workbenchDays": "Дней за верстаком: {{count}}",
+    "workbenchDaysTooltip": "Дело не в производстве. Дело в проживании времени за верстаком.",
+    "daysAwayLabel": "дней без верстака",
+    "daysAwayTooltip": "Как насчёт вернуться к хобби сегодня?"
+  },
+  "share": {
+    "share": "Поделиться",
+    "copied": "Скопировано!",
+    "linkCopied": "Ссылка скопирована!",
+    "linkCopiedDesc": "Поделитесь этой ссылкой с кем угодно, чтобы показать свою коллекцию.",
+    "error": "Ошибка",
+    "errorDesc": "Не удалось создать ссылку для обмена.",
+    "shareTooltip": "Скопировать публичную ссылку",
+    "publicCollection": "Коллекция {{name}}",
+    "kits": "Модели",
+    "materials": "Материалы",
+    "statistics": "Статистика",
+    "totalKits": "Всего Моделей",
+    "totalHours": "Всего Часов",
+    "totalInvested": "Всего Инвестировано",
+    "kitsByStatus": "Модели по Статусу",
+    "kitsByScale": "Модели по Масштабу",
+    "topBrands": "Популярные Бренды",
+    "noKitsFound": "Модели не найдены",
+    "noMaterialsFound": "Материалы не найдены",
+    "profileNotFound": "Профиль не найден",
+    "backToCollection": "Вернуться к коллекции",
+    "progress": "Прогресс",
+    "hoursWorked": "Отработано Часов",
+    "rating": "Рейтинг",
+    "paints": "Краски",
+    "buildPhotos": "Фото Сборки",
+    "notes": "Заметки",
+    "poweredBy": "Powered by ModelHero"
+  },
+  "kitForm": {
+    "militaryInfo": "Военная Информация",
+    "paintScheme": "Схема Окраски",
+    "epoch": "Период",
+    "airForce": "ВВС",
+    "armyNavy": "Армия/Флот",
+    "unitSquadron": "Часть/Эскадрилья",
+    "comments": "Комментарии",
+    "types": {
+      "airplane": "Самолёт",
+      "helicopter": "Вертолёт",
+      "military": "Военная техника",
+      "vehicle": "Транспорт",
+      "ship": "Корабль",
+      "submarine": "Подводная лодка",
+      "figure": "Фигура",
+      "diorama": "Диорама",
+      "scifi": "Sci-Fi",
+      "other": "Другое"
+    }
+  }
+}
