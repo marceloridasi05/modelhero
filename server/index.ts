@@ -382,9 +382,21 @@ async function runMigrations() {
       const statements = sql.split("--> statement-breakpoint").map(s => s.trim()).filter(Boolean);
       console.log(`[MIGRATE] Aplicando ${file} (${statements.length} statements)...`);
 
+      let applied = 0, skipped = 0;
       for (const stmt of statements) {
-        await pool.query(stmt);
+        try {
+          await pool.query(stmt);
+          applied++;
+        } catch (stmtErr: any) {
+          // Ignore "already exists" errors (42P07 = duplicate_table, 42710 = duplicate_object)
+          if (["42P07", "42710", "42P11"].includes(stmtErr?.code)) {
+            skipped++;
+          } else {
+            throw stmtErr;
+          }
+        }
       }
+      console.log(`[MIGRATE] ${file}: ${applied} aplicados, ${skipped} já existiam.`);
 
       await pool.query(
         "INSERT INTO __drizzle_migrations (hash, created_at) VALUES ($1, $2)",
