@@ -337,6 +337,33 @@ app.get("/api/test-email", async (_req: Request, res: Response) => {
 });
 
 /* =========================
+   ON-DEMAND MIGRATION ENDPOINT (protected by MIGRATE_SECRET)
+========================= */
+app.post("/api/admin/run-migrations", async (req, res) => {
+  const secret = process.env.MIGRATE_SECRET;
+  if (!secret || req.headers["x-migrate-secret"] !== secret) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
+  const logs: string[] = [];
+  const log = (msg: string) => { logs.push(msg); console.log(msg); };
+  try {
+    const migrationsFolder = path.resolve(process.cwd(), "migrations");
+    log(`[MIGRATE] cwd=${process.cwd()}, folder=${migrationsFolder}`);
+    log(`[MIGRATE] exists=${fs.existsSync(migrationsFolder)}`);
+    if (fs.existsSync(migrationsFolder)) {
+      const files = fs.readdirSync(migrationsFolder).filter(f => f.endsWith(".sql")).sort();
+      log(`[MIGRATE] SQL files: ${files.join(", ")}`);
+    }
+    await runMigrations();
+    log("[MIGRATE] Done.");
+    return res.json({ ok: true, logs });
+  } catch (e: any) {
+    log(`[MIGRATE] Error: ${e?.message}`);
+    return res.status(500).json({ ok: false, error: e?.message, logs });
+  }
+});
+
+/* =========================
    START
 ========================= */
 async function runMigrations() {
@@ -449,7 +476,7 @@ async function start() {
         userSessionCount = parseInt(result.rows[0].count, 10);
       } catch {}
 
-      const requiredTables = ["users", "kits", "materials", "wishlist_items", "user_sessions", "ia_actions", "user_badges", "user_events"];
+      const requiredTables = ["users", "kits", "materials", "wishlist_items", "user_sessions", "ia_actions", "user_events"];
       const tableStatus: Record<string, boolean> = {};
       for (const table of requiredTables) {
         try {
