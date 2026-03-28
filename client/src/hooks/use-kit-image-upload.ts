@@ -23,6 +23,7 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
       try {
         const response = await fetch("/api/uploads/request-url", {
           method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: file.name,
