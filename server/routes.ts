@@ -63,13 +63,25 @@ function getOpenAIClient(): OpenAI {
 }
 
 /* =========================
-   AUTH
+   AUTH & AUTHORIZATION
 ========================= */
 const requireAuth = (req: Request, res: Response, next: NextFunction) => {
   if (!req.session || !req.session.userId) {
     return res.status(401).json({ error: "Nao autenticado" });
   }
   next();
+};
+
+/**
+ * SECURITY: Validar que kit pertence ao usuário autenticado
+ * Previne IDOR (Insecure Direct Object Reference)
+ */
+const validateKitOwnership = async (
+  kitId: string,
+  userId: string,
+): Promise<boolean> => {
+  const kit = await storage.getKit(kitId, userId);
+  return !!kit;
 };
 
 const FREE_ITEM_LIMIT = 10;
@@ -712,15 +724,35 @@ export function registerRoutes(_server: Server, app: Express): void {
   });
 
   app.get("/api/kits/:id", requireAuth, async (req, res) => {
-    const kit = await storage.getKit(req.params.id, req.session.userId!);
+    const kitId = req.params.id;
+    const userId = req.session.userId!;
+
+    // SECURITY: Validar ownership antes de retornar dados
+    const kit = await storage.getKit(kitId, userId);
     if (!kit) {
+      // Log sem expor detalhes
+      console.warn(
+        `[SECURITY] Unauthorized access attempt to kit ${kitId} by user ${userId}`
+      );
       return res.status(404).json({ error: "Kit não encontrado" });
     }
+
     res.json(sanitizeKitArrayFields(kit));
   });
 
   app.patch("/api/kits/:id", requireAuth, async (req, res) => {
+    const kitId = req.params.id;
+    const userId = req.session.userId!;
     const kitData = { ...req.body };
+
+    // SECURITY: Validar ownership antes de atualizar
+    const existingKit = await storage.getKit(kitId, userId);
+    if (!existingKit) {
+      console.warn(
+        `[SECURITY] Unauthorized update attempt to kit ${kitId} by user ${userId}`
+      );
+      return res.status(404).json({ error: "Kit não encontrado" });
+    }
 
     if (kitData.startDate && typeof kitData.startDate === "string") {
       kitData.startDate = new Date(kitData.startDate);
@@ -738,25 +770,39 @@ export function registerRoutes(_server: Server, app: Express): void {
       kitData.timerStartedAt = String(kitData.timerStartedAt);
     }
 
-    const kit = await storage.updateKit(
-      req.params.id,
-      req.session.userId!,
-      kitData,
-    );
+    const kit = await storage.updateKit(kitId, userId, kitData);
 
     if (!kit) {
       return res.status(404).json({ error: "Kit não encontrado" });
     }
 
+    // Log auditoria
+    console.info(`[AUDIT] Kit ${kitId} updated by user ${userId}`);
+
     res.json(sanitizeKitArrayFields(kit));
   });
 
   app.delete("/api/kits/:id", requireAuth, async (req, res) => {
-    const ok = await storage.deleteKit(req.params.id, req.session.userId!);
+    const kitId = req.params.id;
+    const userId = req.session.userId!;
+
+    // SECURITY: Validar ownership antes de deletar
+    const existingKit = await storage.getKit(kitId, userId);
+    if (!existingKit) {
+      console.warn(
+        `[SECURITY] Unauthorized delete attempt to kit ${kitId} by user ${userId}`
+      );
+      return res.status(404).json({ error: "Kit não encontrado" });
+    }
+
+    const ok = await storage.deleteKit(kitId, userId);
 
     if (!ok) {
       return res.status(404).json({ error: "Kit não encontrado" });
     }
+
+    // Log auditoria
+    console.info(`[AUDIT] Kit ${kitId} deleted by user ${userId}`);
 
     res.json({ success: true });
   });
