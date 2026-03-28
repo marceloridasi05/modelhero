@@ -293,3 +293,8 @@
 .replit-error-overlay {
   display: none !important;
 }
+
+/* Hide Sessão de hoje card from home page */
+.shadcn-card.rounded-xl.border-accent\/30.bg-accent\/5 {
+  display: none !important;
+}
