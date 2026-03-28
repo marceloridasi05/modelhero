@@ -21,7 +21,6 @@ import KitCard from "@/components/KitCard";
 import { Card, CardContent } from "@/components/ui/card";
 import KitForm from "@/components/KitForm";
 import UpgradeModal from "@/components/UpgradeModal";
-import { TodaySession } from "@/components/TodaySession";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { queryClient } from "@/lib/queryClient";
@@ -152,8 +151,6 @@ export default function EmAndamento({ kits, onAddKit, onEditKit, isSavingKit }: 
         <Wrench className="w-3.5 h-3.5" />
         <span>{t("inProgress.routineTip")}</span>
       </div>
-
-      <TodaySession />
 
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
