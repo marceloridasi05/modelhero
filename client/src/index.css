@@ -295,6 +295,7 @@
 }
 
 /* Hide Sessão de hoje card from home page */
-.shadcn-card.bg-accent\/5 {
+/* Target the card with specific combination of Tailwind classes */
+.shadcn-card[class*="border-accent"][class*="bg-accent"] {
   display: none !important;
 }
