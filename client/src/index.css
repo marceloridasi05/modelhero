@@ -295,7 +295,12 @@
 }
 
 /* Hide Sessão de hoje card from home page */
-/* Target the card with specific combination of Tailwind classes */
-.shadcn-card[class*="border-accent"][class*="bg-accent"] {
+/* Target the card with specific combination of Tailwind classes - accent colored card */
+.shadcn-card[class*="border-accent/30"][class*="bg-accent/5"] {
+  display: none !important;
+}
+
+/* Fallback: Hide any accent-colored session card */
+.rounded-xl[class*="border-accent"][class*="bg-accent"] {
   display: none !important;
 }
