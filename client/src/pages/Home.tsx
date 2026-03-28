@@ -47,7 +47,6 @@ import FavoriteLinksSection from "@/components/FavoriteLinksSection";
 import ScaleConverter from "@/components/ScaleConverter";
 import PaintConverter from "@/components/PaintConverter";
 import DuplicateChecker from "@/components/DuplicateChecker";
-import { TodaySession } from "@/components/TodaySession";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { queryClient } from "@/lib/queryClient";
@@ -405,8 +404,6 @@ export default function Home({
               {t("home.newKit")}
             </Button>
           </div>
-
-          <TodaySession />
 
           {stats.totalKits >= 10 && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
