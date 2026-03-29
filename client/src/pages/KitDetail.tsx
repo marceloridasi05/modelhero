@@ -286,6 +286,9 @@ export default function KitDetail({
   const [uploadMessage, setUploadMessage] = useState("");
   const [isRotatingBoxImage, setIsRotatingBoxImage] = useState(false);
   const uploadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const referencePhotoInputRef = useRef<HTMLInputElement>(null);
+  const buildPhotoInputRef = useRef<HTMLInputElement>(null);
+  const referenceDocumentsInputRef = useRef<HTMLInputElement>(null);
   const nameSearchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [newLinkUrl, setNewLinkUrl] = useState("");
   const [newLinkDescription, setNewLinkDescription] = useState("");
@@ -1514,8 +1517,9 @@ export default function KitDetail({
                   <Image className="w-5 h-5 text-primary" />
                   {t("kitDetail.photos.reference")}
                 </CardTitle>
-                <label>
+                <div>
                   <input
+                    ref={referencePhotoInputRef}
                     type="file"
                     accept="image/*"
                     multiple
@@ -1523,13 +1527,15 @@ export default function KitDetail({
                     onChange={(e) => handleFileUpload(e, "image")}
                     data-testid="input-upload-photos"
                   />
-                  <Button size="sm" variant="outline" asChild>
-                    <span>
-                      <Upload className="w-4 h-4 mr-1" />
-                      {t("common.upload")}
-                    </span>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => referencePhotoInputRef.current?.click()}
+                  >
+                    <Upload className="w-4 h-4 mr-1" />
+                    {t("common.upload")}
                   </Button>
-                </label>
+                </div>
               </div>
             </CardHeader>
             <CardContent>
@@ -1578,7 +1584,7 @@ export default function KitDetail({
                   {t("kitDetail.photos.build")}
                 </CardTitle>
                 <div className="flex gap-2 flex-wrap">
-                  <label>
+                  <div>
                     <input
                       type="file"
                       accept="image/*"
@@ -1587,15 +1593,23 @@ export default function KitDetail({
                       onChange={handleBuildPhotoUpload}
                       data-testid="input-camera-build-photos"
                     />
-                    <Button size="sm" variant="default" asChild>
-                      <span>
-                        <Camera className="w-4 h-4 mr-1" />
-                        {t("kitDetail.photos.takePhoto")}
-                      </span>
+                    <Button
+                      size="sm"
+                      variant="default"
+                      onClick={() => {
+                        const input = document.querySelector(
+                          'input[data-testid="input-camera-build-photos"]'
+                        ) as HTMLInputElement;
+                        input?.click();
+                      }}
+                    >
+                      <Camera className="w-4 h-4 mr-1" />
+                      {t("kitDetail.photos.takePhoto")}
                     </Button>
-                  </label>
-                  <label>
+                  </div>
+                  <div>
                     <input
+                      ref={buildPhotoInputRef}
                       type="file"
                       accept="image/*"
                       multiple
@@ -1603,13 +1617,15 @@ export default function KitDetail({
                       onChange={handleBuildPhotoUpload}
                       data-testid="input-upload-build-photos"
                     />
-                    <Button size="sm" variant="outline" asChild>
-                      <span>
-                        <Upload className="w-4 h-4 mr-1" />
-                        {t("common.upload")}
-                      </span>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => buildPhotoInputRef.current?.click()}
+                    >
+                      <Upload className="w-4 h-4 mr-1" />
+                      {t("common.upload")}
                     </Button>
-                  </label>
+                  </div>
                 </div>
               </div>
             </CardHeader>
@@ -1727,8 +1743,9 @@ export default function KitDetail({
                   <FileText className="w-5 h-5 text-accent" />
                   {t("kitDetail.documents.title")}
                 </CardTitle>
-                <label>
+                <div>
                   <input
+                    ref={referenceDocumentsInputRef}
                     type="file"
                     accept=".pdf,.doc,.docx,.txt"
                     multiple
@@ -1736,13 +1753,15 @@ export default function KitDetail({
                     onChange={(e) => handleFileUpload(e, "document")}
                     data-testid="input-upload-docs"
                   />
-                  <Button size="sm" variant="outline" asChild>
-                    <span>
-                      <Upload className="w-4 h-4 mr-1" />
-                      {t("common.upload")}
-                    </span>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => referenceDocumentsInputRef.current?.click()}
+                  >
+                    <Upload className="w-4 h-4 mr-1" />
+                    {t("common.upload")}
                   </Button>
-                </label>
+                </div>
               </div>
             </CardHeader>
             <CardContent>
