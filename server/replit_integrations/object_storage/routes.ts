@@ -1,5 +1,6 @@
 import type { Express, RequestHandler } from "express";
 import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
+import { generateSafeFilename, validateFileSize, logUploadValidationFailure } from "../../utils/upload-validator";
 
 /**
  * Register object storage routes for file uploads.
@@ -41,12 +42,35 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
   app.post("/api/uploads/request-url", ...middlewares, async (req, res) => {
     try {
       const { name, size, contentType } = req.body;
+      const userId = (req as any).session?.userId || "unknown";
 
       if (!name) {
         return res.status(400).json({
           error: "Missing required field: name",
         });
       }
+
+      // Validate file size (10MB max for images)
+      const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+      const sizeValidation = validateFileSize(size || 0, MAX_SIZE);
+      if (!sizeValidation.valid) {
+        logUploadValidationFailure(userId, name, sizeValidation.error || "Unknown error", size);
+        return res.status(400).json({
+          error: sizeValidation.error || "Arquivo inválido",
+        });
+      }
+
+      // Validate content type is reasonable (basic check)
+      const allowedContentTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "application/pdf"];
+      if (contentType && !allowedContentTypes.includes(contentType)) {
+        logUploadValidationFailure(userId, name, `Unsupported content type: ${contentType}`, size);
+        return res.status(400).json({
+          error: "Tipo de arquivo não suportado",
+        });
+      }
+
+      // Sanitize filename
+      const safeName = generateSafeFilename(name);
 
       const uploadURL = await objectStorageService.getObjectEntityUploadURL();
 
@@ -56,8 +80,8 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
       res.json({
         uploadURL,
         objectPath,
-        // Echo back the metadata for client convenience
-        metadata: { name, size, contentType },
+        // Echo back the sanitized metadata for client convenience
+        metadata: { name: safeName, size, contentType },
       });
     } catch (error) {
       console.error("Error generating upload URL:", error);

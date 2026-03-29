@@ -14,6 +14,7 @@ import {
   insertWishlistItemSchema,
   ADMIN_EMAILS,
 } from "@shared/schema";
+import { validateImageFile, logUploadValidationFailure } from "./utils/upload-validator";
 import { objectStorageClient } from "./replit_integrations/object_storage/objectStorage";
 import {
   getUncachableStripeClient,
@@ -3172,6 +3173,8 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
   app.post("/api/wishlist/upload-photo", requireAuth, async (req, res) => {
     try {
       const { imageBase64 } = req.body;
+      const userId = req.session.userId!;
+
       if (!imageBase64) {
         return res.status(400).json({ error: "No image provided" });
       }
@@ -3185,12 +3188,19 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
       const base64Data = matches[2];
       const imageBuffer = Buffer.from(base64Data, "base64");
 
+      // Validate file type and size before upload
+      const validation = await validateImageFile(imageBuffer, imageBuffer.length);
+      if (!validation.valid) {
+        logUploadValidationFailure(userId, `wishlist.${extension}`, validation.error || "Validation failed", imageBuffer.length);
+        return res.status(400).json({ error: validation.error || "Arquivo inválido" });
+      }
+
       const fileName = `wishlist/${randomUUID()}.${extension}`;
       const bucket = objectStorageClient.bucket('uploads');
       const file = bucket.file(fileName);
       await file.save(imageBuffer, {
         contentType: `image/${matches[1]}`,
-        metadata: { uploadedBy: req.session.userId },
+        metadata: { uploadedBy: userId },
       });
 
       const photoUrl = `/objects/${fileName}`;
@@ -3314,6 +3324,8 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
   app.post("/api/images/upload-base64", requireAuth, async (req, res) => {
     try {
       const { base64Data, contentType = "image/jpeg", folder = "uploads" } = req.body;
+      const userId = req.session.userId!;
+
       if (!base64Data || typeof base64Data !== "string") {
         return res.status(400).json({ error: "base64Data is required" });
       }
@@ -3321,13 +3333,20 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
       const raw = base64Data.includes(",") ? base64Data.split(",")[1] : base64Data;
       const imageBuffer = Buffer.from(raw, "base64");
 
+      // Validate file type and size before upload
+      const validation = await validateImageFile(imageBuffer, imageBuffer.length);
+      if (!validation.valid) {
+        logUploadValidationFailure(userId, "base64-image", validation.error || "Validation failed", imageBuffer.length);
+        return res.status(400).json({ error: validation.error || "Arquivo inválido" });
+      }
+
       const ext = contentType === "image/png" ? "png" : contentType === "image/webp" ? "webp" : "jpg";
       const fileName = `${folder}/${randomUUID()}.${ext}`;
       const bucket = objectStorageClient.bucket('uploads');
       const file = bucket.file(fileName);
       await file.save(imageBuffer, {
         contentType,
-        metadata: { uploadedBy: req.session.userId },
+        metadata: { uploadedBy: userId },
       });
 
       const objectUrl = `/objects/${fileName}`;
