@@ -227,7 +227,7 @@ export default function KitDetail({
   const { toast } = useToast();
   const { language } = useLanguage();
 
-  const { data: fullKit } = useQuery<Kit>({
+  const { data: fullKit, refetch: refetchKit } = useQuery<Kit>({
     queryKey: ["/api/kits", listKit?.id],
     enabled: !!listKit?.id,
   });
@@ -786,6 +786,8 @@ export default function KitDetail({
             referencePhotos: [...(kit.referencePhotos || []), ...newFiles],
           };
           onEditKit(updatedKit);
+          // Refetch to ensure UI is updated with latest data
+          refetchKit();
         }
       } else {
         const uploadedDocs = await uploadImages(filesToUpload);
@@ -805,6 +807,8 @@ export default function KitDetail({
             ],
           };
           onEditKit(updatedKit);
+          // Refetch to ensure UI is updated with latest data
+          refetchKit();
         }
       }
     } finally {
@@ -920,6 +924,8 @@ export default function KitDetail({
           buildPhotos: [...(kit.buildPhotos || []), ...newPhotos],
         };
         onEditKit(updatedKit);
+        // Refetch to ensure UI is updated with latest data
+        refetchKit();
       }
     } finally {
       if (uploadTimeoutRef.current) {
