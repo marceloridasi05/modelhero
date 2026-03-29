@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Upload, Camera, Loader2 } from "lucide-react";
 
@@ -42,6 +42,30 @@ export default function PhotoUploadButton({
       e.target.value = "";
     }
   };
+
+  // Manually attach event listener since React's onChange isn't working
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+
+    const handleFileChange = (e: Event) => {
+      const fileInput = e.target as HTMLInputElement;
+      if (fileInput.files && fileInput.files.length > 0) {
+        console.log("✅ [PHOTO BUTTON] File selected:", fileInput.files.length);
+        onFilesSelected(fileInput.files);
+        // Reset input so same file can be selected again
+        fileInput.value = "";
+      }
+    };
+
+    input.addEventListener("change", handleFileChange);
+    console.log("🔗 [PHOTO BUTTON] Event listener attached to file input");
+
+    return () => {
+      input.removeEventListener("change", handleFileChange);
+      console.log("🔌 [PHOTO BUTTON] Event listener removed");
+    };
+  }, [onFilesSelected]);
 
   const IconComponent = icon === "camera" ? Camera : Upload;
 
