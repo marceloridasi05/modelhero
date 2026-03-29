@@ -885,12 +885,20 @@ export default function KitDetail({
   const handleBuildPhotoUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
+    console.log("🎬 [BUILD PHOTO] handleBuildPhotoUpload chamado");
     const files = e.target.files;
-    if (!files || files.length === 0 || !kit) return;
+    console.log("📁 [BUILD PHOTO] Arquivos recebidos:", files ? files.length : 0);
+
+    if (!files || files.length === 0 || !kit) {
+      console.log("⚠️ [BUILD PHOTO] Validação falhou - files:", !!files, "length:", files?.length, "kit:", !!kit);
+      return;
+    }
 
     const currentCount = (kit.buildPhotos || []).length;
+    console.log("📊 [BUILD PHOTO] Fotos atuais:", currentCount, "Máximo:", maxPhotos);
 
     if (currentCount >= maxPhotos) {
+      console.log("❌ [BUILD PHOTO] Limite de fotos atingido");
       toast({
         title: t("kitDetail.toasts.limitReached"),
         description: t("kitDetail.toasts.maxBuildPhotos", { max: maxPhotos }),
@@ -902,6 +910,7 @@ export default function KitDetail({
 
     const remainingSlots = maxPhotos - currentCount;
     const filesToUpload = Array.from(files).slice(0, remainingSlots);
+    console.log("📤 [BUILD PHOTO] Iniciando upload de", filesToUpload.length, "arquivo(s)");
 
     setUploadMessage(t("common.loading"));
 
@@ -910,8 +919,12 @@ export default function KitDetail({
     }, 1000);
 
     try {
+      console.log("⏳ [BUILD PHOTO] Chamando uploadImages");
       const uploadedImages = await uploadImages(filesToUpload);
+      console.log("✅ [BUILD PHOTO] uploadImages retornou:", uploadedImages.length, "imagens");
+
       if (uploadedImages.length > 0) {
+        console.log("💾 [BUILD PHOTO] Atualizando kit com novas fotos");
         const newPhotos: ReferenceFile[] = uploadedImages.map((img) => ({
           id: img.id,
           name: img.name,
@@ -923,10 +936,17 @@ export default function KitDetail({
           ...kit,
           buildPhotos: [...(kit.buildPhotos || []), ...newPhotos],
         };
+        console.log("🔄 [BUILD PHOTO] Chamando onEditKit");
         onEditKit(updatedKit);
+        console.log("🔄 [BUILD PHOTO] Chamando refetchKit");
         // Refetch to ensure UI is updated with latest data
         refetchKit();
+        console.log("✨ [BUILD PHOTO] Fotos atualizadas com sucesso");
+      } else {
+        console.warn("⚠️ [BUILD PHOTO] Nenhuma imagem foi enviada com sucesso");
       }
+    } catch (error) {
+      console.error("❌ [BUILD PHOTO] Erro durante upload:", error);
     } finally {
       if (uploadTimeoutRef.current) {
         clearTimeout(uploadTimeoutRef.current);
@@ -940,7 +960,12 @@ export default function KitDetail({
   // Helper to handle FileList directly for build photos
   const handleBuildFilesDirectly = useCallback(
     async (fileList: FileList) => {
-      if (!fileList || fileList.length === 0) return;
+      console.log("🎯 [BUILD FILES DIRECTLY] Chamado com", fileList ? fileList.length : 0, "arquivo(s)");
+
+      if (!fileList || fileList.length === 0) {
+        console.warn("⚠️ [BUILD FILES DIRECTLY] FileList vazio ou nulo");
+        return;
+      }
 
       const syntheticEvent = {
         target: {
@@ -949,6 +974,7 @@ export default function KitDetail({
         },
       } as unknown as React.ChangeEvent<HTMLInputElement>;
 
+      console.log("🔗 [BUILD FILES DIRECTLY] Criando synthetic event e chamando handleBuildPhotoUpload");
       return handleBuildPhotoUpload(syntheticEvent);
     },
     [handleBuildPhotoUpload]

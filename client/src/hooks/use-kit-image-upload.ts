@@ -21,6 +21,8 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
   const uploadSingleImage = useCallback(
     async (file: File): Promise<UploadedImage | null> => {
       try {
+        console.log("🔍 [UPLOAD] Iniciando upload para arquivo:", file.name, "Tamanho:", file.size);
+
         const response = await fetch("/api/uploads/request-url", {
           method: "POST",
           credentials: "include",
@@ -32,10 +34,13 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
           }),
         });
 
+        console.log("📡 [UPLOAD] Resposta request-url recebida:", response.status, response.statusText);
+
         if (!response.ok) {
           // Try to extract error message from response
           try {
             const errorData = await response.json();
+            console.error("❌ [UPLOAD] Erro na requisição:", errorData);
             throw new Error(errorData.error || "Falha ao obter URL de upload");
           } catch {
             throw new Error("Falha ao obter URL de upload");
@@ -43,6 +48,7 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
         }
 
         const { uploadURL, objectPath } = await response.json();
+        console.log("📍 [UPLOAD] URL de upload e path obtidos. Path:", objectPath.substring(0, 50) + "...");
 
         const uploadResponse = await fetch(uploadURL, {
           method: "PUT",
@@ -50,9 +56,13 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
           headers: { "Content-Type": file.type || "image/jpeg" },
         });
 
+        console.log("📤 [UPLOAD] Resposta do PUT para R2:", uploadResponse.status, uploadResponse.statusText);
+
         if (!uploadResponse.ok) {
-          throw new Error("Falha ao enviar imagem");
+          throw new Error("Falha ao enviar imagem para R2");
         }
+
+        console.log("✅ [UPLOAD] Arquivo enviado com sucesso:", file.name);
 
         return {
           id: crypto.randomUUID(),
@@ -62,7 +72,7 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
           thumbnail: objectPath,
         };
       } catch (err) {
-        console.error("Error uploading image:", err);
+        console.error("❌ [UPLOAD] Erro ao fazer upload:", err);
         return null;
       }
     },
