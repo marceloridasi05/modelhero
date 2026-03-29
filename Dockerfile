@@ -17,13 +17,9 @@ RUN npm run build
 # Remove dev dependencies after build
 RUN npm prune --omit=dev
 
-# Create uploads directory for persistent storage
-RUN mkdir -p /app/uploads
-
 EXPOSE 3000
 
 ENV NODE_ENV=production
 ENV PORT=3000
-ENV UPLOAD_DIR=/app/uploads
 
 CMD ["npm", "run", "start"]
