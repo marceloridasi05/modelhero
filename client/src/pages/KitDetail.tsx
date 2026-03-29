@@ -817,6 +817,41 @@ export default function KitDetail({
     }
   };
 
+  // Helper to handle FileList directly from PhotoUploadButton (for reference photos and documents)
+  const handleFilesDirectly = useCallback(
+    async (fileList: FileList, type: "image" | "document") => {
+      if (!fileList || fileList.length === 0) return;
+
+      // Create a synthetic event-like object that handleFileUpload expects
+      const syntheticEvent = {
+        target: {
+          files: fileList,
+          value: "",
+        },
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
+
+      return handleFileUpload(syntheticEvent, type);
+    },
+    [handleFileUpload]
+  );
+
+  // Helper to handle FileList directly for build photos
+  const handleBuildFilesDirectly = useCallback(
+    async (fileList: FileList) => {
+      if (!fileList || fileList.length === 0) return;
+
+      const syntheticEvent = {
+        target: {
+          files: fileList,
+          value: "",
+        },
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
+
+      return handleBuildPhotoUpload(syntheticEvent);
+    },
+    [handleBuildPhotoUpload]
+  );
+
   const handleRemoveFile = (fileId: string, type: "image" | "document") => {
     const updatedKit: Kit = {
       ...kit,
@@ -1518,14 +1553,7 @@ export default function KitDetail({
                 <PhotoUploadButton
                   accept="image/*"
                   multiple
-                  onFileSelect={(files) => {
-                    const event = new Event("change", { bubbles: true });
-                    Object.defineProperty(event, "target", {
-                      value: { files },
-                      enumerable: true,
-                    });
-                    handleFileUpload(event as any, "image");
-                  }}
+                  onFilesSelected={(files) => handleFilesDirectly(files, "image")}
                   isLoading={isUploading}
                   variant="outline"
                   size="sm"
@@ -1584,14 +1612,7 @@ export default function KitDetail({
                   <PhotoUploadButton
                     accept="image/*"
                     capture="environment"
-                    onFileSelect={(files) => {
-                      const event = new Event("change", { bubbles: true });
-                      Object.defineProperty(event, "target", {
-                        value: { files },
-                        enumerable: true,
-                      });
-                      handleBuildPhotoUpload(event as any);
-                    }}
+                    onFilesSelected={handleBuildFilesDirectly}
                     isLoading={isUploading}
                     variant="default"
                     size="sm"
@@ -1602,14 +1623,7 @@ export default function KitDetail({
                   <PhotoUploadButton
                     accept="image/*"
                     multiple
-                    onFileSelect={(files) => {
-                      const event = new Event("change", { bubbles: true });
-                      Object.defineProperty(event, "target", {
-                        value: { files },
-                        enumerable: true,
-                      });
-                      handleBuildPhotoUpload(event as any);
-                    }}
+                    onFilesSelected={handleBuildFilesDirectly}
                     isLoading={isUploading}
                     variant="outline"
                     size="sm"
@@ -1737,14 +1751,7 @@ export default function KitDetail({
                 <PhotoUploadButton
                   accept=".pdf,.doc,.docx,.txt"
                   multiple
-                  onFileSelect={(files) => {
-                    const event = new Event("change", { bubbles: true });
-                    Object.defineProperty(event, "target", {
-                      value: { files },
-                      enumerable: true,
-                    });
-                    handleFileUpload(event as any, "document");
-                  }}
+                  onFilesSelected={(files) => handleFilesDirectly(files, "document")}
                   isLoading={isUploading}
                   variant="outline"
                   size="sm"

@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Upload, Camera, Loader2 } from "lucide-react";
 
 interface PhotoUploadButtonProps {
-  onFileSelect: (files: FileList) => void;
+  onFilesSelected: (files: FileList) => void;
   accept?: string;
   multiple?: boolean;
   capture?: boolean | "user" | "environment";
@@ -16,7 +16,7 @@ interface PhotoUploadButtonProps {
 }
 
 export default function PhotoUploadButton({
-  onFileSelect,
+  onFilesSelected,
   accept = "image/*",
   multiple = false,
   capture = false,
@@ -27,48 +27,36 @@ export default function PhotoUploadButton({
   label,
   disabled = false,
 }: PhotoUploadButtonProps) {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [isHovering, setIsHovering] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleButtonClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
+  const handleButtonClick = () => {
     if (inputRef.current && !disabled && !isLoading) {
-      console.log("[PhotoUploadButton] Clicking input ref");
       inputRef.current.click();
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("[PhotoUploadButton] Files selected:", e.target.files?.length);
-    if (e.target.files) {
-      onFileSelect(e.target.files);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      onFilesSelected(e.target.files);
+      // Reset input so same file can be selected again
+      e.target.value = "";
     }
   };
-
-  const inputProps: React.InputHTMLAttributes<HTMLInputElement> = {
-    ref: inputRef,
-    type: "file",
-    accept,
-    multiple,
-    onChange: handleFileChange,
-    style: { display: "none" },
-    disabled,
-  };
-
-  if (capture) {
-    inputProps.capture = capture;
-  }
 
   const IconComponent = icon === "camera" ? Camera : Upload;
 
   return (
-    <div
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-    >
-      <input {...inputProps} />
+    <>
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        capture={capture || undefined}
+        onChange={handleChange}
+        className="hidden"
+        disabled={disabled || isLoading}
+      />
       <Button
         size={size}
         variant={variant}
@@ -83,6 +71,6 @@ export default function PhotoUploadButton({
         )}
         {label}
       </Button>
-    </div>
+    </>
   );
 }
