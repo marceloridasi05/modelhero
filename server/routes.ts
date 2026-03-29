@@ -5,7 +5,6 @@ import OpenAI from "openai";
 import { randomUUID } from "crypto";
 import { eq, lt } from "drizzle-orm";
 import rateLimit from "express-rate-limit";
-import csrf from "csurf";
 import { storage } from "./storage";
 import {
   loginSchema,
@@ -176,23 +175,59 @@ export function registerRoutes(_server: Server, app: Express): void {
   /* =========================
      CSRF PROTECTION
   ========================= */
-  // CSRF middleware - protects against Cross-Site Request Forgery
-  // Note: csurf is deprecated but still functional. Consider migration to better CSRF solutions.
-  const csrfProtection = csrf({
-    cookie: false, // Use session-based tokens (we're using cookie sessions)
-    ignoreMethods: ["GET", "HEAD", "OPTIONS"], // Don't check CSRF on safe methods
-  });
+  // Custom CSRF middleware - protects against Cross-Site Request Forgery
+  // Validates token from request headers against session-stored token
+  const csrfProtection = (req: Request, res: Response, next: NextFunction) => {
+    // Skip CSRF check for safe methods
+    if (["GET", "HEAD", "OPTIONS"].includes(req.method)) {
+      return next();
+    }
+
+    // Get token from header
+    const tokenFromHeader = req.headers["csrf-token"] as string || req.body?.csrfToken;
+
+    if (!tokenFromHeader) {
+      console.warn(`[CSRF] Missing token from ${req.method} ${req.path}`);
+      return res.status(403).json({ error: "CSRF token missing" });
+    }
+
+    // Get token from session
+    const tokenFromSession = (req.session as any)?.csrfToken;
+
+    if (!tokenFromSession) {
+      console.warn(`[CSRF] No token in session for ${req.method} ${req.path}`);
+      return res.status(403).json({ error: "CSRF token not found in session" });
+    }
+
+    // Validate tokens match
+    if (tokenFromHeader !== tokenFromSession) {
+      console.warn(`[CSRF] Token mismatch for ${req.method} ${req.path} from IP ${req.ip}`);
+      return res.status(403).json({ error: "CSRF token invalid" });
+    }
+
+    next();
+  };
 
   // Endpoint to get CSRF token (called before form submission)
-  // Note: GET requests are skipped by CSRF middleware, but we need to generate token
-  app.get("/api/auth/csrf-token", csrfProtection, (req, res) => {
-    try {
-      const token = req.csrfToken();
-      res.json({ csrfToken: token });
-    } catch (err) {
-      console.error("[CSRF Token Error]", err);
-      return res.status(500).json({ error: "Failed to generate CSRF token" });
+  // Using crypto to generate tokens instead of csurf for GET requests
+  app.get("/api/auth/csrf-token", (req, res) => {
+    // Generate a CSRF token using crypto
+    const crypto = require("crypto");
+    const token = crypto.randomBytes(32).toString("hex");
+
+    // Store in session for validation
+    if (!req.session) {
+      return res.status(500).json({ error: "Session not available" });
     }
+
+    (req.session as any).csrfToken = token;
+    req.session.save((err) => {
+      if (err) {
+        console.error("[CSRF Token Save Error]", err);
+        return res.status(500).json({ error: "Failed to save CSRF token" });
+      }
+      res.json({ csrfToken: token });
+    });
   });
 
   /* =========================
