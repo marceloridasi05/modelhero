@@ -30,8 +30,13 @@ export default function PhotoUploadButton({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
+    console.log("🖱️ [PHOTO BUTTON] Button clicked!");
     if (inputRef.current && !disabled && !isLoading) {
+      console.log("✅ [PHOTO BUTTON] File input found, triggering click");
       inputRef.current.click();
+      console.log("✅ [PHOTO BUTTON] Click triggered on file input");
+    } else {
+      console.warn("⚠️ [PHOTO BUTTON] Cannot click: inputRef exists?", !!inputRef.current, "disabled:", disabled, "isLoading:", isLoading);
     }
   };
 
