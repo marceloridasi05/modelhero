@@ -287,6 +287,7 @@ export default function KitDetail({
   const [isRotatingBoxImage, setIsRotatingBoxImage] = useState(false);
   const uploadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const referencePhotoInputRef = useRef<HTMLInputElement>(null);
+  const cameraPhotoInputRef = useRef<HTMLInputElement>(null);
   const buildPhotoInputRef = useRef<HTMLInputElement>(null);
   const referenceDocumentsInputRef = useRef<HTMLInputElement>(null);
   const nameSearchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -1586,6 +1587,7 @@ export default function KitDetail({
                 <div className="flex gap-2 flex-wrap">
                   <div>
                     <input
+                      ref={cameraPhotoInputRef}
                       type="file"
                       accept="image/*"
                       capture="environment"
@@ -1596,12 +1598,7 @@ export default function KitDetail({
                     <Button
                       size="sm"
                       variant="default"
-                      onClick={() => {
-                        const input = document.querySelector(
-                          'input[data-testid="input-camera-build-photos"]'
-                        ) as HTMLInputElement;
-                        input?.click();
-                      }}
+                      onClick={() => cameraPhotoInputRef.current?.click()}
                     >
                       <Camera className="w-4 h-4 mr-1" />
                       {t("kitDetail.photos.takePhoto")}
