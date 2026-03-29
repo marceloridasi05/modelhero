@@ -50,8 +50,8 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
         });
       }
 
-      // Validate file size (10MB max for images)
-      const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+      // Validate file size (15MB max for images - increased for high-quality photos)
+      const MAX_SIZE = 15 * 1024 * 1024; // 15MB
       const sizeValidation = validateFileSize(size || 0, MAX_SIZE);
       if (!sizeValidation.valid) {
         logUploadValidationFailure(userId, name, sizeValidation.error || "Unknown error", size);

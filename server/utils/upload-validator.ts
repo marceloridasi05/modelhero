@@ -11,7 +11,7 @@ import { fileTypeFromBuffer } from "file-type";
 // Allowed MIME types for different upload contexts
 export const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 export const ALLOWED_DOCUMENT_TYPES = ["application/pdf"];
-export const MAX_IMAGE_SIZE = 10 * 1024 * 1024; // 10MB
+export const MAX_IMAGE_SIZE = 15 * 1024 * 1024; // 15MB - increased for high-quality photos
 export const MAX_DOCUMENT_SIZE = 20 * 1024 * 1024; // 20MB
 
 interface ValidationResult {

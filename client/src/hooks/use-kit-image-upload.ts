@@ -33,7 +33,13 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
         });
 
         if (!response.ok) {
-          throw new Error("Falha ao obter URL de upload");
+          // Try to extract error message from response
+          try {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Falha ao obter URL de upload");
+          } catch {
+            throw new Error("Falha ao obter URL de upload");
+          }
         }
 
         const { uploadURL, objectPath } = await response.json();
