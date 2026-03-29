@@ -835,23 +835,6 @@ export default function KitDetail({
     [handleFileUpload]
   );
 
-  // Helper to handle FileList directly for build photos
-  const handleBuildFilesDirectly = useCallback(
-    async (fileList: FileList) => {
-      if (!fileList || fileList.length === 0) return;
-
-      const syntheticEvent = {
-        target: {
-          files: fileList,
-          value: "",
-        },
-      } as unknown as React.ChangeEvent<HTMLInputElement>;
-
-      return handleBuildPhotoUpload(syntheticEvent);
-    },
-    [handleBuildPhotoUpload]
-  );
-
   const handleRemoveFile = (fileId: string, type: "image" | "document") => {
     const updatedKit: Kit = {
       ...kit,
@@ -947,6 +930,23 @@ export default function KitDetail({
       e.target.value = "";
     }
   };
+
+  // Helper to handle FileList directly for build photos
+  const handleBuildFilesDirectly = useCallback(
+    async (fileList: FileList) => {
+      if (!fileList || fileList.length === 0) return;
+
+      const syntheticEvent = {
+        target: {
+          files: fileList,
+          value: "",
+        },
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
+
+      return handleBuildPhotoUpload(syntheticEvent);
+    },
+    [handleBuildPhotoUpload]
+  );
 
   const handleRemoveBuildPhoto = (photoId: string) => {
     if (!kit) return;
