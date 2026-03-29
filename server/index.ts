@@ -570,8 +570,17 @@ async function start() {
      API ROUTES + OBJECT STORAGE (after session middleware)
   ========================= */
   console.log(`[STARTUP] Registering API routes...`);
+
+  // Simple auth middleware for uploads
+  const requireAuth = (req: Request, res: Response, next: NextFunction) => {
+    if (!req.session || !req.session.userId) {
+      return res.status(401).json({ error: "Nao autenticado" });
+    }
+    next();
+  };
+
   registerRoutes(server, app);
-  registerObjectStorageRoutes(app);
+  registerObjectStorageRoutes(app, requireAuth);
   console.log(`[STARTUP] API routes registered successfully`);
 
   /* =========================
