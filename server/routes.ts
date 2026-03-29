@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import OpenAI from "openai";
 import { randomUUID } from "crypto";
 import { eq, lt } from "drizzle-orm";
+import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
 import {
   loginSchema,
@@ -151,9 +152,29 @@ export function registerRoutes(_server: Server, app: Express): void {
   });
 
   /* =========================
+     RATE LIMITING
+  ========================= */
+  const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // 5 attempts per windowMs
+    message: "Muitas tentativas de login. Tente novamente em 15 minutos.",
+    standardHeaders: true, // Return rate limit info in `RateLimit-*` headers
+    legacyHeaders: false, // Disable `X-RateLimit-*` headers
+    skip: (req: Request) => {
+      // Skip rate limiting for successful login attempts
+      return false; // We'll handle this with store reset on success
+    },
+    store: new (require("express-rate-limit").MemoryStore)(),
+    keyGenerator: (req: Request) => {
+      // Rate limit by IP address for login attempts
+      return req.ip || req.socket.remoteAddress || "unknown";
+    },
+  });
+
+  /* =========================
      AUTH
   ========================= */
-  app.post("/api/auth/login", async (req, res) => {
+  app.post("/api/auth/login", loginLimiter, async (req, res) => {
     const parsed = loginSchema.safeParse(req.body);
     if (!parsed.success) {
       return res.status(400).json({ error: "Dados inválidos" });
