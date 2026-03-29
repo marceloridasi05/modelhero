@@ -2315,8 +2315,29 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
     }
     const user = await storage.getUser(req.session.userId);
     if (!user || !user.isAdmin) {
+      // SECURITY: Log unauthorized admin access attempts
+      console.warn(
+        `[SECURITY_ALERT] Unauthorized admin access attempt | User: ${req.session.userId} | Path: ${req.path} | Method: ${req.method}`
+      );
+
+      // Log para detecção de abuso
+      console.info({
+        type: "SECURITY_INCIDENT",
+        incident: "UNAUTHORIZED_ADMIN_ACCESS",
+        userId: req.session.userId,
+        path: req.path,
+        method: req.method,
+        timestamp: new Date().toISOString(),
+      });
+
       return res.status(403).json({ error: "Acesso negado" });
     }
+
+    // Log successful admin access
+    console.info(
+      `[AUDIT] Admin access by ${req.session.userId} | ${req.method} ${req.path}`
+    );
+
     next();
   };
 
@@ -2431,10 +2452,27 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
   app.delete("/api/admin/users/:userId", requireAdmin, async (req, res) => {
     try {
       const { userId } = req.params;
+      const adminId = req.session.userId;
+
+      // SECURITY: Log critical admin operation
+      console.warn(
+        `[AUDIT_CRITICAL] User deletion initiated | Admin: ${adminId} | Target user: ${userId}`
+      );
+
       const deleted = await storage.deleteUser(userId);
       if (!deleted) {
         return res.status(404).json({ error: "Usuario nao encontrado" });
       }
+
+      // SECURITY: Log successful deletion
+      console.info({
+        type: "AUDIT_CRITICAL",
+        action: "USER_DELETION",
+        adminId,
+        targetUserId: userId,
+        timestamp: new Date().toISOString(),
+      });
+
       res.json({ success: true });
     } catch (err) {
       console.error("Error deleting user:", err);
@@ -2731,17 +2769,33 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
   app.post("/api/admin/settings", requireAdmin, async (req, res) => {
     try {
       const { settings } = req.body;
+      const adminId = req.session.userId;
+
       if (!settings || typeof settings !== "object") {
         return res
           .status(400)
           .json({ error: "Campo 'settings' obrigatorio e deve ser um objeto" });
       }
 
+      // SECURITY: Log critical configuration changes
+      console.warn(
+        `[AUDIT_CRITICAL] Admin settings modification | Admin: ${adminId} | Settings: ${Object.keys(settings).join(", ")}`
+      );
+
       for (const [key, value] of Object.entries(settings)) {
         if (typeof value === "string" || typeof value === "number") {
           await storage.setAdminSetting(key, String(value));
         }
       }
+
+      // SECURITY: Log successful change
+      console.info({
+        type: "AUDIT_CRITICAL",
+        action: "ADMIN_SETTINGS_CHANGED",
+        adminId,
+        changedSettings: Object.keys(settings),
+        timestamp: new Date().toISOString(),
+      });
 
       const updatedSettings = await storage.getAllAdminSettings();
       res.json(updatedSettings);
