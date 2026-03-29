@@ -240,7 +240,18 @@ export function registerRoutes(_server: Server, app: Express): void {
     }
 
     const user = await storage.getUserByEmail(parsed.data.email.toLowerCase());
-    if (!user || !(await bcrypt.compare(parsed.data.password, user.password))) {
+
+    // SECURITY: User Enumeration Protection
+    // Always compare password with bcrypt (even if user doesn't exist) to prevent timing attacks
+    // This prevents attackers from discovering valid emails by measuring response times
+    const dummy_hash = "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36CHbDey"; // bcrypt hash of "password"
+    const passwordHash = user?.password || dummy_hash;
+
+    const isPasswordValid = await bcrypt.compare(parsed.data.password, passwordHash);
+
+    // Return same error message regardless of whether email exists or password is wrong
+    if (!user || !isPasswordValid) {
+      console.warn(`[AUTH_FAILED] Login attempt for email: ${parsed.data.email.toLowerCase()}, user_exists: ${!!user}, password_valid: ${isPasswordValid}`);
       return res.status(401).json({ error: "Credenciais inválidas" });
     }
 

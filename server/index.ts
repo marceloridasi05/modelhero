@@ -612,24 +612,29 @@ async function start() {
   /* =========================
      ERROR HANDLERS (must be last)
   ========================= */
+  // Import error sanitizer
+  const { sanitizeErrorForResponse, logError } = await import("./utils/error-sanitizer");
+
   app.use("/api", (err: any, req: Request, res: Response, next: NextFunction) => {
     console.error("🔥 API ERROR:", err?.stack || err?.message || err);
     if (res.headersSent) return next(err);
-    return res.status(500).json({
-      error: "Internal API Error",
-      message: String(err?.message || "Unknown error"),
-      path: req.originalUrl,
-    });
+
+    // Sanitize error before sending to client
+    const sanitized = sanitizeErrorForResponse(err, "Erro ao processar requisição");
+    logError(`API ${req.method} ${req.path}`, err, sanitized);
+
+    return res.status(500).json(sanitized);
   });
 
   app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
     console.error("🔥 UNHANDLED ERROR:", err?.stack || err?.message || err);
     if (res.headersSent) return;
-    res.status(500).json({
-      error: "Internal Server Error",
-      message: String(err?.message || "Unknown error"),
-      path: req.originalUrl,
-    });
+
+    // Sanitize error before sending to client
+    const sanitized = sanitizeErrorForResponse(err, "Erro interno do servidor");
+    logError(`Unhandled ${req.method} ${req.path}`, err, sanitized);
+
+    res.status(500).json(sanitized);
   });
 
   const port = Number(process.env.PORT ?? 5000);
