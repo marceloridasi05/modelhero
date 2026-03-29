@@ -5,6 +5,7 @@ import OpenAI from "openai";
 import { randomUUID } from "crypto";
 import { eq, lt } from "drizzle-orm";
 import rateLimit from "express-rate-limit";
+import csrf from "csurf";
 import { storage } from "./storage";
 import {
   loginSchema,
@@ -172,9 +173,24 @@ export function registerRoutes(_server: Server, app: Express): void {
   });
 
   /* =========================
+     CSRF PROTECTION
+  ========================= */
+  // CSRF middleware - protects against Cross-Site Request Forgery
+  // Note: csurf is deprecated but still functional. Consider migration to better CSRF solutions.
+  const csrfProtection = csrf({
+    cookie: false, // Use session-based tokens (we're using cookie sessions)
+    ignoreMethods: ["GET", "HEAD", "OPTIONS"], // Don't check CSRF on safe methods
+  });
+
+  // Endpoint to get CSRF token (called before form submission)
+  app.get("/api/auth/csrf-token", (req, res) => {
+    res.json({ csrfToken: req.csrfToken() });
+  });
+
+  /* =========================
      AUTH
   ========================= */
-  app.post("/api/auth/login", loginLimiter, async (req, res) => {
+  app.post("/api/auth/login", loginLimiter, csrfProtection, async (req, res) => {
     const parsed = loginSchema.safeParse(req.body);
     if (!parsed.success) {
       return res.status(400).json({ error: "Dados inválidos" });
@@ -215,7 +231,7 @@ export function registerRoutes(_server: Server, app: Express): void {
     });
   });
 
-  app.post("/api/auth/register", async (req, res) => {
+  app.post("/api/auth/register", csrfProtection, async (req, res) => {
     const parsed = registerSchema.safeParse(req.body);
     if (!parsed.success) {
       return res.status(400).json({ error: "Dados inválidos" });
@@ -451,7 +467,7 @@ export function registerRoutes(_server: Server, app: Express): void {
     }
   });
 
-  app.post("/api/auth/logout", (req, res) => {
+  app.post("/api/auth/logout", csrfProtection, (req, res) => {
     req.session.destroy((err) => {
       if (err) {
         return res.status(500).json({ error: "Erro ao fazer logout" });
@@ -658,7 +674,7 @@ export function registerRoutes(_server: Server, app: Express): void {
     }
   });
 
-  app.post("/api/kits", requireAuth, async (req, res) => {
+  app.post("/api/kits", requireAuth, csrfProtection, async (req, res) => {
     const userId = req.session.userId!;
     console.log(
       "[POST /api/kits] Request body:",
@@ -761,7 +777,7 @@ export function registerRoutes(_server: Server, app: Express): void {
     res.json(sanitizeKitArrayFields(kit));
   });
 
-  app.patch("/api/kits/:id", requireAuth, async (req, res) => {
+  app.patch("/api/kits/:id", requireAuth, csrfProtection, async (req, res) => {
     const kitId = req.params.id;
     const userId = req.session.userId!;
     const kitData = { ...req.body };
@@ -803,7 +819,7 @@ export function registerRoutes(_server: Server, app: Express): void {
     res.json(sanitizeKitArrayFields(kit));
   });
 
-  app.delete("/api/kits/:id", requireAuth, async (req, res) => {
+  app.delete("/api/kits/:id", requireAuth, csrfProtection, async (req, res) => {
     const kitId = req.params.id;
     const userId = req.session.userId!;
 
@@ -2470,7 +2486,7 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
     },
   );
 
-  app.delete("/api/admin/users/:userId", requireAdmin, async (req, res) => {
+  app.delete("/api/admin/users/:userId", requireAdmin, csrfProtection, async (req, res) => {
     try {
       const { userId } = req.params;
       const adminId = req.session.userId;
@@ -2787,7 +2803,7 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
     }
   });
 
-  app.post("/api/admin/settings", requireAdmin, async (req, res) => {
+  app.post("/api/admin/settings", requireAdmin, csrfProtection, async (req, res) => {
     try {
       const { settings } = req.body;
       const adminId = req.session.userId;
