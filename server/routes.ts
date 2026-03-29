@@ -184,8 +184,15 @@ export function registerRoutes(_server: Server, app: Express): void {
   });
 
   // Endpoint to get CSRF token (called before form submission)
-  app.get("/api/auth/csrf-token", (req, res) => {
-    res.json({ csrfToken: req.csrfToken() });
+  // Note: GET requests are skipped by CSRF middleware, but we need to generate token
+  app.get("/api/auth/csrf-token", csrfProtection, (req, res) => {
+    try {
+      const token = req.csrfToken();
+      res.json({ csrfToken: token });
+    } catch (err) {
+      console.error("[CSRF Token Error]", err);
+      return res.status(500).json({ error: "Failed to generate CSRF token" });
+    }
   });
 
   /* =========================
