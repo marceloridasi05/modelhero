@@ -96,6 +96,7 @@ import StatusBadge from "@/components/StatusBadge";
 import DestinoBadge from "@/components/DestinoBadge";
 import RatingStars from "@/components/RatingStars";
 import KitForm from "@/components/KitForm";
+import PhotoUploadButton from "@/components/PhotoUploadButton";
 import { PAINT_BRANDS } from "@/lib/paintBrands";
 import {
   getPaintCodesForBrand,
@@ -286,10 +287,6 @@ export default function KitDetail({
   const [uploadMessage, setUploadMessage] = useState("");
   const [isRotatingBoxImage, setIsRotatingBoxImage] = useState(false);
   const uploadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const referencePhotoInputRef = useRef<HTMLInputElement>(null);
-  const cameraPhotoInputRef = useRef<HTMLInputElement>(null);
-  const buildPhotoInputRef = useRef<HTMLInputElement>(null);
-  const referenceDocumentsInputRef = useRef<HTMLInputElement>(null);
   const nameSearchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [newLinkUrl, setNewLinkUrl] = useState("");
   const [newLinkDescription, setNewLinkDescription] = useState("");
@@ -1518,25 +1515,24 @@ export default function KitDetail({
                   <Image className="w-5 h-5 text-primary" />
                   {t("kitDetail.photos.reference")}
                 </CardTitle>
-                <div>
-                  <input
-                    ref={referencePhotoInputRef}
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    className="hidden"
-                    onChange={(e) => handleFileUpload(e, "image")}
-                    data-testid="input-upload-photos"
-                  />
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => referencePhotoInputRef.current?.click()}
-                  >
-                    <Upload className="w-4 h-4 mr-1" />
-                    {t("common.upload")}
-                  </Button>
-                </div>
+                <PhotoUploadButton
+                  accept="image/*"
+                  multiple
+                  onFileSelect={(files) => {
+                    const event = new Event("change", { bubbles: true });
+                    Object.defineProperty(event, "target", {
+                      value: { files },
+                      enumerable: true,
+                    });
+                    handleFileUpload(event as any, "image");
+                  }}
+                  isLoading={isUploading}
+                  variant="outline"
+                  size="sm"
+                  icon="upload"
+                  label={t("common.upload")}
+                  disabled={isUploading}
+                />
               </div>
             </CardHeader>
             <CardContent>
@@ -1585,44 +1581,42 @@ export default function KitDetail({
                   {t("kitDetail.photos.build")}
                 </CardTitle>
                 <div className="flex gap-2 flex-wrap">
-                  <div>
-                    <input
-                      ref={cameraPhotoInputRef}
-                      type="file"
-                      accept="image/*"
-                      capture="environment"
-                      className="hidden"
-                      onChange={handleBuildPhotoUpload}
-                      data-testid="input-camera-build-photos"
-                    />
-                    <Button
-                      size="sm"
-                      variant="default"
-                      onClick={() => cameraPhotoInputRef.current?.click()}
-                    >
-                      <Camera className="w-4 h-4 mr-1" />
-                      {t("kitDetail.photos.takePhoto")}
-                    </Button>
-                  </div>
-                  <div>
-                    <input
-                      ref={buildPhotoInputRef}
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      className="hidden"
-                      onChange={handleBuildPhotoUpload}
-                      data-testid="input-upload-build-photos"
-                    />
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => buildPhotoInputRef.current?.click()}
-                    >
-                      <Upload className="w-4 h-4 mr-1" />
-                      {t("common.upload")}
-                    </Button>
-                  </div>
+                  <PhotoUploadButton
+                    accept="image/*"
+                    capture="environment"
+                    onFileSelect={(files) => {
+                      const event = new Event("change", { bubbles: true });
+                      Object.defineProperty(event, "target", {
+                        value: { files },
+                        enumerable: true,
+                      });
+                      handleBuildPhotoUpload(event as any);
+                    }}
+                    isLoading={isUploading}
+                    variant="default"
+                    size="sm"
+                    icon="camera"
+                    label={t("kitDetail.photos.takePhoto")}
+                    disabled={isUploading}
+                  />
+                  <PhotoUploadButton
+                    accept="image/*"
+                    multiple
+                    onFileSelect={(files) => {
+                      const event = new Event("change", { bubbles: true });
+                      Object.defineProperty(event, "target", {
+                        value: { files },
+                        enumerable: true,
+                      });
+                      handleBuildPhotoUpload(event as any);
+                    }}
+                    isLoading={isUploading}
+                    variant="outline"
+                    size="sm"
+                    icon="upload"
+                    label={t("common.upload")}
+                    disabled={isUploading}
+                  />
                 </div>
               </div>
             </CardHeader>
@@ -1740,25 +1734,24 @@ export default function KitDetail({
                   <FileText className="w-5 h-5 text-accent" />
                   {t("kitDetail.documents.title")}
                 </CardTitle>
-                <div>
-                  <input
-                    ref={referenceDocumentsInputRef}
-                    type="file"
-                    accept=".pdf,.doc,.docx,.txt"
-                    multiple
-                    className="hidden"
-                    onChange={(e) => handleFileUpload(e, "document")}
-                    data-testid="input-upload-docs"
-                  />
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => referenceDocumentsInputRef.current?.click()}
-                  >
-                    <Upload className="w-4 h-4 mr-1" />
-                    {t("common.upload")}
-                  </Button>
-                </div>
+                <PhotoUploadButton
+                  accept=".pdf,.doc,.docx,.txt"
+                  multiple
+                  onFileSelect={(files) => {
+                    const event = new Event("change", { bubbles: true });
+                    Object.defineProperty(event, "target", {
+                      value: { files },
+                      enumerable: true,
+                    });
+                    handleFileUpload(event as any, "document");
+                  }}
+                  isLoading={isUploading}
+                  variant="outline"
+                  size="sm"
+                  icon="upload"
+                  label={t("common.upload")}
+                  disabled={isUploading}
+                />
               </div>
             </CardHeader>
             <CardContent>
