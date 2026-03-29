@@ -71,7 +71,7 @@ export async function requireAdmin(
 ) {
   const user = req.user as any;
 
-  if (!user || user.role !== "admin") {
+  if (!user || user.isAdmin !== true) {
     console.warn(
       `[SECURITY_ALERT] Unauthorized admin access attempt by user: ${user?.id || "unknown"} | Path: ${req.path}`
     );

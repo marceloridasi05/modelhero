@@ -22,6 +22,38 @@ app.disable("x-powered-by");
 const isProduction =
   process.env.NODE_ENV === "production";
 
+/* =========================
+   SECURITY HEADERS (P2-2)
+========================= */
+app.use((req: Request, res: Response, next: NextFunction) => {
+  // HSTS - Force HTTPS for 1 year
+  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+
+  // CSP - Content Security Policy
+  // Allow self for scripts/styles, allow unsafe-inline for inline styles (necessary for frontend)
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.googleapis.com; connect-src 'self' https:; frame-ancestors 'none'"
+  );
+
+  // X-Frame-Options - Prevent clickjacking
+  res.setHeader("X-Frame-Options", "DENY");
+
+  // X-Content-Type-Options - Prevent MIME-type sniffing
+  res.setHeader("X-Content-Type-Options", "nosniff");
+
+  // X-XSS-Protection - Legacy XSS protection
+  res.setHeader("X-XSS-Protection", "1; mode=block");
+
+  // Referrer-Policy - Control referrer information
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+
+  // Permissions-Policy - Control browser features
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+
+  next();
+});
+
 if (isProduction) {
   app.set("trust proxy", 1);
 }

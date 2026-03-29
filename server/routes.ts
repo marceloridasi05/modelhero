@@ -124,29 +124,105 @@ export function registerRoutes(_server: Server, app: Express): void {
   });
 
   /* =========================
-     IMAGE PROXY
+     IMAGE PROXY (P2-3: SSRF Protection)
   ========================= */
-  app.get("/api/proxy-image", async (req, res) => {
+  // Whitelist of allowed image proxy domains (prevent SSRF)
+  const ALLOWED_IMAGE_DOMAINS = [
+    "images.unsplash.com",
+    "images.pexels.com",
+    "cdn.example.com", // Add your own CDNs
+    "storage.googleapis.com",
+    "s3.amazonaws.com",
+  ];
+
+  // Rate limiter for image proxy (10 requests/min per authenticated user)
+  const imageProxyLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 10, // 10 requests per window
+    message: "Too many image proxy requests. Please try again in 1 minute.",
+    standardHeaders: true,
+    legacyHeaders: false,
+    skip: (req: Request) => false,
+    store: new (require("express-rate-limit").MemoryStore)(),
+    keyGenerator: (req: Request) => {
+      // Rate limit by authenticated user ID
+      const userId = (req.user as any)?.id || req.ip || "unknown";
+      return `image-proxy:${userId}`;
+    },
+  });
+
+  app.get("/api/proxy-image", requireAuth, imageProxyLimiter, async (req, res) => {
     const imageUrl = req.query.url as string;
     if (!imageUrl) {
       return res.status(400).json({ error: "URL is required" });
     }
 
+    // Validate URL format
     try {
-      const response = await fetch(imageUrl);
+      new URL(imageUrl);
+    } catch {
+      return res.status(400).json({ error: "Invalid URL format" });
+    }
+
+    // Check if domain is in whitelist (prevent SSRF)
+    const urlObj = new URL(imageUrl);
+    const isWhitelisted = ALLOWED_IMAGE_DOMAINS.some(domain =>
+      urlObj.hostname === domain || urlObj.hostname.endsWith("." + domain)
+    );
+
+    if (!isWhitelisted) {
+      console.warn(`[SECURITY] Image proxy attempted with non-whitelisted domain: ${urlObj.hostname}`);
+      return res.status(403).json({ error: "Domain not allowed for image proxy" });
+    }
+
+    // Prevent fetching from internal/private IPs
+    if (["127.0.0.1", "localhost", "0.0.0.0"].includes(urlObj.hostname)) {
+      return res.status(403).json({ error: "Cannot proxy from localhost" });
+    }
+
+    try {
+      // Add 5 second timeout to prevent hanging requests
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+      const response = await fetch(imageUrl, {
+        signal: controller.signal,
+        headers: {
+          "User-Agent": "ModelHero-ImageProxy/1.0",
+        },
+      });
+
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
         return res
           .status(response.status)
           .json({ error: "Failed to fetch image" });
       }
 
-      const contentType = response.headers.get("content-type") || "image/jpeg";
+      // Validate content-type is actually an image
+      const contentType = response.headers.get("content-type") || "";
+      if (!contentType.startsWith("image/")) {
+        console.warn(`[SECURITY] Image proxy attempted with non-image content-type: ${contentType}`);
+        return res.status(400).json({ error: "URL must point to an image" });
+      }
+
       const buffer = await response.arrayBuffer();
+
+      // Limit image size to 5MB
+      if (buffer.byteLength > 5 * 1024 * 1024) {
+        return res.status(400).json({ error: "Image too large (max 5MB)" });
+      }
 
       res.setHeader("Content-Type", contentType);
       res.setHeader("Cache-Control", "public, max-age=3600");
+      res.setHeader("X-Content-Type-Options", "nosniff");
       res.send(Buffer.from(buffer));
-    } catch (error) {
+    } catch (error: any) {
+      if (error.name === "AbortError") {
+        console.error("Image proxy request timed out:", imageUrl);
+        return res.status(504).json({ error: "Image proxy request timed out" });
+      }
       console.error("Error proxying image:", error);
       res.status(500).json({ error: "Failed to proxy image" });
     }
@@ -169,6 +245,63 @@ export function registerRoutes(_server: Server, app: Express): void {
     keyGenerator: (req: Request) => {
       // Rate limit by IP address for login attempts
       return req.ip || req.socket.remoteAddress || "unknown";
+    },
+  });
+
+  // P2-5: Global Rate Limiting on Critical Endpoints
+  // Rate limiter for duplicate kit check (20 requests per minute per user)
+  const duplicateCheckLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 20,
+    message: "Muitas verificações de duplicação. Tente novamente em 1 minuto.",
+    standardHeaders: true,
+    legacyHeaders: false,
+    store: new (require("express-rate-limit").MemoryStore)(),
+    keyGenerator: (req: Request) => {
+      const userId = (req.user as any)?.id || req.ip || "unknown";
+      return `duplicate:${userId}`;
+    },
+  });
+
+  // Rate limiter for AI-powered photo analysis (10 requests per hour per user)
+  const photoAiLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 10,
+    message: "Limite de análises de fotos atingido. Tente novamente em 1 hora.",
+    standardHeaders: true,
+    legacyHeaders: false,
+    store: new (require("express-rate-limit").MemoryStore)(),
+    keyGenerator: (req: Request) => {
+      const userId = (req.user as any)?.id || req.ip || "unknown";
+      return `photo-ai:${userId}`;
+    },
+  });
+
+  // Rate limiter for upload requests (50 uploads per hour per user)
+  const uploadRequestLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 50,
+    message: "Limite de requisições de upload atingido. Tente novamente em 1 hora.",
+    standardHeaders: true,
+    legacyHeaders: false,
+    store: new (require("express-rate-limit").MemoryStore)(),
+    keyGenerator: (req: Request) => {
+      const userId = (req.user as any)?.id || req.ip || "unknown";
+      return `upload:${userId}`;
+    },
+  });
+
+  // Rate limiter for admin migrations (5 requests per 24 hours per admin)
+  const adminMigrationLimiter = rateLimit({
+    windowMs: 24 * 60 * 60 * 1000, // 24 hours
+    max: 5,
+    message: "Limite de migrações atingido. Tente novamente em 24 horas.",
+    standardHeaders: true,
+    legacyHeaders: false,
+    store: new (require("express-rate-limit").MemoryStore)(),
+    keyGenerator: (req: Request) => {
+      const userId = (req.user as any)?.id || req.ip || "unknown";
+      return `migration:${userId}`;
     },
   });
 
@@ -898,7 +1031,7 @@ export function registerRoutes(_server: Server, app: Express): void {
     res.json({ success: true });
   });
 
-  app.post("/api/kits/:id/duplicate", requireAuth, async (req, res) => {
+  app.post("/api/kits/:id/duplicate", requireAuth, duplicateCheckLimiter, async (req, res) => {
     try {
       const userId = req.session.userId!;
 
@@ -1384,7 +1517,7 @@ export function registerRoutes(_server: Server, app: Express): void {
     }
   });
 
-  app.post("/api/ai/extract-kit-from-photo", requireAuth, async (req, res) => {
+  app.post("/api/ai/extract-kit-from-photo", requireAuth, photoAiLimiter, async (req, res) => {
     console.log(
       "[extract-kit-from-photo] Request received, image length:",
       req.body?.imageBase64?.length || 0,
@@ -1893,7 +2026,7 @@ If you cannot identify the paint, return: { "paint": null, "confidence": 0 }`,
     },
   );
 
-  app.post("/api/ai/check-duplicate", requireAuth, async (req, res) => {
+  app.post("/api/ai/check-duplicate", requireAuth, photoAiLimiter, async (req, res) => {
     console.log("[check-duplicate] Request received");
     const { photoUrl, textQuery, productUrl, language } = req.body;
 
@@ -2269,7 +2402,7 @@ Consider the kit type and scale when making recommendations. For aircraft, menti
     }
   });
 
-  app.post("/api/ai/analyze-photo", requireAuth, async (req, res) => {
+  app.post("/api/ai/analyze-photo", requireAuth, photoAiLimiter, async (req, res) => {
     console.log("[analyze-photo] Request received");
     const { photoUrl, kitName, kitType, scale, etapa, language } = req.body;
 
@@ -3420,7 +3553,7 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
     }
   });
 
-  app.post("/api/admin/migrate-images", requireAuth, async (req, res) => {
+  app.post("/api/admin/migrate-images", requireAuth, requireAdmin, adminMigrationLimiter, async (req, res) => {
     try {
       const user = await storage.getUser(req.session.userId!);
       if (!user?.isAdmin) {
@@ -3561,7 +3694,7 @@ Be constructive and helpful. If the build looks good, still provide tips for fur
     }
   });
 
-  app.post("/api/admin/migrate-all-users-images", requireAuth, async (req, res) => {
+  app.post("/api/admin/migrate-all-users-images", requireAuth, requireAdmin, adminMigrationLimiter, async (req, res) => {
     try {
       const user = await storage.getUser(req.session.userId!);
       if (!user?.isAdmin) {

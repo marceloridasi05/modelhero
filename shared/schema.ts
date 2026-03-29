@@ -340,10 +340,21 @@ export const insertUserSchema = createInsertSchema(users).omit({
   createdAt: true,
 });
 
+/**
+ * Password complexity validation (P2-4)
+ * Requires: 12+ chars, uppercase, lowercase, number
+ */
+const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{12,}$/;
+const passwordComplexityMessage =
+  "Senha deve ter no mínimo 12 caracteres com maiúscula, minúscula e número";
+
 export const registerSchema = z.object({
   name: z.string().min(1, "Nome é obrigatório"),
   email: z.string().email("Email inválido"),
-  password: z.string().min(6, "Senha deve ter no mínimo 6 caracteres"),
+  password: z.string().regex(
+    passwordComplexityRegex,
+    passwordComplexityMessage
+  ),
   confirmPassword: z.string().min(1, "Confirme sua senha"),
   acceptedTerms: z.boolean().refine((val) => val === true, {
     message: "Você deve aceitar os termos de uso",
@@ -355,7 +366,10 @@ export const registerSchema = z.object({
 
 export const changePasswordSchema = z.object({
   currentPassword: z.string().min(1, "Senha atual é obrigatória"),
-  newPassword: z.string().min(6, "Nova senha deve ter no mínimo 6 caracteres"),
+  newPassword: z.string().regex(
+    passwordComplexityRegex,
+    passwordComplexityMessage
+  ),
 });
 
 export const loginSchema = z.object({

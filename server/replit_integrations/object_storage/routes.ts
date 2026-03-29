@@ -1,4 +1,5 @@
-import type { Express, RequestHandler } from "express";
+import type { Express, RequestHandler, Request } from "express";
+import rateLimit from "express-rate-limit";
 import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
 import { generateSafeFilename, validateFileSize, logUploadValidationFailure } from "../../utils/upload-validator";
 
@@ -16,6 +17,20 @@ import { generateSafeFilename, validateFileSize, logUploadValidationFailure } fr
  */
 export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestHandler): void {
   const objectStorageService = new ObjectStorageService();
+
+  // P2-5: Rate limiter for upload requests (50 uploads per hour per user)
+  const uploadRequestLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 50,
+    message: "Limite de requisições de upload atingido. Tente novamente em 1 hora.",
+    standardHeaders: true,
+    legacyHeaders: false,
+    store: new (require("express-rate-limit").MemoryStore)(),
+    keyGenerator: (req: Request) => {
+      const userId = (req as any).session?.userId || (req as any).user?.id || req.ip || "unknown";
+      return `upload:${userId}`;
+    },
+  });
 
   /**
    * Request a presigned URL for file upload.
@@ -37,7 +52,7 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
    * Send JSON metadata only, then upload the file directly to uploadURL.
    * This endpoint requires authentication.
    */
-  const middlewares = requireAuth ? [requireAuth] : [];
+  const middlewares = requireAuth ? [requireAuth, uploadRequestLimiter] : [uploadRequestLimiter];
 
   app.post("/api/uploads/request-url", ...middlewares, async (req, res) => {
     try {
