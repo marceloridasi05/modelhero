@@ -23,25 +23,41 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
       try {
         console.log("🔍 [UPLOAD] Iniciando upload para arquivo:", file.name, "Tamanho:", file.size);
 
-        // Use multipart/form-data upload via server (avoids CORS issues)
-        const formData = new FormData();
-        formData.append("file", file);
+        // Convert file to base64
+        const base64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = reader.result as string;
+            // Extract base64 part after the comma
+            const base64String = result.split(',')[1] || result;
+            resolve(base64String);
+          };
+          reader.onerror = () => reject(reader.error);
+          reader.readAsDataURL(file);
+        });
+
+        console.log("📦 [UPLOAD] Base64 criado, tamanho:", base64.length);
 
         const uploadResponse = await fetch("/api/uploads/upload", {
           method: "POST",
           credentials: "include",
-          body: formData,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            file: base64,
+            name: file.name,
+            type: file.type || "image/jpeg",
+          }),
         });
 
         console.log("📤 [UPLOAD] Resposta do servidor:", uploadResponse.status, uploadResponse.statusText);
 
         if (!uploadResponse.ok) {
-          // Try to extract error message from response
           try {
             const errorData = await uploadResponse.json();
             console.error("❌ [UPLOAD] Erro no upload:", errorData);
             throw new Error(errorData.error || "Falha ao fazer upload");
-          } catch {
+          } catch (e) {
+            if (e instanceof Error) throw e;
             throw new Error("Falha ao fazer upload");
           }
         }
