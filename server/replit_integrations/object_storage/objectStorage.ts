@@ -123,6 +123,13 @@ export async function saveBufferToStorage(
       console.log(`   - Bucket: ${R2_BUCKET_NAME}`);
       console.log(`   - Endpoint: https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`);
 
+      // DIAGNOSTIC: Log buffer info before sending to AWS
+      console.log(`🔍 [STORAGE-DEBUG] Buffer type before PutObjectCommand: ${typeof buffer}`);
+      console.log(`🔍 [STORAGE-DEBUG] Buffer.isBuffer: ${Buffer.isBuffer(buffer)}`);
+      console.log(`🔍 [STORAGE-DEBUG] Buffer constructor: ${buffer?.constructor?.name}`);
+      console.log(`🔍 [STORAGE-DEBUG] Buffer length: ${buffer.length}`);
+      console.log(`🔍 [STORAGE-DEBUG] First 20 bytes (hex): ${buffer.slice(0, 20).toString('hex')}`);
+
       const command = new PutObjectCommand({
         Bucket: R2_BUCKET_NAME!,
         Key: fileName,

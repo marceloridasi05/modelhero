@@ -213,6 +213,15 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
 
       console.log(`🚀 [UPLOAD] Iniciando saveBufferToStorage...`);
 
+      // DIAGNOSTIC: Log buffer info
+      console.log(`🔍 [UPLOAD-DEBUG] Buffer type: ${typeof buffer}`);
+      console.log(`🔍 [UPLOAD-DEBUG] Buffer constructor: ${buffer?.constructor?.name}`);
+      console.log(`🔍 [UPLOAD-DEBUG] Buffer isBuffer: ${Buffer.isBuffer(buffer)}`);
+      console.log(`🔍 [UPLOAD-DEBUG] Buffer length: ${buffer.length}`);
+      console.log(`🔍 [UPLOAD-DEBUG] First 20 bytes (hex): ${buffer.slice(0, 20).toString('hex')}`);
+      console.log(`🔍 [UPLOAD-DEBUG] objectPath: ${objectPath}`);
+      console.log(`🔍 [UPLOAD-DEBUG] contentType: ${contentType}`);
+
       // Upload to R2 (or local storage)
       const result = await saveBufferToStorage(objectPath, buffer, contentType);
       console.log(`✅ [UPLOAD] ✅ ✅ Arquivo salvo com SUCESSO: ${result}`);
