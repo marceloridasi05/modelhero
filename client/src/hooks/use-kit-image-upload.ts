@@ -138,6 +138,7 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
   return {
     uploadImages,
     uploadBoxImage,
+    uploadSingleImage,
     isUploading,
     progress,
     error,

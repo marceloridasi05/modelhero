@@ -97,6 +97,8 @@ import DestinoBadge from "@/components/DestinoBadge";
 import RatingStars from "@/components/RatingStars";
 import KitForm from "@/components/KitForm";
 import PhotoUploadButton from "@/components/PhotoUploadButton";
+import PhotoUploadField from "@/components/PhotoUploadField";
+import CameraPhotoUpload from "@/components/CameraPhotoUpload";
 import { PAINT_BRANDS } from "@/lib/paintBrands";
 import {
   getPaintCodesForBrand,
@@ -1582,14 +1584,15 @@ export default function KitDetail({
                   <Image className="w-5 h-5 text-primary" />
                   {t("kitDetail.photos.reference")}
                 </CardTitle>
-                <PhotoUploadButton
-                  accept="image/*"
-                  multiple
-                  onFilesSelected={(files) => handleFilesDirectly(files, "image")}
-                  isLoading={isUploading}
-                  variant="outline"
-                  size="sm"
-                  icon="upload"
+                <PhotoUploadField
+                  onPhotoUploaded={(photo) => {
+                    if (!kit) return;
+                    const updatedKit: Kit = {
+                      ...kit,
+                      referencePhotos: [...(kit.referencePhotos || []), photo as any],
+                    };
+                    onEditKit(updatedKit);
+                  }}
                   label={t("common.upload")}
                   disabled={isUploading}
                 />
@@ -1641,28 +1644,34 @@ export default function KitDetail({
                   {t("kitDetail.photos.build")}
                 </CardTitle>
                 <div className="flex gap-2 flex-wrap">
-                  <PhotoUploadButton
-                    accept="image/*"
-                    capture="environment"
-                    onFilesSelected={handleBuildFilesDirectly}
-                    isLoading={isUploading}
-                    variant="default"
-                    size="sm"
-                    icon="camera"
-                    label={t("kitDetail.photos.takePhoto")}
-                    disabled={isUploading}
-                  />
-                  <PhotoUploadButton
-                    accept="image/*"
-                    multiple
-                    onFilesSelected={handleBuildFilesDirectly}
-                    isLoading={isUploading}
-                    variant="outline"
-                    size="sm"
-                    icon="upload"
-                    label={t("common.upload")}
-                    disabled={isUploading}
-                  />
+                  <div className="flex-1 min-w-[200px]">
+                    <CameraPhotoUpload
+                      onPhotoUploaded={(photo) => {
+                        if (!kit) return;
+                        const updatedKit: Kit = {
+                          ...kit,
+                          buildPhotos: [...(kit.buildPhotos || []), photo],
+                        };
+                        onEditKit(updatedKit);
+                      }}
+                      label={t("kitDetail.photos.takePhoto")}
+                      disabled={isUploading}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-[200px]">
+                    <PhotoUploadField
+                      onPhotoUploaded={(photo) => {
+                        if (!kit) return;
+                        const updatedKit: Kit = {
+                          ...kit,
+                          buildPhotos: [...(kit.buildPhotos || []), photo],
+                        };
+                        onEditKit(updatedKit);
+                      }}
+                      label={t("common.upload")}
+                      disabled={isUploading}
+                    />
+                  </div>
                 </div>
               </div>
             </CardHeader>
