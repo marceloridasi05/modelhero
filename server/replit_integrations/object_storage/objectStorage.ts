@@ -130,14 +130,20 @@ export async function saveBufferToStorage(
       console.log(`🔍 [STORAGE-DEBUG] Buffer length: ${buffer.length}`);
       console.log(`🔍 [STORAGE-DEBUG] First 20 bytes (hex): ${buffer.slice(0, 20).toString('hex')}`);
 
+      // Ensure buffer is a proper Buffer object (not stringified)
+      const binaryBuffer = Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer as any);
+
       const command = new PutObjectCommand({
         Bucket: R2_BUCKET_NAME!,
         Key: fileName,
-        Body: buffer,
+        Body: binaryBuffer,
         ContentType: contentType,
       });
 
       console.log(`📨 [STORAGE] Enviando comando PutObject...`);
+      console.log(`🔍 [STORAGE-DEBUG] Comando Body type: ${typeof (command.input as any).Body}`);
+      console.log(`🔍 [STORAGE-DEBUG] Comando Body isBuffer: ${Buffer.isBuffer((command.input as any).Body)}`);
+
       const result = await s3.send(command);
       console.log(`✅ [STORAGE] Sucesso no R2! Resultado:`, result.$metadata?.httpStatusCode);
 
