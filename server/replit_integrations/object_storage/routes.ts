@@ -120,9 +120,12 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
   });
 
   // Separate handler without rate limiting for now (debug)
-  app.post("/api/uploads/upload", upload.single("file"), async (req, res) => {
+  app.post("/api/uploads/upload", (req, res, next) => {
+    console.log("🔵 [UPLOAD] Middleware: antes de multer");
+    next();
+  }, upload.single("file"), async (req, res) => {
     try {
-      console.log("📥 [UPLOAD] Requisição recebida. File:", !!req.file, "Body:", Object.keys(req.body));
+      console.log("📥 [UPLOAD] Requisição recebida. File:", !!req.file, "Body:", Object.keys(req.body || {}));
 
       if (!req.file) {
         console.warn("⚠️ [UPLOAD] Nenhum arquivo fornecido");
@@ -139,7 +142,6 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
       const sizeValidation = validateFileSize(size, MAX_SIZE);
       if (!sizeValidation.valid) {
         console.warn("⚠️ [UPLOAD] Validação de tamanho falhou:", sizeValidation.error);
-        logUploadValidationFailure(userId, originalname, sizeValidation.error || "Unknown error", size);
         return res.status(400).json({ error: sizeValidation.error || "File too large" });
       }
 
@@ -147,7 +149,6 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
       const allowedContentTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "application/pdf"];
       if (!allowedContentTypes.includes(mimetype)) {
         console.warn("⚠️ [UPLOAD] Tipo de arquivo não permitido:", mimetype);
-        logUploadValidationFailure(userId, originalname, `Unsupported content type: ${mimetype}`, size);
         return res.status(400).json({ error: "Unsupported file type" });
       }
 
@@ -159,13 +160,19 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
 
       console.log(`🚀 [UPLOAD] Enviando para storage: ${objectPath}`);
 
-      // Upload to R2 (or local storage)
-      await saveBufferToStorage(objectPath, buffer, mimetype);
-
-      console.log(`✅ [UPLOAD] Arquivo salvo com sucesso: ${objectPath}`);
+      try {
+        // Upload to R2 (or local storage)
+        const result = await saveBufferToStorage(objectPath, buffer, mimetype);
+        console.log(`✅ [UPLOAD] Arquivo salvo com sucesso: ${result}`);
+      } catch (storageError) {
+        console.error("❌ [UPLOAD] Erro no storage:", storageError);
+        throw storageError;
+      }
 
       // Return success response with object path
       const url = `/objects/${objectPath}`;
+
+      console.log(`📤 [UPLOAD] Retornando sucesso: ${url}`);
 
       res.json({
         id: fileId,
@@ -175,11 +182,12 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
         thumbnail: url,
       });
     } catch (error) {
-      console.error("❌ [UPLOAD] Erro ao fazer upload:", error);
-      console.error("Stack trace:", (error as any)?.stack);
+      console.error("❌ [UPLOAD] ERRO FINAL ao fazer upload:", error);
+      console.error("Tipo de erro:", typeof error);
+      console.error("Stack:", (error as any)?.stack);
       res.status(500).json({
         error: "Failed to upload file",
-        details: (error as any)?.message || String(error)
+        message: (error as any)?.message || String(error),
       });
     }
   });
