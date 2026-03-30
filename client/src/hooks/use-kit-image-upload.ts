@@ -23,53 +23,38 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
       try {
         console.log("🔍 [UPLOAD] Iniciando upload para arquivo:", file.name, "Tamanho:", file.size);
 
-        const response = await fetch("/api/uploads/request-url", {
+        // Use multipart/form-data upload via server (avoids CORS issues)
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const uploadResponse = await fetch("/api/uploads/upload", {
           method: "POST",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: file.name,
-            size: file.size,
-            contentType: file.type || "image/jpeg",
-          }),
+          body: formData,
         });
 
-        console.log("📡 [UPLOAD] Resposta request-url recebida:", response.status, response.statusText);
+        console.log("📤 [UPLOAD] Resposta do servidor:", uploadResponse.status, uploadResponse.statusText);
 
-        if (!response.ok) {
+        if (!uploadResponse.ok) {
           // Try to extract error message from response
           try {
-            const errorData = await response.json();
-            console.error("❌ [UPLOAD] Erro na requisição:", errorData);
-            throw new Error(errorData.error || "Falha ao obter URL de upload");
+            const errorData = await uploadResponse.json();
+            console.error("❌ [UPLOAD] Erro no upload:", errorData);
+            throw new Error(errorData.error || "Falha ao fazer upload");
           } catch {
-            throw new Error("Falha ao obter URL de upload");
+            throw new Error("Falha ao fazer upload");
           }
         }
 
-        const { uploadURL, objectPath } = await response.json();
-        console.log("📍 [UPLOAD] URL de upload e path obtidos. Path:", objectPath.substring(0, 50) + "...");
-
-        const uploadResponse = await fetch(uploadURL, {
-          method: "PUT",
-          body: file,
-          headers: { "Content-Type": file.type || "image/jpeg" },
-        });
-
-        console.log("📤 [UPLOAD] Resposta do PUT para R2:", uploadResponse.status, uploadResponse.statusText);
-
-        if (!uploadResponse.ok) {
-          throw new Error("Falha ao enviar imagem para R2");
-        }
-
-        console.log("✅ [UPLOAD] Arquivo enviado com sucesso:", file.name);
+        const uploadedData = await uploadResponse.json();
+        console.log("✅ [UPLOAD] Arquivo enviado com sucesso:", file.name, "URL:", uploadedData.url);
 
         return {
-          id: crypto.randomUUID(),
-          name: file.name,
-          url: objectPath,
+          id: uploadedData.id,
+          name: uploadedData.name,
+          url: uploadedData.url,
           type: "image",
-          thumbnail: objectPath,
+          thumbnail: uploadedData.thumbnail || uploadedData.url,
         };
       } catch (err) {
         console.error("❌ [UPLOAD] Erro ao fazer upload:", err);

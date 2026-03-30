@@ -1,7 +1,9 @@
 import type { Express, RequestHandler, Request } from "express";
 import rateLimit from "express-rate-limit";
-import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
+import { ObjectStorageService, ObjectNotFoundError, saveBufferToStorage } from "./objectStorage";
 import { generateSafeFilename, validateFileSize, logUploadValidationFailure } from "../../utils/upload-validator";
+import multer from "multer";
+import { randomUUID } from "crypto";
 
 /**
  * Register object storage routes for file uploads.
@@ -101,6 +103,65 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
     } catch (error) {
       console.error("Error generating upload URL:", error);
       res.status(500).json({ error: "Failed to generate upload URL" });
+    }
+  });
+
+  /**
+   * Upload file directly via multipart/form-data (avoids CORS issues).
+   *
+   * POST /api/uploads/upload
+   * multipart/form-data with "file" field
+   *
+   * Response: { url, id, name }
+   */
+  const upload = multer({ storage: multer.memoryStorage() });
+
+  app.post("/api/uploads/upload", ...middlewares, upload.single("file"), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file provided" });
+      }
+
+      const { originalname, buffer, mimetype, size } = req.file;
+      const userId = (req as any).session?.userId || "unknown";
+
+      // Validate file size (15MB max)
+      const MAX_SIZE = 15 * 1024 * 1024;
+      const sizeValidation = validateFileSize(size, MAX_SIZE);
+      if (!sizeValidation.valid) {
+        logUploadValidationFailure(userId, originalname, sizeValidation.error || "Unknown error", size);
+        return res.status(400).json({ error: sizeValidation.error || "File too large" });
+      }
+
+      // Validate content type
+      const allowedContentTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "application/pdf"];
+      if (!allowedContentTypes.includes(mimetype)) {
+        logUploadValidationFailure(userId, originalname, `Unsupported content type: ${mimetype}`, size);
+        return res.status(400).json({ error: "Unsupported file type" });
+      }
+
+      // Generate safe filename with UUID
+      const fileId = randomUUID();
+      const ext = originalname.split(".").pop() || "bin";
+      const safeName = `${fileId}.${ext}`;
+      const objectPath = `uploads/${safeName}`;
+
+      // Upload to R2 (or local storage)
+      await saveBufferToStorage(objectPath, buffer, mimetype);
+
+      // Return success response with object path
+      const url = `/objects/${objectPath}`;
+
+      res.json({
+        id: fileId,
+        name: originalname,
+        url: url,
+        type: "image",
+        thumbnail: url,
+      });
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      res.status(500).json({ error: "Failed to upload file" });
     }
   });
 
