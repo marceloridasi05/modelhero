@@ -106,50 +106,6 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
   });
 
   /**
-   * Test endpoint - simple JSON response
-   */
-  app.post("/api/uploads/test", (req, res) => {
-    console.log("🧪 [TEST] POST /api/uploads/test called");
-    res.json({ test: "ok", received: req.body ? Object.keys(req.body) : "no body" });
-  });
-
-  /**
-   * Test upload without actual R2 upload
-   */
-  app.post("/api/uploads/test-upload", async (req, res) => {
-    try {
-      const { file, name, type: mimeType } = req.body;
-      console.log("🧪 [TEST-UPLOAD] Received:", { nameLen: name?.length, fileLen: file?.length, type: mimeType });
-
-      if (!file || !name) {
-        return res.status(400).json({ error: "Missing file or name" });
-      }
-
-      // Just decode and validate, don't upload
-      const buffer = Buffer.from(file, 'base64');
-      console.log("🧪 [TEST-UPLOAD] Buffer created:", buffer.length);
-
-      const fileId = randomUUID();
-      const ext = name.split(".").pop() || "bin";
-      const url = `/objects/test/${fileId}.${ext}`;
-
-      res.json({
-        id: fileId,
-        name: name,
-        url: url,
-        type: "image",
-        thumbnail: url,
-      });
-    } catch (error) {
-      console.error("🧪 [TEST-UPLOAD] Error:", error);
-      res.status(500).json({
-        error: "Test upload failed",
-        message: (error as any)?.message || String(error),
-      });
-    }
-  });
-
-  /**
    * Upload file via JSON with base64 (avoids multipart/CORS issues).
    *
    * POST /api/uploads/upload
@@ -211,16 +167,7 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
       const objectPath = `uploads/${safeName}`;
       console.log(`📝 [UPLOAD] Filename gerado: ${objectPath}`);
 
-      console.log(`🚀 [UPLOAD] Iniciando saveBufferToStorage...`);
-
-      // DIAGNOSTIC: Log buffer info
-      console.log(`🔍 [UPLOAD-DEBUG] Buffer type: ${typeof buffer}`);
-      console.log(`🔍 [UPLOAD-DEBUG] Buffer constructor: ${buffer?.constructor?.name}`);
-      console.log(`🔍 [UPLOAD-DEBUG] Buffer isBuffer: ${Buffer.isBuffer(buffer)}`);
-      console.log(`🔍 [UPLOAD-DEBUG] Buffer length: ${buffer.length}`);
-      console.log(`🔍 [UPLOAD-DEBUG] First 20 bytes (hex): ${buffer.slice(0, 20).toString('hex')}`);
-      console.log(`🔍 [UPLOAD-DEBUG] objectPath: ${objectPath}`);
-      console.log(`🔍 [UPLOAD-DEBUG] contentType: ${contentType}`);
+      console.log(`🚀 [UPLOAD] Iniciando saveBufferToStorage... Arquivo: ${objectPath}, Tamanho: ${buffer.length} bytes`);
 
       // Upload to R2 (or local storage)
       const result = await saveBufferToStorage(objectPath, buffer, contentType);
