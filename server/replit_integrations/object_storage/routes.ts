@@ -114,9 +114,13 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
    *
    * Response: { url, id, name }
    */
-  const upload = multer({ storage: multer.memoryStorage() });
+  const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 15 * 1024 * 1024 }
+  });
 
-  app.post("/api/uploads/upload", ...middlewares, upload.single("file"), async (req, res) => {
+  // Separate handler without rate limiting for now (debug)
+  app.post("/api/uploads/upload", upload.single("file"), async (req, res) => {
     try {
       console.log("📥 [UPLOAD] Requisição recebida. File:", !!req.file, "Body:", Object.keys(req.body));
 
