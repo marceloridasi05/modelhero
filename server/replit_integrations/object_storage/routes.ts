@@ -114,6 +114,42 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
   });
 
   /**
+   * Test upload without actual R2 upload
+   */
+  app.post("/api/uploads/test-upload", async (req, res) => {
+    try {
+      const { file, name, type: mimeType } = req.body;
+      console.log("🧪 [TEST-UPLOAD] Received:", { nameLen: name?.length, fileLen: file?.length, type: mimeType });
+
+      if (!file || !name) {
+        return res.status(400).json({ error: "Missing file or name" });
+      }
+
+      // Just decode and validate, don't upload
+      const buffer = Buffer.from(file, 'base64');
+      console.log("🧪 [TEST-UPLOAD] Buffer created:", buffer.length);
+
+      const fileId = randomUUID();
+      const ext = name.split(".").pop() || "bin";
+      const url = `/objects/test/${fileId}.${ext}`;
+
+      res.json({
+        id: fileId,
+        name: name,
+        url: url,
+        type: "image",
+        thumbnail: url,
+      });
+    } catch (error) {
+      console.error("🧪 [TEST-UPLOAD] Error:", error);
+      res.status(500).json({
+        error: "Test upload failed",
+        message: (error as any)?.message || String(error),
+      });
+    }
+  });
+
+  /**
    * Upload file via JSON with base64 (avoids multipart/CORS issues).
    *
    * POST /api/uploads/upload
