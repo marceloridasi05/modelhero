@@ -33,7 +33,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   // Allow self for scripts/styles, allow unsafe-inline for inline styles (necessary for frontend)
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.googleapis.com; connect-src 'self' https:; frame-ancestors 'none'"
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' https://fonts.googleapis.com; connect-src 'self' https:; frame-ancestors 'none'"
   );
 
   // X-Frame-Options - Prevent clickjacking
