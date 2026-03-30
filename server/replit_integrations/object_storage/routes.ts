@@ -106,6 +106,14 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
   });
 
   /**
+   * Test endpoint - simple JSON response
+   */
+  app.post("/api/uploads/test", (req, res) => {
+    console.log("🧪 [TEST] POST /api/uploads/test called");
+    res.json({ test: "ok", received: req.body ? Object.keys(req.body) : "no body" });
+  });
+
+  /**
    * Upload file via JSON with base64 (avoids multipart/CORS issues).
    *
    * POST /api/uploads/upload
