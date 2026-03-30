@@ -122,10 +122,11 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
    * Response: { url, id, name }
    */
   app.post("/api/uploads/upload", async (req, res) => {
+    console.log(`\n${'='.repeat(60)}\n🔵 [UPLOAD] POST /api/uploads/upload - INÍCIO\n${'='.repeat(60)}`);
+
     try {
       const { file, name, type: mimeType } = req.body;
-
-      console.log(`📥 [UPLOAD] Requisição recebida. Name: ${name}, Type: ${mimeType}`);
+      console.log(`📥 [UPLOAD] Body recebido. File size (base64): ${file ? file.length : 0}, Name: ${name}, Type: ${mimeType}`);
 
       if (!file || !name) {
         console.warn("⚠️ [UPLOAD] Arquivo ou nome não fornecido");
@@ -135,8 +136,9 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
       // Decode base64 to buffer
       let buffer: Buffer;
       try {
+        console.log(`🔄 [UPLOAD] Decodificando base64... Tamanho: ${file.length}`);
         buffer = Buffer.from(file, 'base64');
-        console.log(`📦 [UPLOAD] Buffer criado: ${buffer.length} bytes`);
+        console.log(`📦 [UPLOAD] ✅ Buffer criado com sucesso: ${buffer.length} bytes`);
       } catch (decodeError) {
         console.error("❌ [UPLOAD] Erro ao decodificar base64:", decodeError);
         return res.status(400).json({ error: "Invalid base64 data" });
@@ -144,51 +146,67 @@ export function registerObjectStorageRoutes(app: Express, requireAuth?: RequestH
 
       const size = buffer.length;
       const userId = (req as any).session?.userId || "unknown";
+      console.log(`👤 [UPLOAD] UserID: ${userId}`);
 
       // Validate file size (15MB max)
       const MAX_SIZE = 15 * 1024 * 1024;
+      console.log(`📏 [UPLOAD] Validando tamanho... ${size}bytes vs limite ${MAX_SIZE}`);
       const sizeValidation = validateFileSize(size, MAX_SIZE);
       if (!sizeValidation.valid) {
         console.warn("⚠️ [UPLOAD] Validação de tamanho falhou:", sizeValidation.error);
         return res.status(400).json({ error: sizeValidation.error || "File too large" });
       }
+      console.log(`✅ [UPLOAD] Tamanho validado`);
 
       // Validate content type
       const allowedContentTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "application/pdf"];
       const contentType = mimeType || "image/jpeg";
+      console.log(`📋 [UPLOAD] Validando tipo... ${contentType}`);
       if (!allowedContentTypes.includes(contentType)) {
         console.warn("⚠️ [UPLOAD] Tipo de arquivo não permitido:", contentType);
         return res.status(400).json({ error: "Unsupported file type" });
       }
+      console.log(`✅ [UPLOAD] Tipo validado`);
 
       // Generate safe filename with UUID
       const fileId = randomUUID();
       const ext = name.split(".").pop() || "bin";
       const safeName = `${fileId}.${ext}`;
       const objectPath = `uploads/${safeName}`;
+      console.log(`📝 [UPLOAD] Filename gerado: ${objectPath}`);
 
-      console.log(`🚀 [UPLOAD] Enviando para storage: ${objectPath}`);
+      console.log(`🚀 [UPLOAD] Iniciando saveBufferToStorage...`);
 
       // Upload to R2 (or local storage)
       const result = await saveBufferToStorage(objectPath, buffer, contentType);
-      console.log(`✅ [UPLOAD] Arquivo salvo com sucesso: ${result}`);
+      console.log(`✅ [UPLOAD] ✅ ✅ Arquivo salvo com SUCESSO: ${result}`);
 
       // Return success response with object path
       const url = `/objects/${objectPath}`;
-
-      res.json({
+      const response = {
         id: fileId,
         name: name,
         url: url,
         type: "image",
         thumbnail: url,
-      });
+      };
+
+      console.log(`📤 [UPLOAD] Retornando resposta:`, JSON.stringify(response).substring(0, 100));
+      res.json(response);
+      console.log(`\n✅ [UPLOAD] SUCESSO TOTAL!\n${'='.repeat(60)}\n`);
+
     } catch (error) {
-      console.error("❌ [UPLOAD] ERRO ao fazer upload:", error);
+      console.error(`\n❌ [UPLOAD] ❌ ❌ ERRO CRÍTICO:\n`);
+      console.error("Tipo de erro:", typeof error);
+      console.error("Erro:", error);
       console.error("Stack:", (error as any)?.stack);
+      console.error("Message:", (error as any)?.message);
+      console.error(`${'='.repeat(60)}\n`);
+
       res.status(500).json({
         error: "Failed to upload file",
         message: (error as any)?.message || String(error),
+        type: typeof error,
       });
     }
   });
