@@ -21,7 +21,54 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
   const uploadSingleImage = useCallback(
     async (file: File): Promise<UploadedImage | null> => {
       try {
-        console.log("🔍 [UPLOAD] Iniciando upload para arquivo:", file.name, "Tamanho:", file.size);
+        console.log("🔍 [UPLOAD] Iniciando upload para arquivo:", file.name, "Tamanho original:", file.size);
+
+        // Compress image before uploading
+        let fileToUpload = file;
+        if (file.type.startsWith('image/')) {
+          console.log("🖼️ [UPLOAD] Comprimindo imagem...");
+          const canvas = await new Promise<HTMLCanvasElement>((resolve) => {
+            const img = new Image();
+            const url = URL.createObjectURL(file);
+            img.onload = () => {
+              const maxWidth = 1920;
+              const maxHeight = 1920;
+              let width = img.width;
+              let height = img.height;
+
+              if (width > height) {
+                if (width > maxWidth) {
+                  height = Math.round((height * maxWidth) / width);
+                  width = maxWidth;
+                }
+              } else {
+                if (height > maxHeight) {
+                  width = Math.round((width * maxHeight) / height);
+                  height = maxHeight;
+                }
+              }
+
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d')!;
+              ctx.drawImage(img, 0, 0, width, height);
+              URL.revokeObjectURL(url);
+              resolve(canvas);
+            };
+            img.src = url;
+          });
+
+          // Convert canvas to blob (JPEG with quality 0.8)
+          const blob = await new Promise<Blob>((resolve) => {
+            canvas.toBlob((blob) => {
+              resolve(blob!);
+            }, 'image/jpeg', 0.8);
+          });
+
+          console.log("✅ [UPLOAD] Imagem comprimida. Novo tamanho:", blob.size);
+          fileToUpload = new File([blob], file.name.replace(/\.[^/.]+$/, '.jpg'), { type: 'image/jpeg' });
+        }
 
         // Convert file to base64
         const base64 = await new Promise<string>((resolve, reject) => {
@@ -33,7 +80,7 @@ export function useKitImageUpload(options: UseKitImageUploadOptions = {}) {
             resolve(base64String);
           };
           reader.onerror = () => reject(reader.error);
-          reader.readAsDataURL(file);
+          reader.readAsDataURL(fileToUpload);
         });
 
         console.log("📦 [UPLOAD] Base64 criado, tamanho:", base64.length);
