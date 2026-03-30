@@ -105,25 +105,52 @@ export class ObjectStorageService {
 }
 
 export async function saveBufferToStorage(
-  buffer: Buffer,
   fileName: string,
+  buffer: Buffer,
   contentType: string,
   _metadata?: Record<string, string>
 ): Promise<string> {
+  console.log(`\n📤 [STORAGE] Iniciando saveBufferToStorage:`);
+  console.log(`   - Arquivo: ${fileName}`);
+  console.log(`   - Tamanho: ${buffer.length} bytes`);
+  console.log(`   - Type: ${contentType}`);
+  console.log(`   - USE_R2: ${USE_R2}`);
+  console.log(`   - S3 inicializado: ${!!s3}`);
+
   if (USE_R2 && s3) {
-    await s3.send(new PutObjectCommand({
-      Bucket: R2_BUCKET_NAME!,
-      Key: fileName,
-      Body: buffer,
-      ContentType: contentType,
-    }));
-    return `/objects/${fileName}`;
+    try {
+      console.log(`🔗 [STORAGE] Conectando ao R2...`);
+      console.log(`   - Bucket: ${R2_BUCKET_NAME}`);
+      console.log(`   - Endpoint: https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`);
+
+      const command = new PutObjectCommand({
+        Bucket: R2_BUCKET_NAME!,
+        Key: fileName,
+        Body: buffer,
+        ContentType: contentType,
+      });
+
+      console.log(`📨 [STORAGE] Enviando comando PutObject...`);
+      const result = await s3.send(command);
+      console.log(`✅ [STORAGE] Sucesso no R2! Resultado:`, result.$metadata?.httpStatusCode);
+
+      return `/objects/${fileName}`;
+    } catch (error) {
+      console.error(`❌ [STORAGE] ERRO NO R2:`, error);
+      console.error(`   - Message: ${(error as any)?.message}`);
+      console.error(`   - Code: ${(error as any)?.Code}`);
+      console.error(`   - Name: ${(error as any)?.name}`);
+      throw error;
+    }
   }
 
   // Local fallback
+  console.log(`💾 [STORAGE] Usando armazenamento local (fallback)...`);
   const dir = path.join(UPLOAD_DIR, path.dirname(fileName));
   ensureDir(dir);
-  fs.writeFileSync(path.join(UPLOAD_DIR, fileName), buffer);
+  const filePath = path.join(UPLOAD_DIR, fileName);
+  fs.writeFileSync(filePath, buffer);
+  console.log(`✅ [STORAGE] Arquivo salvo localmente: ${filePath}`);
   return `/objects/${fileName}`;
 }
 
